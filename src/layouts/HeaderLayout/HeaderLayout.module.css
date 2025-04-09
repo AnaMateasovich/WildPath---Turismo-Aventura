@@ -1,0 +1,64 @@
+.container {
+    position: relative;
+    display: block;
+}
+
+.header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+    line-height: 1;
+}
+
+.logo img{
+    width: 12rem;
+}
+
+.logo h3 {
+    font-weight: var(--font-title-exb);
+    font-size: 3rem;
+}
+.logo p {
+    font-weight: var(--font-title-exb);
+    text-transform: uppercase;
+}
+
+.navLinks {
+    display: flex;
+    gap: 5rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: var(--font-semibold);
+}
+
+.buttons {
+    display: flex;
+    gap: 2rem;
+}
+
+.btnRegister {
+    border: 3px solid var(--color-primary);
+    padding: .7rem 4rem;
+    border-radius: 1rem;
+    font-weight: var(--font-semibold);
+    color: var(--color-primary);
+}
+
+.btnLogin {
+    background-color: var(--color-primary);
+    padding: .7rem 4rem;
+    border-radius: 1rem;
+    font-weight: var(--font-semibold);
+    color: var(--color-light);
+}

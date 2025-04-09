@@ -1,0 +1,8 @@
+.btn {
+    width: 100%;
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    font-weight: var(--font-bold);
+    font-weight: var(--font-bold);
+    cursor: pointer;
+}
