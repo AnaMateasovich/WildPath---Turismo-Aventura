@@ -91,3 +91,102 @@ export const category = [
     img: "/src/assets/rafting.jpg",
   },
 ];
+
+export const fakeSideInfo = [
+  {
+    id: 1,
+    val: "Excelente 9,5",
+    char: [
+      { icon: "🚐", text: "Transporte ida y vuelta" },
+      { icon: "🧭", text: "Guía profesional" },
+      { icon: "🍱", text: "Almuerzo y snacks" },
+      { icon: "🛶", text: "Equipo" },
+      { icon: "🧾", text: "Seguro de viaje" },
+    ],
+    meetingPoints: "Terminal de buses, calle 123",
+    nameComment: "Cameron Williamson",
+    textComment:
+      "Una experiencia increíble, el guía fue súper amable y todo estuvo perfectamente organizado. ¡Lo recomiendo totalmente!",
+  },
+];
+
+export const fakeProductData = [
+  {
+    id: 1,
+    title: "Aventura en Kayak en el Sur",
+    location: "Bariloche, Río Negro",
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    details: {
+      level: "Intermedio",
+      duration: "1 día entero. De 9:00 a 18:00",
+      minAge: "12 años",
+    },
+    restrictions: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.`,
+    images: [
+      {
+        id: 1,
+        src: "/src/assets/kayak-rec.webp",
+      },
+      {
+        id: 2,
+        src: "/src/assets/kayak.jpg",
+      },
+      {
+        id: 3,
+        src: "/src/assets/kayak-rec.webp",
+      },
+      {
+        id: 4,
+        src: "/src/assets/kayak.jpg",
+      },
+      {
+        id: 5,
+        src: "/src/assets/kayak-rec.webp",
+      },
+      {
+        id: 6,
+        src: "/src/assets/kayak.jpg",
+      },
+      {
+        id: 7,
+        src: "/src/assets/kayak-rec.webp",
+      },
+      {
+        id: 8,
+        src: "/src/assets/kayak.jpg",
+      },
+      {
+        id: 7,
+        src: "/src/assets/kayak-rec.webp",
+      },
+    ],
+    availability: [
+      {
+        date: "Viernes 5 de Abril 2025",
+        capacity: 8,
+        booked: 0,
+        pricePerPerson: 165461,
+      },
+      {
+        date: "Sábado 13 de Abril 2025",
+        capacity: 5,
+        booked: 0,
+        pricePerPerson: 265423,
+      },
+      {
+        date: "Miércoles 17 de Abril 2025",
+        capacity: 2,
+        booked: 0,
+        pricePerPerson: 265448,
+      },
+      {
+        date: "Domingo 21 de Abril 2025",
+        capacity: 9,
+        booked: 0,
+        pricePerPerson: 258489,
+      },
+    ],
+  },
+];

@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  font-weight: var(--font-text);
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: 1rem;
+}
+
+.descContainer {
+  margin-top: 2rem;
+  border: 2px solid var(--color-border);
+  padding: 2rem 3rem;
+  border-radius: 1rem;
+}
+
+.titleDesc {
+  font-size: 1.8rem;
+  margin-bottom: .5rem;
+}
+
+.infoDesc {
+  margin: 2rem 0;
+}
+
+.infoDesc span {
+  font-weight: var(--font-bold);
+}
+
+.reqResTitle {
+  font-size: 1.8rem;
+  margin-bottom: .5rem;
+}

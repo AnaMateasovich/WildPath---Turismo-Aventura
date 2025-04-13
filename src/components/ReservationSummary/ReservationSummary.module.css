@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border: 2px solid var(--color-border);
+    border-radius: 1rem;
+    font-weight: var(--font-text);
+}
+
+.container span {
+    font-weight: var(--font-semibold);
+}
+
+.totalPay {
+    margin-top: 1rem;
+    font-size: 3rem;
+    font-weight: var(--font-semibold);
+    text-align: right;
+    line-height: 1.2;
+    margin-right: 1rem;
+}
+
+.total {
+    font-size: 1.5rem;
+    font-weight: var(--font-text);
+}
+
+
+.btnContainer {
+    align-self: center;
+    margin-top: 2rem;
+}
+
+.btn {
+    border-radius: 1rem;
+    padding: 1rem 3rem;
+}

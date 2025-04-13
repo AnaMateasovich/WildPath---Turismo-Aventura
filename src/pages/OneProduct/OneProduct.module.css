@@ -1,0 +1,48 @@
+.formContainer {
+  background-color: var(--color-primary);
+  padding: 2rem;
+}
+
+.form {
+  margin: 0 auto;
+  max-width: 1300px;
+}
+
+.productContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.infoProductContainer {
+  flex: 3;
+}
+
+.sideInfo {
+  flex: 1;
+  align-self: flex-start;
+}
+
+.backBtn {
+  max-width: 1400px;
+  display: flex;
+  grid-area: backButton;
+  justify-content: flex-end;
+  margin: 1rem auto;
+}
+
+.backBtn button {
+  padding: 1rem 4rem;
+  border-radius: 1rem;
+}
+
+.dateTable {
+  margin: 1.5rem 0 2rem 0;
+}
+
+.reservationSum {
+  margin-top: 1.5rem;
+}

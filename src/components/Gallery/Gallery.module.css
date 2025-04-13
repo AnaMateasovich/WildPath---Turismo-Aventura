@@ -1,0 +1,74 @@
+.container {
+  width: 100%;
+  overflow: hidden;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    overflow: hidden;
+} 
+.containerSup {
+  display: grid;
+  width: 100%;
+  height: 50rem;
+  grid-template-columns: 65% 35%;
+  grid-template-rows: 50% 50%;
+  gap: 1rem;
+  overflow: hidden;
+  align-items: center;
+}
+
+.firstImage {
+  grid-column: 1/2;
+  grid-row: 1/3;
+}
+
+.secondImage {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+.thirdImage {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+.restImages {
+  height: 20rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+
+
+.viewMore {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.viewMore::after {
+  content: "Ver más";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: var(--font-bold);
+  cursor: pointer;
+}

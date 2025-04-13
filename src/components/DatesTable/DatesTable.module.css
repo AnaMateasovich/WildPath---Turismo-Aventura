@@ -1,0 +1,48 @@
+.container {
+    width: 100%;
+    max-width: 120rem;
+    border-radius: 1rem;
+    border: 2px solid var(--color-border);
+    padding: 2rem 3rem;
+    padding-bottom: 1.5rem;
+    border-collapse: separate;
+    border-spacing: 0 .5rem;
+}
+
+
+.titleAvDates {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+}
+thead {
+    border-bottom: 3px solid var(--color-border); /* Añade un borde inferior */
+  }
+  
+tbody {
+  font-weight: var(--font-text);
+}
+
+.iconAvDates {
+  color: var(--color-secondary);
+}
+
+.alignCenter {
+    text-align: center;
+}
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.btn {
+    color: var(--color-light);
+    background-color: var(--color-secondary);
+    padding: 0 1rem;
+    border-radius: .5rem;
+    font-weight: var(--font-semibold);
+    cursor: pointer;
+}
