@@ -10,44 +10,38 @@
   flex: 10;
 }
 
-.searchForm input {
-  padding: 1rem 0 1rem 3.5rem;
-  width: 100%;
+.searchForm input,
+.searchForm select {
+  margin: 0;
+  box-sizing: border-box;
+  height: 100%;
   background-color: var(--color-light);
   border-radius: 0.5rem;
-}
-
-.searchForm select {
-  width: 100%;
-    padding: 1rem 1rem 1rem 3.5rem;
-    background-color: var(--color-light);
-    border-radius: 0.5rem;
-  }
-
-.searchForm select option {
-    padding: 1rem;
+  border: none; /* si quieres quitar bordes por defecto */
 }
 
 .btnSearch {
   padding: 1rem 3rem;
-  flex: 1;
+  flex: 1/2;
   border-radius: 1rem;
 }
 
 .location {
+  padding: 1rem 1rem 1rem 3.5rem;
   background: url("/src/assets/location.png") no-repeat 10px center;
   background-size: 20px;
-  flex: 6;
+  flex: 5;
 }
 
-.advType {
+.category {
+  padding: 1rem 1rem 1rem 3.5rem;
   background: url("/src/assets/advType.png") no-repeat 10px center;
   background-size: 20px;
-  flex: 4;
+  flex: 3;
 }
 
 .date {
-  background: url("/src/assets/date.png") no-repeat 10px center;
+  padding: 1rem 1rem 1rem 1rem;
   background-size: 20px;
-  flex: 2;
+  flex: 1;
 }

@@ -34,7 +34,7 @@ export const ReservationSummary = ({
         </p>
       </div>
       <div className={styles.totalPay}>
-        <p className={styles.total}>Total a pagar</p>
+        <p className={styles.total}>Total a pagar:</p>
         <p> $345644</p>
       </div>
       <div className={styles.btnContainer}>

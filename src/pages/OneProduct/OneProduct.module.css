@@ -1,12 +1,4 @@
-.formContainer {
-  background-color: var(--color-primary);
-  padding: 2rem;
-}
 
-.form {
-  margin: 0 auto;
-  max-width: 1300px;
-}
 
 .productContainer {
   max-width: 1400px;

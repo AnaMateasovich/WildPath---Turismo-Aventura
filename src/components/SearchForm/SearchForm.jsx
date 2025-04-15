@@ -11,12 +11,12 @@ export const SearchForm = ({ className }) => {
           className={styles.location}
           placeholder="Ingrese una ubicación"
         />
-        <select type="text" className={styles.advType}>
-          <option value="" disabled>
+        <select value="category" className={styles.category}>
+          <option value="" defaultValue="" selected>
             Tipo de aventura
           </option>
-          <option value="">Senderismo</option>
-          <option value="">Sky</option>
+          <option value="trekking">Senderismo</option>
+          <option value="skiing">Sky</option>
         </select>
         <input type="date" className={styles.date} placeholder="" />
       </div>

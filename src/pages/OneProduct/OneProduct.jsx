@@ -7,13 +7,12 @@ import { Button } from "../../components/Button/Button";
 import { PrincipalInfoSection } from "../../components/PrincipalInfoSection/PrincipalInfoSection";
 import { DatesTable } from "../../components/DatesTable/DatesTable";
 import { ReservationSummary } from "../../components/ReservationSummary/ReservationSummary";
+import { HeroLight } from "../../layouts/HeroLight/HeroLight";
 
 const OneProduct = () => {
   return (
     <>
-      <div className={styles.formContainer}>
-        <SearchForm className={styles.form} />
-      </div>
+      <HeroLight />
       <div className={styles.backBtn}>
         <Button text="Volver" />
       </div>

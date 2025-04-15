@@ -1,0 +1,54 @@
+.container {
+    max-width: 40rem;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border: 2px solid var(--color-border);
+    border-radius: 1rem;
+}
+
+.filterPer {
+    margin-bottom: 1rem;
+}
+
+.section{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+input {
+    margin: .5rem 1rem;
+}
+
+input[type="number"] {
+    width: 40%;
+    background-color: white;
+    border-radius: .5rem;
+    padding: .3rem 1rem;
+}
+
+input::placeholder {
+    color: var(--color-overlay);
+}
+
+legend {
+    padding: 0 1rem;
+    font-weight: var(--font-semibold);
+}
+
+fieldset {
+    border-radius: .5rem;
+    padding: 1rem;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.btnFilter {
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+}

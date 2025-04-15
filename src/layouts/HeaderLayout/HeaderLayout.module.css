@@ -53,6 +53,7 @@
     border-radius: 1rem;
     font-weight: var(--font-semibold);
     color: var(--color-primary);
+    cursor: pointer;
 }
 
 .btnLogin {
@@ -61,4 +62,6 @@
     border-radius: 1rem;
     font-weight: var(--font-semibold);
     color: var(--color-light);
+    cursor: pointer;
+
 }
