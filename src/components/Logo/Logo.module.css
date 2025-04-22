@@ -1,0 +1,21 @@
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+    line-height: 1;
+}
+
+.logo img{
+    width: 12rem;
+}
+
+.logo h3 {
+    font-weight: var(--font-title-exb);
+    font-size: 3rem;
+}
+.logo p {
+    font-weight: var(--font-title-exb);
+    text-transform: uppercase;
+}

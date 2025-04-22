@@ -1,16 +1,15 @@
 import React from "react";
-import styles from "./Home.module.css";
-import { SearchForm } from "../../components/SearchForm/SearchForm";
-import { CardCategory } from "../../components/CardCategory/CardCategory";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Link } from "react-router-dom";
-import { category, recommendations } from "../../data/db.js";
+import { Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { CardCategory } from "../../components/CardCategory/CardCategory";
 import { RecCard } from "../../components/RecCard/RecCard";
-import { FooterLayout } from "../../layouts/FooterLayout/FooterLayout.jsx";
+import { SearchForm } from "../../components/SearchForm/SearchForm";
+import { category, recommendations } from "../../data/db.js";
+import styles from "./Home.module.css";
 
 const Home = () => {
   return (

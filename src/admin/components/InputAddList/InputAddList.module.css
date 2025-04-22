@@ -1,0 +1,61 @@
+.container {
+    font-weight: var(--font-text);
+
+}
+
+.formList {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.container input {
+    width: 100%;
+    border: 1px solid var(--color-primary);
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+
+}
+.labelTitle {
+    font-weight: var(--font-semibold);
+}
+
+
+
+.btnAdd {
+    padding: .5rem 2rem;
+    border-radius: .5rem;
+}
+
+.noteHelp {
+   font-style: italic;
+   color: grey;
+   font-size: 1.5rem;
+
+}
+
+.itemList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .item {
+    background-color: var(--color-secondary-transparent);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .btnRemove {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }

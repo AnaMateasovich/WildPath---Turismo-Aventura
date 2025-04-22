@@ -1,0 +1,64 @@
+.layoutContainer {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  margin-left: 10rem;
+}
+
+.sidebar {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  bottom: 1rem;
+}
+
+.mainContent {
+  background-color: var(--color-light);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2rem 4rem 0 4rem;
+  height: 8rem;
+}
+
+.sesion {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  text-align: center;
+}
+
+.avatarSesion {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+}
+
+.closeSesion {
+  cursor: pointer;
+}
+
+main {
+  flex: 1; /* El main se estira */
+  padding: 0 4rem 2rem 4rem;
+  overflow-y: auto; /* Si es largo, que scrollee */
+}
+
+.dashboardTitle {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.line {
+  border: none;
+  height: 2px;
+  background-color: var(--color-primary);
+  width: 60%;
+  margin: 2rem auto;
+}

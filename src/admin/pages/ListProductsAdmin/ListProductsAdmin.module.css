@@ -1,0 +1,26 @@
+.searchCreateContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.searchbar {
+  margin-top: 1rem;
+}
+
+.btnCreate {
+  background-color: green;
+  padding: 0.8rem 3rem;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+}
+
+.titleList {
+  margin: 1rem 0;
+}
+
+.tableList {
+  width: 95%;
+  margin: 2rem auto;
+}

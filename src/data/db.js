@@ -342,3 +342,12 @@ export const fakeListCategories = [
   "Ciclismo",
   "Safari"
 ]
+export const fakeListCategoriesForm = [
+  {value: "senderismo", label: "Senderismo"},
+  {value: "rafting", label: "Rafting"},
+  {value: "parapente", label: "Parapente"},
+  {value: "buceo", label: "Buceo"},
+  {value: "esqui", label: "Esqui"},
+  {value: "ciclismo", label: "Ciclismo"},
+  {value: "safari", label: "Safari"},
+]

@@ -1,0 +1,80 @@
+.formScheduleContainer {
+  display: flex;
+  align-items: end;
+  gap: 1rem;
+}
+.labelTitle {
+  font-weight: var(--font-semibold);
+}
+
+.day {
+  flex: 2;
+}
+
+.hour {
+  flex: 1;
+}
+
+.description {
+  flex: 3;
+}
+
+.btnAdd {
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.1rem;
+}
+
+.tableContainer {
+  overflow-x: auto;
+  margin: 2rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: none;
+  padding: 0.5rem 2rem;
+  margin: 0;
+  text-align: left;
+  word-wrap: break-word;
+  white-space: normal;
+}
+td {
+    border-bottom: 1px solid var(--color-border);
+}
+
+thead {
+  background: none;
+}
+
+tbody tr {
+  background: none;
+}
+
+.dayTable {
+    width: 30%;
+}
+.hourTable {
+    width: 20%;
+}
+.descriptionTable {
+    width: 40%;
+}
+
+
+button {
+  cursor: pointer;
+}
+
+.noteHelp {
+  font-style: italic;
+  color: grey;
+  font-size: 1.5rem;
+  font-weight: var(--font-text);
+  margin-top: .5rem;
+}

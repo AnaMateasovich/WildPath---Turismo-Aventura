@@ -1,3 +1,4 @@
+
 .hero {
   position: relative;
   background: url("/src/assets/hero.webp");
@@ -8,6 +9,7 @@
   background-position: center;
   display: flex;
   align-items: center;
+  margin-top: 12rem;
 }
 
 .hero::before {

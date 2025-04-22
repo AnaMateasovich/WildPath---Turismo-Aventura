@@ -4,34 +4,16 @@
 }
 
 .header {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
+    height: 12rem;
     display: flex;
+    background-color: var(--color-light);
     justify-content: space-around;
     align-items: center;
-
-}
-
-.logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    text-align: center;
-    line-height: 1;
-}
-
-.logo img{
-    width: 12rem;
-}
-
-.logo h3 {
-    font-weight: var(--font-title-exb);
-    font-size: 3rem;
-}
-.logo p {
-    font-weight: var(--font-title-exb);
-    text-transform: uppercase;
+    z-index: 9999;
 }
 
 .navLinks {
