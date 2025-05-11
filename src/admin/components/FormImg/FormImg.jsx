@@ -1,41 +1,54 @@
 import React, { useState } from "react";
+import { useImages } from "../../context/ImagesContext";
 import styles from "./FormImg.module.css";
-import { Input } from "../Input/Input";
 
 export const FormImg = () => {
-  const [imagePreviews, setImagePreviews] = useState([]);
+ 
+  const {images, setImages, previews, setPreviews} = useImages()
+  
 
   const MAX_IMAGES = 5;
   const MAX_FILE_SIZE = 2 * 1024 * 1024;
 
-  const handlePreview = (e) => {
-    const files = Array.from(e.target.files); // convierte FileList en array
 
-    if (files.length + imagePreviews.length > MAX_IMAGES) {
+  const handlePreview = (e) => {
+    const selected = Array.from(e.target.files);
+    const valid = selected.filter((file) => file.size <= MAX_FILE_SIZE);
+
+    if (images.length + valid.length > MAX_IMAGES) {
       alert(`Solo puedes subir hasta ${MAX_IMAGES} imágenes`);
       return;
     }
 
-    const newImagePreviews = [];
+    if (valid.length !== selected.length) {
+      alert("Algunas imágenes no se añadieron porque superan los 2MB");
+    }
 
-    files.forEach((file) => {
-      if (file.size > MAX_FILE_SIZE) {
-        alert(`La imágeb "${file.name}" pesa más de 2MB`);
-        return;
-      }
-    });
-
-    files.forEach((file) => {
+    const newPreviews = valid.map((file) => {
       const reader = new FileReader();
-      reader.onloadend = () => {
-        newImagePreviews.push(reader.result);
-
-        if (newImagePreviews.length === files.length) {
-          setImagePreviews((prev) => [...prev, ...newImagePreviews]);
-        }
-      };
       reader.readAsDataURL(file);
+      return new Promise((resolve) => {
+        reader.onloadend = () => resolve(reader.result);
+      });
     });
+
+    Promise.all(newPreviews).then((previews) => {
+      setImages([...images, ...valid]); 
+      setPreviews((prevPreviews) => [...prevPreviews, ...previews]); 
+    });
+  };
+
+  const handleRemove = (e, index) => {
+    e.preventDefault();
+
+    
+    const updatedImages = [...images];
+    const updatedPreviews = [...previews];
+    updatedImages.splice(index, 1);
+    updatedPreviews.splice(index, 1);
+
+    setImages(updatedImages);
+    setPreviews(updatedPreviews);
   };
 
   return (
@@ -51,18 +64,20 @@ export const FormImg = () => {
         />
       </div>
       <div className={styles.imgsContainer}>
-        {imagePreviews.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt={`Vista previa ${index + 1}`}
-            className={styles.img}
-          />
+        {previews.map((image, index) => (
+          <div className={styles.imageContainer} key={index}>
+            <button onClick={(e) => handleRemove(e, index)}>x</button>
+            <img
+              src={image}
+              alt={`Vista previa ${index + 1}`}
+              className={styles.img}
+            />
+          </div>
         ))}
       </div>
-      {imagePreviews.length === 0 && (
+      {previews.length === 0 && (
         <p className={styles.noteHelp}>
-          Puedes subir hasta 10 imágenes y no deben pesar más de 2MB cada una
+          Puedes subir hasta 5 imágenes y no deben superar 2MB cada una
         </p>
       )}
     </div>

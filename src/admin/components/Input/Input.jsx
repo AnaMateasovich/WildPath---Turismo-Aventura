@@ -1,11 +1,11 @@
 import React from "react";
 import styles from './Input.module.css'
 
-export const Input = ({htmlFor, labelName, placeholder, type, value, inputName, onChange}) => {
+export const Input = ({htmlFor, labelName, placeholder, type, value, inputName, onChange,disabled}) => {
   return (
     <div className={styles.container}>
       <label htmlFor={htmlFor}>{labelName}</label>
-      <input id={htmlFor} type={type} placeholder={placeholder} value={value} name={inputName} onChange={onChange} 
+      <input id={htmlFor} type={type} placeholder={placeholder} value={value} name={inputName} onChange={onChange} disabled={disabled}
      />
     </div>
   );

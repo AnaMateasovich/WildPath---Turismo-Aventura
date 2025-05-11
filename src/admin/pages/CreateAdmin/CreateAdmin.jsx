@@ -1,18 +1,30 @@
 import React, { useState } from "react";
-import styles from "./CreateAdmin.module.css";
-import { Input } from "../../components/Input/Input";
-import { Select } from "../../components/Select/Select";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../../components/Button/Button";
-import { Textarea } from "../../components/Textarea/Textarea";
-import { fakeListCategoriesForm } from "../../../data/db";
-import { InputAddList } from "../../components/InputAddList/InputAddList";
-import { FormSchedule } from "../../components/FormSchedule/FormSchedule";
+import { FormDatesAvailable } from "../../components/FormDatesAvailable/FormDatesAvailable";
+import { FormEnterprise } from "../../components/FormEnterprise/FormEnterprise";
 import { FormImg } from "../../components/FormImg/FormImg";
-import { FormDates } from "../../components/FormDates/FormDates";
+import { FormPackage } from "../../components/FormPackage/FormPackage";
+import { FormRequirements } from "../../components/FormRequirements/FormRequirements";
+import { ReviewAndSubmit } from "../../components/ReviewAndSubmit/ReviewAndSubmit";
+import styles from "./CreateAdmin.module.css";
+import { useIncludes } from "../../context/IncludesContext";
+import { useImages } from "../../context/ImagesContext";
+import { saveFullForm } from "../../redux/features/FullFormCreate/formThunk";
 
 const CreateAdmin = () => {
-  const [currentStep, setCurrentStep] = useState(4);
+  const [currentStep, setCurrentStep] = useState(1);
 
+  const formData = useSelector((state) => state.fullForm);
+  const status = useSelector(state => state.fullForm.status)
+  const { includes, noIncludes } = useIncludes();
+  const {images} = useImages()
+  const dispatch = useDispatch()
+
+  const handleSubmit = () => {
+    dispatch(saveFullForm(includes, noIncludes, images));
+  };
+  console.log(formData)
   return (
     <form action="" className={styles.container}>
       <aside className={styles.sidebarSteps}>
@@ -43,138 +55,19 @@ const CreateAdmin = () => {
             <span className={styles.textStep}>Revisar y Terminar</span>
           </li>
         </ul>
-        <div className={styles.btnSubmitContainer}>
-          <button type="submit" className={styles.btnSubmit}>
-            Crear
-          </button>
-        </div>
       </aside>
 
       <div className={styles.form}>
         {/* PRIMER PARTE - DATOS DE LA EMPRESA */}
         {currentStep === 1 && (
           <div>
-            <div className={styles.titleBtnContainer}>
-              <h3>Datos de la Empresa</h3>
-              <Button text="Crear empresa" className={styles.btnCreate} />
-            </div>
-            <div className={styles.formInputs}>
-              <Input
-                labelName="Nombre"
-                placeholder="Patagonia Adventures"
-                type="text"
-              />
-              <Input
-                labelName="CUIT / RUC / NIT"
-                placeholder="30-12345678-9"
-                type="text"
-              />
-              <Input
-                labelName="Email"
-                placeholder="contacto@patagonia.com"
-                type="text"
-              />
-              <Input
-                labelName="Teléfono"
-                placeholder="+54 9 11 1234 5678"
-                type="text"
-              />
-              <Input
-                labelName="Dirección"
-                placeholder="Av. Libertador 1234, Buenos Aires"
-                type="text"
-              />
-              <Input
-                labelName="Redes Sociales"
-                placeholder="@patagoniaadventures"
-                type="text"
-              />
-
-              <Textarea
-                labelName="Descripción"
-                placeholder="Empresa dedicada a organizar actividades de aventura en la Patagonia."
-              />
-            </div>
-           
+            <FormEnterprise />
           </div>
         )}
         {/* SEGUNDA PARTE - DATOS DEL PAQUETE */}
         {currentStep === 2 && (
           <div>
-            <div className={styles.titleBtnContainer}>
-              <h3>Datos del Paquete</h3>
-              <Button text="Crear categoría" className={styles.btnCreate} />
-            </div>
-            <div className={styles.formInputs}>
-              <Input
-                labelName="Nombre del Paquete"
-                placeholder="Excursión al Glaciar Perito Moreno"
-                type="text"
-              />
-              <Select
-                labelName="Categoría"
-                options={fakeListCategoriesForm.map((category) => ({
-                  value: category.value,
-                  label: category.label,
-                }))}
-              />
-              <Input
-                labelName="Duración"
-                placeholder="3 días / 2 noches"
-                type="text"
-              />
-              <Textarea
-                labelName="Descripción completa"
-                placeholder="Una aventura inolvidable en los glaciares de la Patagonia..."
-              />
-
-              <FormSchedule />
-              <InputAddList
-                titleSection="Incluye"
-                nameLabel="Item"
-                placeholder="Traslados, alojamiento, comidas"
-                type="text"
-                htmlFor="Incluye"
-                note="Añade cada ítem por separado."
-              />
-              <InputAddList
-                titleSection="NO Incluye"
-                nameLabel="Item"
-                placeholder="Entradas a parques, gastos personales"
-                type="text"
-                htmlFor="NoIncluye"
-                note="Añade cada ítem por separado."
-              />
-              <Input
-                labelName="Destino / Ubicación"
-                placeholder="El Calafate, Santa Cruz, Argentina"
-                type="text"
-              />
-              <Input
-                labelName="Precio por Persona"
-                placeholder="USD 300"
-                type="text"
-              />
-              <Input
-                labelName="Descuento"
-                placeholder="10%, 20% off"
-                type="text"
-              />
-              <Select
-                labelName="Dificultad"
-                options={[
-                  { value: "principiante", label: "Principiante" },
-                  { value: "intermedio", label: "Intermedio" },
-                  { value: "avanzado", label: "Avanzado" },
-                ]}
-              />
-
-              <Textarea
-                labelName="Política de Cancelación"
-                placeholder="Cancelaciones gratuitas hasta 48 hs antes."
-              />
-            </div>
-           
+            <FormPackage />
           </div>
         )}
 
@@ -190,39 +83,76 @@ const CreateAdmin = () => {
           </div>
         )}
 
-        {/* CUARTA PARTE - MULTIMEDIA */}
+        {/* CUARTA PARTE - FECHAS DISPONIBLES */}
         {currentStep === 4 && (
           <div>
             <div className={styles.titleBtnContainer}>
               <h3>Fechas y cupos</h3>
             </div>
             <div className={styles.formInputs}>
-              <FormDates />
+              <FormDatesAvailable />
             </div>
           </div>
         )}
 
-      <div className={styles.btnsContainer}>
-        {currentStep > 1 && (
+        {/* QUINTA PARTE - REQUISITOS Y RESTRICCIONES */}
+        {currentStep === 5 && (
           <div>
-            <Button
-              text="Anterior"
-              className={styles.btnPrev}
-              onClick={() => setCurrentStep(currentStep - 1)}
-              type="button"
-              />
+            <div className={styles.titleBtnContainer}>
+              <h3>Requisitos y Restricciones</h3>
+            </div>
+            <div>
+              <FormRequirements />
+            </div>
           </div>
         )}
-        {currentStep < 6 && (
-          <div className={`${currentStep === 1 && styles.btnNextPageOne}`}>
-            <Button
-              text="Siguiente"
-              className={styles.btnNext}
-              onClick={() => setCurrentStep(currentStep + 1)}
-              type="button"
-              />
+        {/* SEXTA PARTE - REVISAR Y TERMINAR */}
+        {currentStep === 6 && (
+          <div>
+            <div className={styles.titleBtnContainer}>
+              <h3>Revisar y Terminar</h3>
+            </div>
+            <div>
+              <ReviewAndSubmit />
+            </div>
           </div>
         )}
+
+        <div className={styles.btnsContainer}>
+          {currentStep > 1 && (
+            <div>
+              <Button
+                text="Anterior"
+                className={styles.btnPrev}
+                onClick={() => setCurrentStep(currentStep - 1)}
+                type="button"
+              />
+            </div>
+          )}
+
+          {currentStep < 6 && (
+            <div className={`${currentStep === 1 && styles.btnNextPageOne}`}>
+              <Button
+                text="Siguiente"
+                className={styles.btnNext}
+                onClick={() => setCurrentStep(currentStep + 1)}
+                type="button"
+              />
+            </div>
+          )}
+          {currentStep === 6 && (
+            <div className={`${currentStep === 1 && styles.btnNextPageOne}`}>
+              <Button
+                text="Crear"
+                className={styles.btnNext}
+                onClick={handleSubmit}
+                type="button"
+              />
+              {status === "loading" && <p>Enviando...</p>}
+              {status === "succeeded" && <p>Formulario enviado con éxito</p>}
+              {status === "failed" && <p>Hubo un error al enviar</p>}
+            </div>
+          )}
         </div>
       </div>
     </form>

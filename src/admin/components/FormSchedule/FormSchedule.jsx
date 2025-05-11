@@ -3,9 +3,13 @@ import styles from "./FormSchedule.module.css";
 import { Input } from "../Input/Input";
 import { Button } from "../../../components/Button/Button";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import { useDispatch, useSelector } from "react-redux";
+import { addScheduleItem, removeScheduleItem } from "../../redux/features/FullFormCreate/formSlice";
 
 export const FormSchedule = () => {
-  const [scheduleList, setScheduleList] = useState([]);
+
+  const scheduleList = useSelector((state) => state.fullForm.schedule)
+  const dispatch = useDispatch()
   const [schedule, setSchedule] = useState({
     day: "",
     hour: "",
@@ -21,16 +25,13 @@ export const FormSchedule = () => {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    setScheduleList((prev) => [...prev, schedule]);
+    dispatch(addScheduleItem(schedule))
     setSchedule({ day: "", hour: "", description: "" });
   };
 
   const handleRemove = (e, index) => {
     e.preventDefault();
-    const itemRemove = scheduleList.filter((item, i) => {
-      return i !== index;
-    });
-    setScheduleList(itemRemove)
+    dispatch(removeScheduleItem(index))
   };
 
   return (

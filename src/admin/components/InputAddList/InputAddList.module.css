@@ -1,61 +1,60 @@
 .container {
-    font-weight: var(--font-text);
-
-}
-
-.formList {
-    display: flex;
-    width: 100%;
-    align-items: center;
+  font-weight: var(--font-text);
 }
 
 .container input {
-    width: 100%;
-    border: 1px solid var(--color-primary);
-    border-radius: .5rem;
-    padding: .5rem 1rem;
-
+  width: 100%;
+  border: 1px solid var(--color-primary);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
 }
 .labelTitle {
-    font-weight: var(--font-semibold);
+  font-weight: var(--font-semibold);
+}
+
+.form {
+  display: flex;
+  gap: 1rem;
+}
+
+.btnAddContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: .2rem;
+}
+
+.btnAdd {
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
 }
 
 
 
-.btnAdd {
-    padding: .5rem 2rem;
-    border-radius: .5rem;
+.listItems {
+  margin-top: 1rem;
+  margin-left: 2rem;
+  font-size: 1.8rem;
+}
+
+.listItems li{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 .noteHelp {
-   font-style: italic;
-   color: grey;
-   font-size: 1.5rem;
-
+  font-style: italic;
+  color: grey;
+  font-size: 1.5rem;
 }
 
-.itemList {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  
-  .item {
-    background-color: var(--color-secondary-transparent);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .btnRemove {
-    background: none;
-    border: none;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-  }
+.imagePreview {
+  width: 2rem;
+  height: 2rem;
+}
+
+.btnRemove {
+  color: rgb(197, 2, 2);
+  font-weight: var(--font-semibold);
+}

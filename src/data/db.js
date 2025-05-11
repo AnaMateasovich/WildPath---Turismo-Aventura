@@ -351,3 +351,14 @@ export const fakeListCategoriesForm = [
   {value: "ciclismo", label: "Ciclismo"},
   {value: "safari", label: "Safari"},
 ]
+
+
+export const fakeListPlace = [
+  {value: "nieve", label: "Nieve"},
+  {value: "playa", label: "Playa"},
+  {value: "bosque", label: "Bosque"},
+  {value: "ciudad", label: "Ciudad"},
+  {value: "montaña", label: "Montaña"},
+  {value: "desierto", label: "Desierto"},
+  {value: "mar", label: "Mar"},
+]

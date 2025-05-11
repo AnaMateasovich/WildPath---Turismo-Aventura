@@ -1,10 +1,11 @@
 :root {
   /* 🎨 Colores principales */
-  --color-light: #F7F7F5;
-  --color-primary: #25432C;
-  --color-secondary: #F5872E;
-  --color-secondary-transparent: #F4A261;
-  --color-tertiary: #FAF3DC;
+  --color-light: #f7f7f5;
+  --color-primary: #25432c;
+  --color-secondary: #f5872e;
+  --color-secondary-darken: #723401;
+  --color-secondary-transparent: #f4a261;
+  --color-tertiary: #faf3dc;
   --color-overlay: #25432c85;
   --color-border: #25432c49;
 
@@ -55,10 +56,6 @@ select {
   color: var(--color-primary);
 }
 
-input::placeholder {
-  color: var(--color-primary);
-}
-
 a {
   color: inherit;
   text-decoration: none;
@@ -67,4 +64,22 @@ a {
 ul,
 ol {
   list-style: none;
+}
+input::placeholder {
+  color: grey;
+}
+input[type="number"] {
+  width: 40%;
+  border-radius: 0.5rem;
+  padding: 0.3rem 1rem;
+}
+
+legend {
+  padding: 0 1rem;
+  font-weight: var(--font-semibold);
+}
+
+fieldset {
+  border-radius: 0.5rem;
+  padding: 1rem;
 }
