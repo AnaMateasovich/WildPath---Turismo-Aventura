@@ -55,4 +55,11 @@ table {
   button {
     cursor: pointer;
   }
+  .noteHelp {
+    font-style: italic;
+    color: grey;
+    font-size: 1.5rem;
+    font-weight: var(--font-text);
+    margin-top: 0.5rem;
+  }
   

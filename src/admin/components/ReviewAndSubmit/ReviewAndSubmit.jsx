@@ -5,13 +5,13 @@ import { useIncludes } from "../../context/IncludesContext";
 import { useImages } from "../../context/ImagesContext";
 
 export const ReviewAndSubmit = () => {
-  const enterprise = useSelector((state) => state.fullForm.enterprise);
+  const enterprise = useSelector((state) => state.fullForm.enterpriseForm);
   const packageForm = useSelector((state) => state.fullForm.package);
   const schedule = useSelector((state) => state.fullForm.schedule);
   const datesAvailable = useSelector((state) => state.fullForm.datesAvailable);
   const requirements = useSelector((state) => state.fullForm.requirements);
-  const {includes, noIncludes} = useIncludes()
-  const {previews} = useImages()
+  const { packageIncludes } = useIncludes();
+  const { previews } = useImages();
   return (
     <div className={styles.container}>
       {/* DATOS DE LA EMPRESA */}
@@ -89,11 +89,11 @@ export const ReviewAndSubmit = () => {
           <strong>Incluye: </strong>
         </p>
         <ul className={styles.listItems}>
-          {includes.map((item, index) => (
+          {packageIncludes.map((item, index) => (
             <div key={index}>
               <li>
                 <img
-                  src={item.icon}
+                  src={item.preview}
                   alt="icono"
                   className={styles.imagePreviewList}
                 />
@@ -102,7 +102,7 @@ export const ReviewAndSubmit = () => {
             </div>
           ))}
         </ul>
-        <p>
+        {/* <p>
           <strong>No incluye: </strong>
         </p>
         <ul className={styles.listItems}>
@@ -118,7 +118,7 @@ export const ReviewAndSubmit = () => {
               </li>
             </div>
           ))}
-        </ul>
+        </ul> */}
         <p>
           <strong>Itinerario: </strong>
         </p>
@@ -151,7 +151,12 @@ export const ReviewAndSubmit = () => {
         <h4 className={styles.titleSection}>Multimedia</h4>
         <ul className={styles.imgList}>
           {previews.map((image, index) => (
-            <img key={index} src={image} alt={`image${index}`} className={styles.img} />
+            <img
+              key={index}
+              src={image}
+              alt={`image${index}`}
+              className={styles.img}
+            />
           ))}
         </ul>
       </div>

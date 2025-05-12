@@ -9,7 +9,7 @@ import {
 } from "../../redux/features/FullFormCreate/formSlice";
 import { FormSchedule } from "../FormSchedule/FormSchedule";
 import { Input } from "../Input/Input";
-import { InputAddList } from "../InputAddList/InputAddList";
+import { InputListWithIcons } from "../InputListWithIcons/InputListWithIcons";
 import { Select } from "../Select/Select";
 import { Textarea } from "../Textarea/Textarea";
 import { fetchCategories } from "../../redux/features/categories/categoriesThunks";
@@ -21,7 +21,7 @@ export const FormPackage = () => {
   const categories = useSelector((state) => state.categories.categories)
   const places = useSelector((state) => state.places.places)
 
-  const {includes, noIncludes, setIncludes, setNoIncludes} = useIncludes()
+  const {packageIncludes, setPackageIncludes} = useIncludes()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,20 +29,20 @@ export const FormPackage = () => {
   };
 
   const handleAddInclude = (newItem) => {
-    setIncludes((prev) => [...prev, newItem]);
+    setPackageIncludes((prev) => [...prev, newItem]);
   };
 
   const handleRemoveInclude = (index) => {
-    setIncludes((prev) => prev.filter((_, i) => i !== index));
+    setPackageIncludes((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const handleAddNoInclude = (newItem) => {
-    setNoIncludes((prev) => [...prev, newItem]);
-  };
+  // const handleAddNoInclude = (newItem) => {
+  //   setNoIncludes((prev) => [...prev, newItem]);
+  // };
 
-  const handleRemoveNoInclude = (index) => {
-    setNoIncludes((prev) => prev.filter((_, i) => i !== index));
-  };
+  // const handleRemoveNoInclude = (index) => {
+  //   setNoIncludes((prev) => prev.filter((_, i) => i !== index));
+  // };
 
   useEffect(() => {
     dispatch(fetchCategories())
@@ -95,7 +95,7 @@ export const FormPackage = () => {
           inputName="duration"
         />
         <FormSchedule />
-        <InputAddList
+        <InputListWithIcons
           titleSection="Incluye"
           nameLabel="Item"
           placeholder="Traslados, alojamiento, comidas"
@@ -105,9 +105,9 @@ export const FormPackage = () => {
           onAddItem={handleAddInclude}
           onRemoveItem={handleRemoveInclude}
           inputName="include"
-          itemsState={includes}
+          itemsState={packageIncludes}
         />
-        <InputAddList
+        {/* <InputListWithIcons
           titleSection="NO Incluye"
           nameLabel="Item"
           placeholder="Entradas a parques, gastos personales"
@@ -119,7 +119,7 @@ export const FormPackage = () => {
           inputName="noInclude"
           itemsState={noIncludes}
 
-        />
+        /> */}
 
         <Input
           labelName="Destino / Ubicación"

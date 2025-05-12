@@ -12,6 +12,8 @@ import { category, recommendations } from "../../data/db.js";
 import styles from "./Home.module.css";
 
 const Home = () => {
+
+
   return (
     <>
       <div className={styles.hero}>

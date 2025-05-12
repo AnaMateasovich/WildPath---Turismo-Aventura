@@ -14,13 +14,13 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Provider store={store}>
+        <IncludesProvider>
           <ImagesProvider>
-            <IncludesProvider>
+            <Provider store={store}>
               <App />
-            </IncludesProvider>
+            </Provider>
           </ImagesProvider>
-        </Provider>
+        </IncludesProvider>
       </LocalizationProvider>
     </BrowserRouter>
   </StrictMode>

@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "../Button/Button";
 import styles from "./SearchForm.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories } from "../../admin/redux/features/categories/categoriesThunks";
 
 export const SearchForm = ({ className }) => {
+    const dispatch = useDispatch()
+    const categories = useSelector((state) => state.categories.categories)
+
+    useEffect(() => {
+      dispatch(fetchCategories())
+    }, [dispatch])
+    
   return (
     <form className={`${className} ${styles.searchForm}`}>
       <div className={styles.form}>
@@ -15,8 +24,9 @@ export const SearchForm = ({ className }) => {
           <option value="" defaultValue="" selected>
             Tipo de aventura
           </option>
-          <option value="trekking">Senderismo</option>
-          <option value="skiing">Sky</option>
+          {categories.map((category) => (
+          <option value={category.id}>{category.name}</option>
+          ))}
         </select>
         <input type="date" className={styles.date} placeholder="" />
       </div>

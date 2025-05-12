@@ -39,7 +39,6 @@ export const FormEnterprise = () => {
     dispatch(fetchEnterprises());
   }, [dispatch]);
 
-  console.log(enterprises);
   return (
     <div>
       <div className={styles.titleBtnContainer}>

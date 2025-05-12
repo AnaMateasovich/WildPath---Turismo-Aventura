@@ -4,7 +4,7 @@ import { API_URL } from "./formSlice";
 
 export const saveFullForm = createAsyncThunk(
   "fullform/save",
-  async ({ includes, noIncludes, images }, thunkAPI) => {
+  async ({ packageIncludes, noIncludes, images }, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
       const {
@@ -45,12 +45,70 @@ export const saveFullForm = createAsyncThunk(
         description: pack.description,
         enterpriseId: enterpriseId, // ID de la empresa
       };
-      console.log("packageData a enviar: ", packageData);
 
       const packageRes = await axios.post(`${API_URL}/packages`, packageData);
-      const savedPackage = packageRes.data;
+      const packageId = packageRes.data.id;
 
-      console.log(enterpriseId, savedPackage);
+      //3. Guardar los includes del paquete
+      const formDataIncludes = new FormData();
+
+      const jsonBlob = new Blob(
+        [
+          JSON.stringify(
+            packageIncludes.map((include) => ({
+              packageId,
+              description: include.item,
+            }))
+          ),
+        ],
+        { type: "application/json" }
+      );
+      formDataIncludes.append("data", jsonBlob);
+
+      packageIncludes.forEach((include) => {
+        if (include.icon) {
+          formDataIncludes.append("icon", include.icon);
+        }
+      });
+
+      const includesRes = await axios.post(
+        `${API_URL}/includes/bulk`,
+        formDataIncludes
+      );
+
+      //4. Guardar las imágenes del paquete
+      const formDataImages = new FormData();
+      images.forEach((image) => {
+        formDataImages.append("file", image);
+      });
+      formDataImages.append("packageId", packageId);
+      const imagesRes = await axios.post(
+        `${API_URL}/packages/images`,
+        formDataImages
+      );
+    
+
+      //5. Guardar los dates available
+      const datesAvailableWithPackageId = datesAvailable.map((date) => ({
+        ...date,
+        packageId: packageId,
+      }));
+      const datesAvailableRes = await axios.post(
+        `${API_URL}/datesavailable`,
+        datesAvailableWithPackageId
+      );
+
+      //6. Guardar los requirements
+      const requirementsWithPackageId = requirements.map((req) => ({
+        ...req,
+        packageId: packageId,
+      }));
+      const requirementsRes = await axios.post(
+        `${API_URL}/requirements`,
+        requirementsWithPackageId
+      );
+
+      console.log("Formulario guardado");
     } catch (err) {
       console.error("Error al guardar todo:", err);
       console.log("Respuesta del servidor:", err.response?.data);

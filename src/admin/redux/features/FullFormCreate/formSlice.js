@@ -87,7 +87,7 @@ export const formSlice = createSlice({
       latitude: 0,
       longitude: 0,
       locationAddress: "",
-      pricePerPerson: 0,
+      pricePerPerson: "",
       difficulty: "",
       discount: "",
       cancelPolicy: "",

@@ -13,18 +13,19 @@ import { useImages } from "../../context/ImagesContext";
 import { saveFullForm } from "../../redux/features/FullFormCreate/formThunk";
 
 const CreateAdmin = () => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(5);
 
   const formData = useSelector((state) => state.fullForm);
   const status = useSelector(state => state.fullForm.status)
-  const { includes, noIncludes } = useIncludes();
+  const { packageIncludes, noIncludes } = useIncludes();
   const {images} = useImages()
   const dispatch = useDispatch()
 
   const handleSubmit = () => {
-    dispatch(saveFullForm(includes, noIncludes, images));
+    dispatch(saveFullForm({packageIncludes, noIncludes, images}));
   };
-  console.log(formData)
+
+
   return (
     <form action="" className={styles.container}>
       <aside className={styles.sidebarSteps}>
