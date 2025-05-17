@@ -3,7 +3,7 @@ import styles from './Dashboard.module.css'
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <div>Estamos trabajando en el dashboard, pronto estará disponible</div>
   )
 }
 

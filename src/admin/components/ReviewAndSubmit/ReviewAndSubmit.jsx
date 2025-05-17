@@ -119,11 +119,11 @@ export const ReviewAndSubmit = () => {
             </div>
           ))}
         </ul> */}
-        <p>
+        {/* <p>
           <strong>Itinerario: </strong>
         </p>
         {schedule.length > 0 && (
-          <table>
+          <table className={styles.table}>
             <thead>
               <tr>
                 <th>Día</th>
@@ -141,9 +141,9 @@ export const ReviewAndSubmit = () => {
                   </td>
                 </tr>
               ))}
-            </tbody>
-          </table>
-        )}
+            </tbody> */}
+          {/* </table> */}
+        {/* )} */}
       </div>
 
       {/* MULTIMEDIA */}

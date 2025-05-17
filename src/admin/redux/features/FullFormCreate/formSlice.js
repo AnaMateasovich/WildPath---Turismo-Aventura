@@ -1,73 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { saveFullForm } from "./formThunk";
-
+import { checkPackageName, saveFullForm } from "./formThunk";
 
 export const API_URL = "http://localhost:8081";
 
-// export const createFullForm = createAsyncThunk(
-//   "fullform/create",
-//   async (formData, thunkAPI) => {
-//     try {
-//       const response = await fetch(API_URL, {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(formData),
-//       });
-
-//       if (!response.ok) {
-//         throw new Error("Error al crear el formulario");
-//       }
-
-//       const data = await response.json();
-//       return data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
 export const formSlice = createSlice({
   name: "fullform-create",
-  // initialState: {
-  //   enterprise: {
-  //     name: "Patagonia Adventures",
-  //     cuit: "34-5874-9878",
-  //     email: "patagonia@mail.com",
-  //     phone: "23423454",
-  //     address: "Calle 123",
-  //     socialMedia: "@patagoniadventures",
-  //     description: "Turismo Aventura",
-  //   },
-  //   package: {
-  //     name: "Hikking en la montaña",
-  //     category: "Senderismo",
-  //     place: "",
-  //     duration: "2 días / 1 noche",
-  //     latitude: "",
-  //     longitude: "",
-  //     locationAddress: "El Calafate, Santa Cruz",
-  //     pricePerPerson: "$148715",
-  //     difficulty: "Intermedio",
-  //     discount: "10% en grupos de 4 personas",
-  //     cancelPolicy: "Cancelación gratuita si cancelas 1 semana antes",
-  //     includes: ["Colaciones", "Almuerzo", "Hospedaje"],
-  //     noIncludes: ["Cena", "Entradas"],
-  //     schedule: [
-  //       {day: "Dia 1", hour: "9:00", description: "Subida a la montaña"},
-  //       {day: "Dia 1", hour: "12:00", description: "Almuerzo en el cerro"}
-  //     ],
-  //   },
-  //   images: [],
-  //   datesAvailable: [{date:"25-07-2025", capacity: 25},
-  //     {date:"26-07-2025", capacity: 15},
-  //     {date:"27-07-2025", capacity: 4}
-  //   ],
-  //   requirements: [
-  //     {title:"Edad mínima", description:"12 años"}
-  //   ]
-  // },
+
   initialState: {
     enterpriseForm: {
       name: "",
@@ -81,6 +19,7 @@ export const formSlice = createSlice({
     selectedEnterpriseId: null,
     package: {
       name: "",
+      description: "",
       category: "",
       place: "",
       duration: "",
@@ -92,7 +31,13 @@ export const formSlice = createSlice({
       discount: "",
       cancelPolicy: "",
     },
-    schedule: [],
+    nameCheck: {
+      value: '',
+      exists: false,
+      status: 'idle',
+      error: null
+    },
+    // schedule: [],
     datesAvailable: [],
     requirements: [],
   },
@@ -101,8 +46,20 @@ export const formSlice = createSlice({
       state.enterpriseForm = { ...state.enterpriseForm, ...action.payload };
     },
     selectedEnterprise: (state, action) => {
-      state.enterpriseForm = { ...action.payload }
+      state.enterpriseForm = { ...action.payload };
       state.selectedEnterpriseId = action.payload.id;
+    },
+    clearSelectedEnterprise: (state) => {
+      state.enterpriseForm = {
+        name: "",
+        cuit: "",
+        email: "",
+        phone: "",
+        address: "",
+        socialMedia: "",
+        description: "",
+      };
+      state.selectedEnterpriseId = null;
     },
     updatePackage: (state, action) => {
       state.package = { ...state.package, ...action.payload };
@@ -137,20 +94,36 @@ export const formSlice = createSlice({
       .addCase(saveFullForm.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
+      })
+
+      // check by package name
+      .addCase(checkPackageName.pending, (state) => {
+        state.nameCheck.status = 'loading';
+      })
+      .addCase(checkPackageName.fulfilled, (state, action) => {
+        state.nameCheck.status = 'succeeded';
+        state.nameCheck.value = action.payload.name;
+        state.nameCheck.exists = action.payload.exists;
+      })
+      .addCase(checkPackageName.rejected, (state, action) => {
+        state.nameCheck.status = 'failed';
+        state.nameCheck.error = action.payload;
       });
+
   },
 });
 
 export const {
   updateEnterprise,
   selectedEnterprise,
+  clearSelectedEnterprise,
   updatePackage,
   addScheduleItem,
   removeScheduleItem,
   addDateAvailable,
   removeDateAvailable,
   addRequirement,
-  removeRequirement,
+  removeRequirement
 } = formSlice.actions;
 
 export default formSlice.reducer;

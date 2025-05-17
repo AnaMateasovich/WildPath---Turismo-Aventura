@@ -14,6 +14,8 @@ export const ListCard = ({
   days,
   price,
 }) => {
+
+  const ROUTE_IMAGE = `http://localhost:8081`
   return (
     <article className={styles.container}>
       <div className={styles.imgContainer}>

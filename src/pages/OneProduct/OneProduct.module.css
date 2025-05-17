@@ -1,21 +1,23 @@
 
-
 .productContainer {
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 3rem;
+
 }
 
 .infoProductContainer {
+  max-width: 100%;
   flex: 3;
 }
 
 .sideInfo {
   flex: 1;
   align-self: flex-start;
+  margin-top: 3rem;
 }
 
 .backBtn {
@@ -23,7 +25,7 @@
   display: flex;
   grid-area: backButton;
   justify-content: flex-end;
-  margin: 1rem auto;
+  margin: 2rem auto 0 auto;
 }
 
 .backBtn button {
@@ -32,9 +34,9 @@
 }
 
 .dateTable {
-  margin: 1.5rem 0 2rem 0;
+  margin: 3rem 0 2rem 0;
 }
 
 .reservationSum {
-  margin-top: 1.5rem;
+  margin-top: 3rem;
 }

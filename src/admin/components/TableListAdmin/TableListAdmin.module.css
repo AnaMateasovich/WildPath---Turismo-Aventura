@@ -3,19 +3,23 @@
   border-collapse: collapse;
 }
 
-th,
-td {
+.table th,
+.table td {
   border: 1px solid #ddd;
   padding: 0.8rem;
   text-align: left;
 }
 
-th {
+.table th {
     text-align: center;
 }
 
-td {
+.table td {
     padding-left: 2rem;
+}
+
+.table tr:nth-child(even) {
+  background-color: var(--color-tertiary);
 }
 
 .icons {

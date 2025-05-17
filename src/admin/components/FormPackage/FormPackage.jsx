@@ -1,32 +1,41 @@
-import React, { useEffect } from "react";
+import debounce from "lodash/debounce";
+import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../../components/Button/Button";
-import { fakeListCategoriesForm, fakeListPlace } from "../../../data/db";
 import { useIncludes } from "../../context/IncludesContext";
-import styles from "../../pages/CreateAdmin/CreateAdmin.module.css";
-import {
-  updatePackage
-} from "../../redux/features/FullFormCreate/formSlice";
-import { FormSchedule } from "../FormSchedule/FormSchedule";
+import styles from "../../pages/CreateFullFormAdmin/CreateFullFormAdmin.module.css";
+import { fetchCategories } from "../../redux/features/categories/categoriesThunks";
+import { updatePackage } from "../../redux/features/FullFormCreate/formSlice";
+import { checkPackageName } from "../../redux/features/FullFormCreate/formThunk";
+import { fetchPlaces } from "../../redux/features/places/placesThunks";
 import { Input } from "../Input/Input";
 import { InputListWithIcons } from "../InputListWithIcons/InputListWithIcons";
 import { Select } from "../Select/Select";
 import { Textarea } from "../Textarea/Textarea";
-import { fetchCategories } from "../../redux/features/categories/categoriesThunks";
-import { fetchPlaces } from "../../redux/features/places/placesThunks";
 
 export const FormPackage = () => {
   const dispatch = useDispatch();
-  const packageForm = useSelector((state) => state.fullForm.package);
-  const categories = useSelector((state) => state.categories.categories)
-  const places = useSelector((state) => state.places.places)
 
-  const {packageIncludes, setPackageIncludes} = useIncludes()
+  const { exists, status, value } = useSelector(
+    (state) => state.fullForm.nameCheck
+  );
+
+  const packageForm = useSelector((state) => state.fullForm.package);
+  const categories = useSelector((state) => state.categories.categories);
+  const places = useSelector((state) => state.places.places);
+
+  const { packageIncludes, setPackageIncludes } = useIncludes();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     dispatch(updatePackage({ [name]: value }));
   };
+
+  const debouncedCheckName = useMemo(() => {
+    return debounce((name) => {
+      dispatch(checkPackageName(name));
+    }, 500);
+  }, [dispatch]);
 
   const handleAddInclude = (newItem) => {
     setPackageIncludes((prev) => [...prev, newItem]);
@@ -45,10 +54,20 @@ export const FormPackage = () => {
   // };
 
   useEffect(() => {
-    dispatch(fetchCategories())
-    dispatch(fetchPlaces())
-  }, [dispatch])
-  
+    dispatch(fetchCategories());
+    dispatch(fetchPlaces());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (packageForm.name.trim() !== "") {
+      debouncedCheckName(packageForm.name);
+    }
+
+    return () => {
+      debouncedCheckName.cancel();
+    };
+  }, [packageForm.name, debouncedCheckName]);
+
   return (
     <>
       <div className={styles.titleBtnContainer}>
@@ -56,13 +75,35 @@ export const FormPackage = () => {
         <Button text="Crear categoría" className={styles.btn} />
       </div>
       <div className={styles.formInputs}>
-        <Input
-          labelName="Nombre del Paquete"
-          placeholder="Excursión al Glaciar Perito Moreno"
-          type="text"
+        <div>
+          <Input
+            labelName="Nombre del Paquete"
+            placeholder="Excursión al Glaciar Perito Moreno"
+            type="text"
+            onChange={handleChange}
+            value={packageForm.name}
+            inputName="name"
+          />
+          {status === "loading" && (
+            <p className={styles.verifyingName}>Verificando nombre...</p>
+          )}
+          {packageForm.name === value && exists && (
+            <p className={`${styles.verifyingName} ${styles.verifyError}`}>
+              Este nombre ya esta en uso, por favor elija otro.
+            </p>
+          )}
+          {packageForm.name === value && !exists && packageForm.name !== "" && (
+            <p className={`${styles.verifyingName} ${styles.verifyOk}`}>
+              Nombre disponible
+            </p>
+          )}
+        </div>
+        <Textarea
+          labelName="Descripción del paquete"
+          placeholder="Escribí una descripción detallada del paquete: qué se va a hacer, a quién está dirigido, qué tipo de experiencia ofrece y por qué es especial."
           onChange={handleChange}
-          value={packageForm.name}
-          inputName="name"
+          value={packageForm.description}
+          inputName="description"
         />
         <Select
           labelName="Categoría"
@@ -94,7 +135,7 @@ export const FormPackage = () => {
           value={packageForm.duration}
           inputName="duration"
         />
-        <FormSchedule />
+        {/* <FormSchedule /> */}
         <InputListWithIcons
           titleSection="Incluye"
           nameLabel="Item"

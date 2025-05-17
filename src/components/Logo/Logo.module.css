@@ -5,6 +5,7 @@
     gap: 1.5rem;
     text-align: center;
     line-height: 1;
+    cursor: pointer;
 }
 
 .logo img{

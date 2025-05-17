@@ -79,7 +79,7 @@ export const FormSchedule = () => {
       </div>
       {scheduleList.length > 0 ? (
         <div className={styles.tableContainer}>
-          <table>
+          <table className={styles.table}>
             <thead>
               <tr>
                 <th>Día</th>

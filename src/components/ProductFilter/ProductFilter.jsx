@@ -9,80 +9,80 @@ export const ProductFilter = () => {
       <fieldset className={styles.section}>
         <legend>Tipo de aventura</legend>
         <label htmlFor="">
-          <input type="checkbox" name="aventura" value="trekking" />
+          <input className={styles.checkInput} type="checkbox" name="aventura" value="trekking" />
           Senderismo
         </label>
         <label htmlFor="">
-          <input type="checkbox" name="aventura" value="rafting" />
+          <input className={styles.checkInput} type="checkbox" name="aventura" value="rafting" />
           Rafting
         </label>
         <label htmlFor="">
-          <input type="checkbox" name="aventura" value="paragliding" />
+          <input className={styles.checkInput} type="checkbox" name="aventura" value="paragliding" />
           Parapente
         </label>
         <label htmlFor="">
-          <input type="checkbox" name="aventura" value="diving" />
+          <input className={styles.checkInput} type="checkbox" name="aventura" value="diving" />
           Buceo
         </label>
         <label htmlFor="">
-          <input type="checkbox" name="aventura" value="skiing" />
+          <input className={styles.checkInput} type="checkbox" name="aventura" value="skiing" />
           Esquí
         </label>
         <label htmlFor="">
-          <input type="checkbox" name="aventura" value="cycling" />
+          <input className={styles.checkInput} type="checkbox" name="aventura" value="cycling" />
           Ciclismo
         </label>
         <label htmlFor="">
-          <input type="checkbox" name="aventura" value="safari" />
+          <input className={styles.checkInput} type="checkbox" name="aventura" value="safari" />
           Safari
         </label>
       </fieldset>
       <fieldset className={styles.section}>
         <legend>Lugar</legend>
         <label htmlFor="">
-          <input type="checkbox" name="aventura" value="mountain" />
+          <input className={styles.checkInput} type="checkbox" name="aventura" value="mountain" />
           Montaña
         </label>
         <label htmlFor="">
-          <input type="checkbox" name="aventura" value="forest" />
+          <input className={styles.checkInput} type="checkbox" name="aventura" value="forest" />
           Bosque
         </label>
         <label htmlFor="">
-          <input type="checkbox" name="aventura" value="beach" />
+          <input className={styles.checkInput} type="checkbox" name="aventura" value="beach" />
           Playa
         </label>
         <label htmlFor="">
-          <input type="checkbox" name="aventura" value="rive" />
+          <input className={styles.checkInput} type="checkbox" name="aventura" value="rive" />
           Río o Lago
         </label>
         <label htmlFor="">
-          <input type="checkbox" name="aventura" value="snow" />
+          <input className={styles.checkInput} type="checkbox" name="aventura" value="snow" />
           Nieve
         </label>
         <label htmlFor="">
-          <input type="checkbox" name="aventura" value="desert" />
+          <input className={styles.checkInput} type="checkbox" name="aventura" value="desert" />
           Desierto
         </label>
       </fieldset>
       <fieldset className={styles.section}>
         <legend>Dificultad</legend>
         <label htmlFor="">
-          <input type="checkbox" name="aventura" value="mountain" />
+          <input className={styles.checkInput} type="checkbox" name="aventura" value="mountain" />
           Facil (principiante)
         </label>
         <label htmlFor="">
-          <input type="checkbox" name="aventura" value="forest" />
+          <input className={styles.checkInput} type="checkbox" name="aventura" value="forest" />
           Intermedio
         </label>
         <label htmlFor="">
-          <input type="checkbox" name="aventura" value="beach" />
+          <input className={styles.checkInput} type="checkbox" name="aventura" value="beach" />
           Avanzado
         </label>
       </fieldset>
       <fieldset className={styles.section}>
         <legend>Rango de precios</legend>
         <label htmlFor="">
-          <input
+          <input className={styles.checkInput}
             type="number"
             name="aventura"
             value=""
@@ -91,7 +91,7 @@ export const ProductFilter = () => {
           Minimo
         </label>
         <label htmlFor="">
-          <input
+          <input className={styles.checkInput}
             type="number"
             name="aventura"
             value=""

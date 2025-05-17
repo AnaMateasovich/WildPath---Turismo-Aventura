@@ -64,7 +64,7 @@ export const FormDatesAvailable = () => {
       </div>
       {datesAvailable.length > 0 ? (
         <div className={styles.tableContainer}>
-          <table>
+          <table className={styles.table}>
             <thead>
               <tr>
                 <th>Fechas</th>

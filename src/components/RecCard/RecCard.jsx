@@ -1,7 +1,6 @@
-import React from "react";
-import styles from "./RecCard.module.css";
-import { Button } from "../Button/Button";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
+import { Button } from "../Button/Button";
+import styles from "./RecCard.module.css";
 
 export const RecCard = ({
   img,
@@ -12,7 +11,10 @@ export const RecCard = ({
   duration,
   price,
   className,
+  onClickBtn
 }) => {
+
+
   return (
     <div className={`${styles.card} ${className}`}>
       <img src={img} alt={alt} className={styles.img} />
@@ -35,7 +37,7 @@ export const RecCard = ({
             <p>/persona</p>
           </div>
         </div>
-        <Button text="Ver fechas" className={styles.btnCard}></Button>
+        <Button text="Ver fechas" className={styles.btnCard} onClick={onClickBtn}></Button>
       </div>
     </div>
   );

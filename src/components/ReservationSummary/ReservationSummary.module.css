@@ -7,8 +7,9 @@
     font-weight: var(--font-text);
 }
 
-.container span {
+.bookingInfo span {
     font-weight: var(--font-semibold);
+    color: grey;
 }
 
 .totalPay {
@@ -17,7 +18,6 @@
     font-size: 2.5rem;
     font-weight: var(--font-semibold);
     align-items: baseline;
-    
     gap: 1rem;
 }
 

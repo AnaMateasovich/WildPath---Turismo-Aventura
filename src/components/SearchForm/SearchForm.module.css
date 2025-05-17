@@ -1,10 +1,13 @@
 .searchForm {
+  width: 100%;
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
 .form {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
   flex: 10;
@@ -17,13 +20,14 @@
   height: 100%;
   background-color: var(--color-light);
   border-radius: 0.5rem;
-  border: none; /* si quieres quitar bordes por defecto */
+  min-width: 20rem; /* ayuda a que se wrappee */
+  flex: 1 1 20rem;
 }
 
 .btnSearch {
   padding: 1rem 3rem;
-  flex: 1/2;
   border-radius: 1rem;
+   flex: 1 1 10rem;
 }
 
 .location {
@@ -37,11 +41,9 @@
   padding: 1rem 1rem 1rem 3.5rem;
   background: url("/src/assets/advType.png") no-repeat 10px center;
   background-size: 20px;
-  flex: 3;
 }
 
 .date {
   padding: 1rem 1rem 1rem 1rem;
   background-size: 20px;
-  flex: 1;
 }

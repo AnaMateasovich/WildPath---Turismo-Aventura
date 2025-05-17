@@ -12,10 +12,10 @@ export const HeaderLayout = () => {
           <nav>
             <ul className={styles.navLinks}>
               <li className={styles.link}>
-                <Link>Inicio</Link>
+                <Link to="/">Inicio</Link>
               </li>
               <li className={styles.link}>
-                <Link>Actividades</Link>
+                <Link to="/actividades">Actividades</Link>
               </li>
               <li className={styles.link}>
                 <Link>Reservas</Link>

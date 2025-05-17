@@ -3,51 +3,38 @@ import styles from "./Gallery.module.css";
 import { fakeProductData } from "../../data/db";
 import { useParams } from "react-router-dom";
 
-export const Gallery = () => {
-  const { id } = useParams();
-
-  const product = fakeProductData.find(
-    (product) => product.id === parseInt(id)
-  );
-
-  if (product.images.length === 0) {
-    return "No hay imágenes para mostrar";
-  }
-
-  const firstImage = product.images[0];
-  const secondImage = product.images[1];
-  const thirdImage = product.images[2];
-  const smallImages = product.images.slice(3, 6);
-  const restImages = product.images[8];
+export const Gallery = ({ images = [], title = "imagen" }) => {
+  const maxVisibleImages = 5;
+  const visibleImages = images.slice(0, maxVisibleImages);
+  const hasMoreImages = images.length > maxVisibleImages;
 
   return (
     <div className={styles.container}>
-      <div className={styles.containerSup}>
-        <img
-          src={firstImage.src}
-          alt={product.title}
-          className={styles.firstImage}
-        />
+      <section className={styles.grid}>
+        {visibleImages.map((image, index) => {
+          const imageClass = index === 0 ? styles.firstImage : "";
+          if (index === maxVisibleImages - 1 && hasMoreImages) {
+            return (
+              <div key={index} className={styles.viewMore}>
+                <img
+                  src={image.src}
+                  alt={`${title} ${index + 1}`}
+                  className={imageClass}
+                />
+              </div>
+            );
+          }
 
-        <img
-          src={secondImage.src}
-          alt={product.title}
-          className={styles.secondImage}
-        />
-        <img
-          src={thirdImage.src}
-          alt={product.title}
-          className={styles.thirdImage}
-        />
-      </div>
-      <div className={styles.restImages}>
-        {smallImages.map((image) => (
-          <img key={image.id} src={image.src} alt={product.title} />
-        ))}
-        <div className={styles.viewMore}>
-          <img src={restImages.src} alt={product.title} />
-        </div>
-      </div>
+          return (
+            <img
+              key={index}
+              src={image.src}
+              alt={`${title} ${index + 1}`}
+              className={imageClass}
+            />
+          );
+        })}
+      </section>
     </div>
   );
 };

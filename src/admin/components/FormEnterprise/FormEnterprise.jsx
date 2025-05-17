@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../../components/Button/Button";
-import styles from "../../pages/CreateAdmin/CreateAdmin.module.css";
+import styles from "../../pages/CreateFullFormAdmin/CreateFullFormAdmin.module.css";
 import {
+  clearSelectedEnterprise,
   selectedEnterprise,
   updateEnterprise,
 } from "../../redux/features/FullFormCreate/formSlice";
@@ -17,7 +18,6 @@ export const FormEnterprise = () => {
   const selectedEnterpriseId = useSelector(
     (state) => state.fullForm.selectedEnterpriseId
   );
-
   const [isOpenSelectEnterprise, setIsOpenSelectEnterprise] = useState(false);
 
   const handleChange = (e) => {
@@ -34,6 +34,11 @@ export const FormEnterprise = () => {
     e.preventDefault();
     setIsOpenSelectEnterprise((prev) => !prev);
   };
+
+  const handleClearSelectedEnterprise = (e) => {
+    e.preventDefault()
+    dispatch(clearSelectedEnterprise());
+  }
 
   useEffect(() => {
     dispatch(fetchEnterprises());
@@ -63,8 +68,9 @@ export const FormEnterprise = () => {
               </ul>
             </>
           )}
-          {selectedEnterprise}
-          <Button text="Crear empresa" className={styles.btn} />
+          {selectedEnterpriseId && 
+          <Button text="Quitar selección" className={`${styles.btnClearEnterprise}`} onClick={handleClearSelectedEnterprise}/>
+          }
         </div>
       </div>
       <div className={styles.formInputs}>

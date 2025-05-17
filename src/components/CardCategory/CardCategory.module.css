@@ -3,6 +3,7 @@
     height: 17rem;
     position: relative;
     color: var(--color-light);
+    cursor: pointer;
 }
 
 .img {
@@ -19,4 +20,5 @@
     left: 2.5rem;
   border-radius: 3rem;
   font-weight: var(--font-title-exb);
+  text-shadow: 1px 1px rgb(0, 0, 0);
 }

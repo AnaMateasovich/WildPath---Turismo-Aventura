@@ -7,8 +7,8 @@ export const FormImg = () => {
   const {images, setImages, previews, setPreviews} = useImages()
   
 
-  const MAX_IMAGES = 5;
-  const MAX_FILE_SIZE = 2 * 1024 * 1024;
+  const MAX_IMAGES = 6;
+  const MAX_FILE_SIZE = 3 * 1024 * 1024;
 
 
   const handlePreview = (e) => {

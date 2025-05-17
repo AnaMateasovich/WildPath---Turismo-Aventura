@@ -17,7 +17,9 @@
     margin-bottom: 1rem;
 }
 
-
+.checkInput {
+    margin-right: 1rem;
+}
 
 .btnContainer {
     display: flex;

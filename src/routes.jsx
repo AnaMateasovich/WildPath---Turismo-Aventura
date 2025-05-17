@@ -1,5 +1,5 @@
 import { AdminLayout } from "./admin/layouts/AdminLayout";
-import CreateAdmin from "./admin/pages/CreateAdmin/CreateAdmin";
+import CreateFullFormAdmin from "./admin/pages/CreateFullFormAdmin/CreateFullFormAdmin";
 import Dashboard from "./admin/pages/Dashboard/Dashboard";
 import ListProductsAdmin from "./admin/pages/ListProductsAdmin/ListProductsAdmin";
 import { FooterLayout } from "./layouts/FooterLayout/FooterLayout";
@@ -24,8 +24,10 @@ export const routes = [
   },
   {
     element: <AdminLayout />,
-    children: [{ path: "/admin", element: <Dashboard /> }],
-    children: [{ path: "/admin/actividades", element: <ListProductsAdmin /> }],
-    children: [{ path: "/admin/actividades/crear", element: <CreateAdmin /> }],
+    children: [
+      { path: "/admin", element: <Dashboard /> },
+      { path: "/admin/actividades", element: <ListProductsAdmin /> },
+      { path: "/admin/actividades/crear", element: <CreateFullFormAdmin /> },
+    ],
   },
 ];

@@ -11,7 +11,7 @@ export const ReservationSummary = ({
 }) => {
   return (
     <div className={styles.container}>
-      <div>
+      <div className={styles.bookingInfo}>
         <p>
           <span>Fecha de salida: </span>
           {selectedDay}

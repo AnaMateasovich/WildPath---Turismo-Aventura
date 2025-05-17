@@ -46,6 +46,7 @@
 .logo img {
   width: 7rem;
   filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.281));
+  cursor: pointer;
 }
 
 .iconsList {

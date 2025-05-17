@@ -44,3 +44,44 @@
     text-align: center;
 }
 
+
+.tableContainer {
+    overflow-x: auto;
+    margin: 2rem;
+  }
+  
+  .table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .table th,
+  .table td {
+    border: none;
+    padding: 0.5rem 2rem;
+    margin: 0;
+    text-align: left;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+  .table td {
+      border-bottom: 1px solid var(--color-border);
+  }
+  
+  .table thead {
+    background: none;
+  }
+  
+  .table tbody tr {
+    background: none;
+  }
+  
+  .dayTable {
+      width: 30%;
+  }
+  .hourTable {
+      width: 20%;
+  }
+  .descriptionTable {
+      width: 40%;
+  }
