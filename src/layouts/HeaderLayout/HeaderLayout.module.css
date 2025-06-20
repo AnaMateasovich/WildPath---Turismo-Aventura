@@ -1,49 +1,121 @@
 .container {
-    position: relative;
-    display: block;
+  position: relative;
+  display: block;
+
 }
 
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 12rem;
-    display: flex;
-    background-color: var(--color-light);
-    justify-content: space-around;
-    align-items: center;
-    z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 12rem;
+  display: flex;
+  background-color: var(--color-light);
+  justify-content: space-around;
+  align-items: center;
 }
 
 .navLinks {
-    display: flex;
-    gap: 5rem;
-    justify-content: center;
-    align-items: center;
-    font-weight: var(--font-semibold);
+  display: flex;
+  gap: 5rem;
+  justify-content: center;
+  align-items: center;
+  font-weight: var(--font-semibold);
 }
 
 .buttons {
-    display: flex;
-    gap: 2rem;
+  display: flex;
+  gap: 2rem;
 }
 
 .btnRegister {
-    border: 3px solid var(--color-primary);
-    padding: .7rem 4rem;
-    border-radius: 1rem;
-    font-weight: var(--font-semibold);
-    color: var(--color-primary);
-    cursor: pointer;
+  border: 2px solid var(--color-primary);
+  padding: 0.7rem 4rem;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  font-weight: var(--font-semibold);
+  color: var(--color-primary);
+  cursor: pointer;
 }
 
 .btnLogin {
-    background-color: var(--color-primary);
-    padding: .7rem 4rem;
-    border-radius: 1rem;
-    font-weight: var(--font-semibold);
-    color: var(--color-light);
-    cursor: pointer;
+  background-color: var(--color-primary);
+  padding: 0.7rem 4rem;
+  font-size: 1.5rem;
 
+  border-radius: 1rem;
+  font-weight: var(--font-semibold);
+  color: var(--color-light);
+  cursor: pointer;
+}
+
+.mobileMenu, .btnGoToLogin {
+  display: none;
+}
+
+.logoHeaderTablet {
+  display: none;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.cartIcon {
+  cursor: pointer;
+}
+
+
+@media (max-width: 1350px) {
+  .buttons {
+    font-size: 1.5rem;
+  }
+  .buttons button {
+    padding: 1rem 1.8rem;
+  }
+  .navLinks {
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .navLinks {
+    gap: 2rem;
+  }
+
+}
+
+@media (max-width: 1024px) {
+  .header {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+      padding: 0 2rem;
+  }
+  .logoHeaderTablet {
+    display: inline;
+    width: 11rem;
+  }
+  .mobileMenu {
+    display: inline;
+  }
+  .imgLogo {
+    width: 10rem;
+  }
+}
+
+@media (max-width: 769px) { 
+
+  .header {
+    padding: 0 3rem;
+    justify-content: space-between;
+  }
+}
+@media (max-width: 500px) {
+  .header {
+    padding: 2rem;
+  }
 }

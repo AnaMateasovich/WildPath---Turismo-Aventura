@@ -1,4 +1,3 @@
-
 .hero {
   position: relative;
   background: url("/src/assets/hero.webp");
@@ -30,9 +29,15 @@
   width: 120rem;
 }
 
+.searchForm {
+  width: 100%;
+}
+
 .titleHero {
   color: var(--color-secondary);
   text-transform: uppercase;
+  text-align: left;
+  font-weight: var(--font-bold);
 }
 
 .mainHome {
@@ -41,8 +46,12 @@
   padding: 0;
 }
 
+.categoriesContainer {
+  margin: 0 auto;
+}
+
 .categories {
-  max-width: 1200px;
+  width: 130rem;
   gap: 1rem;
   margin-top: 2rem;
 }
@@ -53,6 +62,12 @@
   text-align: center;
   margin-top: 2rem;
 }
+
+.swipperSlide {
+  display: flex;
+  justify-content: center;
+}
+
 .viewMoreContainer {
   max-width: 1200px;
   margin: 2rem auto;
@@ -61,6 +76,7 @@
 .viewMore {
   font-weight: var(--font-bold);
   border-bottom: 2px solid var(--color-primary);
+  cursor: pointer;
 }
 
 .recommendations {
@@ -68,13 +84,18 @@
   padding: 2rem 0;
   background-color: var(--color-tertiary);
 }
+.viewMoreContainerRec {
+  display: block;
+  margin: 3rem 0 1rem 0;
+  text-align: center;
+  font-size: 2rem;
+}
 .titleRecom {
   text-transform: uppercase;
   font-weight: var(--font-title-exb);
   font-size: 2.5rem;
   margin: 2rem 0 3rem 0;
   text-align: center;
-
 }
 .recCards {
   margin: 0 auto;
@@ -86,7 +107,71 @@
 }
 
 @media (max-width: 1350px) {
-    .form {
-      width: 100rem;
-    }
+  .titleHero {
+    font-size: 2.8rem;
+  }
+  .form {
+    width: 100rem;
+  }
+  .categories {
+    width: 90%;
+  }
+  .categoriesContainer {
+    margin: 0 auto;
+    width: 90%;
+  }
+}
+
+@media (max-width: 1150px) {
+  .titleHero {
+    font-size: 2.5rem;
+  }
+  .form {
+    margin: 0 auto;
+    width: 80%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero {
+    min-height: 25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 40rem;
+  }
+  .form {
+    height: 100%;
+  }
+  .titleHero {
+    font-size: 2.8rem;
+    text-wrap: balance;
+    margin-bottom: 0.5rem;
+  }
+.swiper-slide > * {
+  max-width: 90%; /* Evita que se desborde en pantallas pequeñas */
+}
+  .viewMoreContainerRec {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .titleHero {
+    font-size: 2.5rem;
+  }
+  .categoriesTitle {
+    font-size: 2rem;
+  }
+  .titleRecom {
+    font-size: 1.8rem;
+  }
+  .viewMoreContainerRec {
+    font-size: 1.7rem;
+  }
 }

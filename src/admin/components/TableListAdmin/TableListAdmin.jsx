@@ -1,36 +1,38 @@
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
-import EditRoundedIcon from "@mui/icons-material/EditRounded";
-import PauseRoundedIcon from "@mui/icons-material/PauseRounded";
-import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
 import { toast } from "react-toastify";
-import {
-  deletePackageById,
-  fetchPackages,
-} from "../../redux/features/packages/packageThunk.js";
 import styles from "./TableListAdmin.module.css";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
-export const TableListAdmin = () => {
+export const TableListAdmin = ({
+  firstColumn,
+  secondColumn,
+  arr,
+  field1,
+  field2,
+  onDelete,
+  isLoading,
+  actions,
+  onRefresh,
+}) => {
   const dispatch = useDispatch();
-  const travelPackages = useSelector((state) => state.packages.packages);
 
-  useEffect(() => {
-    dispatch(fetchPackages());
-  }, [dispatch]);
-
-  const handleDelete = (packageId) => {
+  const handleDelete = (id) => {
     const confirmed = window.confirm(
-      `Estas segura/o que quieres eliminar el paquete con id ${packageId}`
+      `Estas segura/o que quieres eliminar el item con id ${id}`
     );
     if (confirmed) {
-      dispatch(deletePackageById(packageId))
-        .unwrap()
+      dispatch(onDelete(id))
         .then(() => {
-          toast.success("Paquete eliminado correctamente");
+          dispatch(onRefresh())
+            .unwrap()
+            .then(() => {
+              toast.success("Item eliminado correctamente");
+            });
         })
         .catch((error) => {
-          toast.error("Hubo un error al eliminar el paquete");
+          toast.error("Hubo un error al eliminar el item");
           console.error(error);
         });
     }
@@ -40,41 +42,52 @@ export const TableListAdmin = () => {
     <table className={styles.table}>
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Nombre</th>
-          <th>Acciones</th>
+          <th>{firstColumn}</th>
+          <th>{secondColumn}</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        {travelPackages.map((tpackage) => (
-          <tr key={tpackage.id}>
-            <td>{tpackage.id}</td>
-            <td>{tpackage.name}</td>
-            <td className={styles.icons}>
-              <RemoveRedEyeRoundedIcon
-                style={{ fontSize: "2rem" }}
-                className={styles.icon}
-                aria-label="ver"
-              />
-              <EditRoundedIcon
-                style={{ fontSize: "2rem" }}
-                className={styles.icon}
-                aria-label="editar"
-              />
-              <DeleteRoundedIcon
-                style={{ fontSize: "2rem" }}
-                className={styles.icon}
-                aria-label="eliminar"
-                onClick={() => handleDelete(tpackage.id)}
-              />
-              <PauseRoundedIcon
-                aria-label="pausar"
-                style={{ fontSize: "2rem" }}
-                className={styles.icon}
-              />
-            </td>
+        {isLoading ? (
+          <tr>
+            <td colSpan="3">Cargando...</td>
           </tr>
-        ))}
+        ) : arr.length === 0 ? (
+          <tr>
+            <td colSpan="3">No hay datos para mostrar.</td>
+          </tr>
+        ) : (
+          arr.map((item) => (
+            <tr key={item.id}>
+              <td>{item[field1]}</td>
+              <td>{item[field2]}</td>
+              <td>
+                <div className={styles.icons}>
+                  {actions?.map(({ icon, onClick, label }, i) => (
+                    <span
+                      key={i}
+                      className={styles.icon}
+                      aria-label={label}
+                      onClick={() => onClick(item)}
+                    >
+                      {React.cloneElement(icon, {
+                        style: { fontSize: "2rem" },
+                      })}
+                    </span>
+                  ))}
+                  <span>
+                    <DeleteRoundedIcon
+                      style={{ fontSize: "2rem" }}
+                      className={styles.icon}
+                      aria-label="eliminar"
+                      onClick={() => handleDelete(item.id)}
+                    />
+                  </span>
+                </div>
+              </td>
+            </tr>
+          ))
+        )}
       </tbody>
     </table>
   );

@@ -10,8 +10,6 @@ span {
 }
 
 .prev, .next{
-    background-color: var(--color-secondary);
-    color: var(--color-light);
     font-weight: var(--font-semibold);
     padding: .5rem 1rem;
     border-radius: .5rem;

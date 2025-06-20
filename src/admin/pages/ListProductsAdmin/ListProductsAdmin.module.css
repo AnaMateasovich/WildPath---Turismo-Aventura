@@ -17,6 +17,7 @@
 
 .btnCreate {
   background-color: var(--color-primary);
+  color: var(--color-light);
   padding: 0.8rem 3rem;
   border-radius: 0.5rem;
   white-space: nowrap;
@@ -28,4 +29,35 @@
 
 .tableList {
   margin: 1rem auto;
+}
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.562);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-weight: var(--font-text);
+}
+
+.modalContent {
+  background-color: whitesmoke;
+  padding: 4rem;
+  border-radius: 1rem;
+}
+
+.buttonsEdit {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.buttonsEdit button{
+  padding: .5rem 3rem;
+  border-radius: .5rem;
 }

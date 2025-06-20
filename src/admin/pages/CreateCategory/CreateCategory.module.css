@@ -1,0 +1,53 @@
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.btnBackContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+}
+.btnBackContainer button {
+    padding: .5rem 3rem;
+    border-radius: .5rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.description textarea {
+   height: 10rem;
+}
+
+.categoryForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.reviewAndSubmit {
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btnsCreateBackContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnsCreateBackContainer button {
+    margin: 2rem 0;
+    padding: .5rem 5rem;
+    border-radius: 1rem;
+}
+
+.img {
+    width: 40rem;
+}

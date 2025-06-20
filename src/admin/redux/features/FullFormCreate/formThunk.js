@@ -16,7 +16,7 @@ export const saveFullForm = createAsyncThunk(
     try {
       const state = thunkAPI.getState();
       const {
-        enterprise,
+        enterpriseForm,
         selectedEnterpriseId,
         package: pack,
         datesAvailable,
@@ -25,7 +25,7 @@ export const saveFullForm = createAsyncThunk(
 
       // 1. Guardar la empresa
       const enterpriseId = await saveEnterprise(
-        enterprise,
+        enterpriseForm,
         selectedEnterpriseId
       );
 
@@ -40,8 +40,10 @@ export const saveFullForm = createAsyncThunk(
 
       //5. Guardar los dates available
       await saveDatesAvailable(datesAvailable, packageId);
+
       //6. Guardar los requirements
       await saveRequirements(requirements, packageId);
+
 
     } catch (err) {
       console.error("Error al guardar todo:", err);
@@ -57,7 +59,7 @@ export const checkPackageName = createAsyncThunk(
   'packages/checkName',
   async(name, {rejectWithValue}) => {
     try {
-      const response = await axios.get(`${API_URL}/packages/check-name?name=${encodeURIComponent(name)}`)
+      const response = await api.get(`${API_URL}/admin/packages/check-name?name=${encodeURIComponent(name)}`)
       return {name, exists: response.data}
     } catch (error) {
       return rejectWithValue(error.response?.data || 'Error checking package name');

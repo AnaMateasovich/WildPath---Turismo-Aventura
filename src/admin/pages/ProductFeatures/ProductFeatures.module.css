@@ -1,0 +1,67 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+.container h4{
+    font-size: 1.8rem;
+}
+
+.textInline {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.requirementsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.requirementsContainer li {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.requirementsContainer span{
+    font-weight: var(--font-semibold);
+}
+
+.datesAvailable li {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.imagesContainer {
+    max-width: 1400px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.image {
+    width: 30rem;
+    height: 30rem;
+    object-fit: cover;
+}
+
+.itemInclude {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.buttonBackground {
+    padding: .5rem 3rem;
+    border-radius: .5rem;
+    margin: 1rem 0;
+}
+.container button {
+    cursor: pointer;
+}

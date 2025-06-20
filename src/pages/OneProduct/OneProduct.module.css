@@ -1,25 +1,42 @@
-
 .productContainer {
   max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 3rem;
+  margin: 0 auto 2rem auto;
+  display: grid;
+  align-items: start;
+  grid-template-columns: calc(70% - 1rem) calc(30% - 1rem);
+  grid-template-areas:
+    "activity sideInfo"
+    "principalInfo sideInfo"
+    "dateTable reservationSum";
+  grid-gap: 2rem;
+}
+
+.activity {
+  grid-area: activity;
+  
+}
+.principalInfo {
+  grid-area: principalInfo;
 
 }
 
-.infoProductContainer {
-  max-width: 100%;
-  flex: 3;
+.dateTable {
+  grid-area: dateTable;
+}
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 1rem 0;
 }
 
 .sideInfo {
-  flex: 1;
-  align-self: flex-start;
+  grid-area: sideInfo;
   margin-top: 3rem;
 }
-
+.reservationSum {
+  grid-area: reservationSum;
+}
 .backBtn {
   max-width: 1400px;
   display: flex;
@@ -33,10 +50,59 @@
   border-radius: 1rem;
 }
 
-.dateTable {
-  margin: 3rem 0 2rem 0;
+
+@media (max-width: 1450px) {
+  .productContainer,
+  .backBtn {
+    padding: 0 2rem;
+    gap: 2rem;
+  }
+
+  .infoProductContainer {
+    flex: 5;
+  }
+  .sideInfo {
+    flex: 2;
+  }
 }
 
-.reservationSum {
-  margin-top: 3rem;
+@media (max-width: 1250px) {
+  .infoProductContainer {
+    flex: 2;
+  }
+  .sideInfo {
+    flex: 1;
+  }
+
+}
+
+@media (max-width: 1024px) {
+  .productContainer {
+    display: flex;
+    flex-direction: column;
+  }
+ .activity {
+  width: 100%;
+  order: 1;
+ }
+ .sideInfo {
+  order: 2;
+ }
+ .principalInfo {
+  order: 3;
+ }
+ .dateTable {
+  width: 100%;
+  order: 4;
+ }
+ .reservationSum {
+  width: 100%;
+  order: 5;
+ }
+}
+
+@media (max-width: 500px) {
+  .productContainer {
+    padding: .5rem;
+  }
 }

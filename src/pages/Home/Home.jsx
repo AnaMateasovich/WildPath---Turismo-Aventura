@@ -1,29 +1,29 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { fetch10Random } from "../../admin/redux/features/packages/packageThunk.js";
 import { CardCategory } from "../../components/CardCategory/CardCategory";
 import { RecCard } from "../../components/RecCard/RecCard";
 import { SearchForm } from "../../components/SearchForm/SearchForm";
-import { category, recommendations } from "../../data/db.js";
 import styles from "./Home.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { fetch10Random } from "../../admin/redux/features/packages/packageThunk.js";
+import { useWindowSize } from "../../hooks/useWindowSize.js";
 
 const Home = () => {
-    const dispatch = useDispatch()
-  const random = useSelector((state) => state.packages.random)
-  const categories = useSelector((state) => state.categories.categories)
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const random = useSelector((state) => state.packages.random);
+  const categories = useSelector((state) => state.categories.categories);
+  const navigate = useNavigate();
+  const width = useWindowSize();
 
-  console.log(categories)
   useEffect(() => {
-    dispatch(fetch10Random())
-  }, [dispatch])
-    
+    dispatch(fetch10Random());
+  }, [dispatch]);
+
   return (
     <>
       <div className={styles.hero}>
@@ -46,17 +46,19 @@ const Home = () => {
             pagination={{ clickable: true }}
             loop={true}
             autoplay={{ delay: 4000 }}
-            spaceBetween={30}
+            spaceBetween={10}
             slidesPerView={1}
             breakpoints={{
-              640: { slidesPerView: 1 },
-              768: { slidesPerView: 3 },
-              1024: { slidesPerView: 4 },
+              640: { slidesPerView: 1, spaceBetween: 10 },
+              768: { slidesPerView: 2, spaceBetween: 20 },
+              1024: { slidesPerView: 3, spaceBetween: 20 },
+              1350: { slidesPerView: 4, spaceBetween: 20 },
             }}
           >
             {categories.map((category) => (
-              <SwiperSlide key={category.id}>
+              <SwiperSlide key={category.id} className={styles.swiperSlide}>
                 <CardCategory
+                  id = {category.id}
                   name={category.name}
                   description={category.description}
                   img={category.src}
@@ -71,26 +73,63 @@ const Home = () => {
         </div>
         <div className={styles.recommendations}>
           <h3 className={styles.titleRecom}>Recomendaciones</h3>
-          <div className={styles.recCards}>
-            {random.map((pkg, index) => (
-              <RecCard
-                key={index}
-                img={
+          {width < 768 ? (
+            <div className={styles.recCards}>
+              <Swiper
+                modules={[Navigation, Pagination]}
+                navigation
+                pagination={{ clickable: true }}
+                loop={true}
+                autoplay={{ delay: 4000 }}
+                spaceBetween={10}
+                slidesPerView={1}
+                breakpoints={{
+                  550: { slidesPerView: 2, spaceBetween: 0 },
+                }}
+              >
+                {random.map((pkg, index) => (
+                  <SwiperSlide key={index} className={styles.recCard}>
+                    <RecCard
+                      key={index}
+                      img={
+                        pkg.images && pkg.images.length > 0
+                          ? pkg.images[0].src
+                          : "/src/assets/logo-bg.jpg"
+                      }
+                      price={pkg.pricePerPerson}
+                      alt={pkg.name}
+                      ubi={pkg.locationAddress}
+                      val="Excelente"
+                      title={pkg.name}
+                      duration={pkg.duration}
+                      onClickBtn={() => navigate(`/actividades/${pkg.id}`)}
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          ) : (
+            <div className={styles.recCards}>
+              {random.map((pkg, index) => (
+                <RecCard
+                  key={index}
+                  img={
                     pkg.images && pkg.images.length > 0
                       ? pkg.images[0].src
                       : "/src/assets/logo-bg.jpg"
                   }
-                price={pkg.pricePerPerson}
-                alt={pkg.name}
-                ubi={pkg.locationAddress}
-                val="Excelente"
-                title={pkg.name}
-                duration={pkg.duration}
-                onClickBtn={() => navigate(`/actividades/${pkg.id}`)}
-              />
-            ))}
-          </div>
-          <div className={styles.viewMoreContainer}>
+                  price={pkg.pricePerPerson}
+                  alt={pkg.name}
+                  ubi={pkg.locationAddress}
+                  val="Excelente"
+                  title={pkg.name}
+                  duration={pkg.duration}
+                  onClickBtn={() => navigate(`/actividades/${pkg.id}`)}
+                />
+              ))}
+            </div>
+          )}
+          <div className={styles.viewMoreContainerRec}>
             <Link className={styles.viewMore}>Ver todas</Link>
           </div>
         </div>

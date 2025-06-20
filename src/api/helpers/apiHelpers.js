@@ -1,12 +1,17 @@
 import axios from "axios";
-import { category } from "../../data/db";
-import { API_URL } from "../../admin/redux/features/FullFormCreate/formSlice";
 import imageCompression from "browser-image-compression";
+import { API_URL } from "../../admin/redux/features/FullFormCreate/formSlice";
+import api from "../axios";
 
 export const saveEnterprise = async (enterprise, selectedEnterpriseId) => {
   if (selectedEnterpriseId) return selectedEnterpriseId;
+  const token = localStorage.getItem("token");
 
-  const res = await axios.post(`${API_URL}/enterprises`, enterprise);
+  const res = await api.post(`${API_URL}/admin/enterprises`, enterprise, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return res.data.id;
 };
 
@@ -26,8 +31,13 @@ export const savePackage = async (pack, enterpriseId) => {
     description: pack.description,
     enterpriseId,
   };
+  const token = localStorage.getItem("token");
 
-  const res = await axios.post(`${API_URL}/packages`, packageData);
+  const res = await api.post(`${API_URL}/admin/packages`, packageData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return res.data.id;
 };
 
@@ -65,7 +75,13 @@ export const saveIncludes = async (packageIncludes, packageId) => {
       formDataIncludes.append("icon", iconFile);
     }
   }
-  return axios.post(`${API_URL}/includes/bulk`, formDataIncludes);
+  const token = localStorage.getItem("token");
+
+  return api.post(`${API_URL}/admin/includes/bulk`, formDataIncludes, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export const saveImages = async (images, packageId) => {
@@ -88,19 +104,36 @@ export const saveImages = async (images, packageId) => {
   }
 
   formDataImages.append("packageId", packageId);
-  return axios.post(`${API_URL}/packages/images`, formDataImages);
+  const token = localStorage.getItem("token");
+
+  return api.post(`${API_URL}/admin/packages/images`, formDataImages, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export const saveDatesAvailable = async (datesAvailable, packageId) => {
   const data = datesAvailable.map((date) => ({ ...date, packageId }));
-  return axios.post(`${API_URL}/datesavailable`, data);
+  const token = localStorage.getItem("token");
+
+  return api.post(`${API_URL}/admin/datesavailable`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export const saveRequirements = async (requirements, packageId) => {
   const data = requirements.map((req) => ({ ...req, packageId }));
-  return axios.post(`${API_URL}/requirements`, data);
-};
+  const token = localStorage.getItem("token");
 
+  return api.post(`${API_URL}/admin/requirements`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
 
 // export const saveSchedule = async (schedule, packageId) {
 //   const data = schedule.map((req) => )

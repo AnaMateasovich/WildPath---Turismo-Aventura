@@ -1,0 +1,22 @@
+
+.logout {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  font-size: 1.4rem;
+}
+
+
+.avatar {
+  font-size: 2.2rem;
+  background-color: var(--color-secondary);
+  padding: 1rem;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+
+.logoutBtn {
+  cursor: pointer;
+  font-weight: var(--font-semibold);
+}

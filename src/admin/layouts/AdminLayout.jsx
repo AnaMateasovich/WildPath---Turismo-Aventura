@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "../components/Sidebar/Sidebar";
 import styles from "./Layouts.module.css";
+import { useWindowSize } from "../../hooks/useWindowSize";
+import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
+import { LogoutSection } from "../../components/LogoutSection/LogoutSection";
 
 export const AdminLayout = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  const width = useWindowSize();
+
+  useEffect(() => {
+    if (width <= 768) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  }, [width]);
+
+  if (isMobile) {
+    return (
+      <div className={styles.alertMobile}>
+        <p><WarningAmberRoundedIcon style={{ fontSize: "4rem" }} className={styles.iconAlert}/> No se puede usar la administración desde dispositivos móviles.</p>
+      </div>
+    );
+  }
   return (
     <>
       <div className={styles.layoutContainer}>
@@ -13,15 +35,7 @@ export const AdminLayout = () => {
         <div className={styles.mainContent}>
           <header className={styles.header}>
             <div className={styles.sesion}>
-              <div>
-                <h3>Admin 1</h3>
-                <p className={styles.closeSesion}>Cerrar sesión</p>
-              </div>
-              <img
-                src="/src/assets/avatar.avif"
-                alt="Avatar admin"
-                className={styles.avatarSesion}
-              />
+              <LogoutSection />
             </div>
           </header>
           <main className={styles.main}>

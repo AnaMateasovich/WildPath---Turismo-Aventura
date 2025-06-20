@@ -45,6 +45,7 @@ export const FormDatesAvailable = () => {
             onChange={handleChange}
             inputName="date"
             value={date.date}
+            id="dateAvailableDate"
           />
         </div>
         <div className={styles.capacity}>
@@ -56,10 +57,12 @@ export const FormDatesAvailable = () => {
             onChange={handleChange}
             inputName="capacity"
             value={date.capacity}
+            id="dateAvailableCapacity"
+
           />
         </div>
         <div className={styles.btnContainer}>
-          <Button text="Añadir" className={styles.btnAdd} onClick={handleAdd} />
+          <Button text="Añadir" id="dateAvailableButton" className={styles.btnAdd} onClick={handleAdd} />
         </div>
       </div>
       {datesAvailable.length > 0 ? (

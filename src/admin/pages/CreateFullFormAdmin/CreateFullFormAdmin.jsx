@@ -31,7 +31,7 @@ const CreateFullFormAdmin = () => {
       );
       if (saveFullForm.fulfilled.match(resultAction)) {
         toast.success("Formulario guardado con éxito");
-        setTimeout(() => navigate('/admin/actividades/crear'), 1000);
+        setTimeout(() => navigate("/admin/actividades/crear"), 1000);
       } else {
         toast.error("Ocurrio un error al guardar el formulario");
       }
@@ -73,7 +73,7 @@ const CreateFullFormAdmin = () => {
         </ul>
       </aside>
 
-      <div className={styles.form}>
+      <main className={styles.form}>
         {/* PRIMER PARTE - DATOS DE LA EMPRESA */}
         {currentStep === 1 && (
           <div>
@@ -94,7 +94,12 @@ const CreateFullFormAdmin = () => {
               <h3>Multimedia</h3>
             </div>
             <div className={styles.formInputs}>
-              <FormImg />
+              <FormImg
+              type="package"
+                nameLabel="Imágenes del paquete"
+                maxImages={5}
+                maxFileSizeMB={2}
+              />
             </div>
           </div>
         )}
@@ -153,6 +158,7 @@ const CreateFullFormAdmin = () => {
                 className={styles.btnNext}
                 onClick={() => setCurrentStep(currentStep + 1)}
                 type="button"
+                id="nextButton"
               />
             </div>
           )}
@@ -164,11 +170,12 @@ const CreateFullFormAdmin = () => {
                 onClick={handleSubmit}
                 type="button"
                 disabled={isLoading}
+                id="submitFullForm"
               />
             </div>
           )}
         </div>
-      </div>
+      </main>
     </form>
   );
 };

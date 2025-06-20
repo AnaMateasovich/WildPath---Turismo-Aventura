@@ -9,9 +9,25 @@
   padding: 2rem 0;
   gap: 5rem;
   box-shadow: 1px 1px 5px 5px rgba(128, 128, 128, 0.418);
-  border-radius: 1rem;
+  border-radius: 1rem 0 1rem 1rem;
+  transition: width 0.3s ease;
+  z-index: 999;
+}
+.btnOpenMenu {
+  position: absolute;
+  top: 0;
+  right: -2rem;
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  padding: 2rem 0;
+  width: 2rem;
+  border-radius: 0 1rem 1rem 0;
+  cursor: pointer;
 }
 
+.open {
+  width: 25rem;
+}
 /* @media (max-height: 1000px) {
   .container {
     overflow-y: auto;
@@ -61,11 +77,21 @@
   align-items: center;
 }
 
+.listMenuOpen {
+  top: 15rem;
+  left: 5rem;
+}
+
+.listMenuOpen span {
+  opacity: 1;
+}
+
 .sectionIconsList {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
+
 
 .iconContainer {
   position: relative;
@@ -73,11 +99,13 @@
   align-items: center;
 }
 
+
 .icon {
   font-size: 3rem;
   cursor: pointer;
   color: var(--color-light);
 }
+
 
 .iconContainer span {
   position: absolute;
@@ -89,9 +117,19 @@
   pointer-events: none;
   font-weight: var(--font-semibold);
   opacity: 0;
-  transition: all 0.3s ease;
+  transition: opacity .3s ease-out, transform 0.3s ease;
   transform: translateX(-10px);
   white-space: nowrap;
+}
+
+.whenOpenTextItem {
+  opacity: 1;
+}
+
+.whenOpenTextItem span{
+  opacity: 1;
+  pointer-events: all;
+
 }
 
 .iconContainer .icon {
@@ -102,7 +140,11 @@
   transform: scale(1.1);
 }
 
+
+
+
 .iconContainer:hover span {
   opacity: 1;
   transform: translateX(0);
+
 }

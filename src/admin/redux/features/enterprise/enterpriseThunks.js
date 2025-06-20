@@ -1,12 +1,20 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import api from "../../../../api/axios";
 import { API_URL } from "../FullFormCreate/formSlice";
-import axios from "axios";
 
 export const fetchEnterprises = createAsyncThunk(
   "fetch/enterprises",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`${API_URL}/enterprises`);
+      const token = localStorage.getItem("token");
+
+      const response = await api.get(`${API_URL}/admin/enterprises`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(

@@ -15,7 +15,7 @@ export const FooterLayout = () => {
             <h2>WILDPATH</h2>
         </div>
         <div className={styles.text}>
-            <p>¿Tienes un problema?<strong>Contáctanos</strong></p>
+            <p>¿Tienes un problema? <strong>Contáctanos</strong></p>
             <p>Preguntas Frecuentes</p>
         </div>
         <div className={styles.social}>

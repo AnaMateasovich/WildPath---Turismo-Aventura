@@ -1,0 +1,27 @@
+.buttonLogin {
+  padding: 0.5rem 5rem;
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+  z-index: 10;
+}
+
+.btnRegister {
+  margin-top: 1rem;
+  font-weight: var(--font-bold);
+  cursor: pointer;
+}
+
+.registerMessage {
+  margin-top: 2rem;
+}
+
+.error {
+  color: rgb(201, 0, 0);
+  font-weight: var(--semi-bold);
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    height: 55% !important;
+  }
+}

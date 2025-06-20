@@ -1,12 +1,21 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { API_URL } from "../FullFormCreate/formSlice";
 import axios from "axios";
+import api from "../../../../api/axios";
 
 export const fetchPlaces = createAsyncThunk(
   "fullform/fetchPlaces",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`${API_URL}/places`);
+      const token = localStorage.getItem("token");
+
+      const response = await api.get(`${API_URL}/all/places`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(

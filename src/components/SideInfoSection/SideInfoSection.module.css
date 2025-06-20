@@ -38,21 +38,24 @@
 
 .item {
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 1rem;
 }
-
+.includesIcon {
+  width: 3rem;
+}
 .nameComment {
   font-weight: var(--font-bold);
 }
 
 .textComment {
-    font-weight: var(--font-text);
+  font-weight: var(--font-text);
 }
 
 .iconNextComm {
-    align-self: flex-end;
-    cursor: pointer;
-    height: 4rem;
+  align-self: flex-end;
+  cursor: pointer;
+  height: 4rem;
 }
 
 .btnViewMore {
@@ -63,4 +66,15 @@
 
 .btnViewMore button {
   cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  .list {
+    padding: 2rem;
+  }
+}
+@media (max-width: 500px) {
+  .container {
+    padding: 1rem 0.5rem;
+  }
 }

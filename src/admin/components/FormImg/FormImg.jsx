@@ -2,26 +2,28 @@ import React, { useState } from "react";
 import { useImages } from "../../context/ImagesContext";
 import styles from "./FormImg.module.css";
 
-export const FormImg = () => {
- 
-  const {images, setImages, previews, setPreviews} = useImages()
-  
+export const FormImg = ({ nameLabel, maxImages, maxFileSizeMB, type }) => {
+  const { images, setImages, previews, setPreviews } = useImages();
 
-  const MAX_IMAGES = 6;
-  const MAX_FILE_SIZE = 3 * 1024 * 1024;
-
+  const MAX_IMAGES = maxImages;
+  const MAX_FILE_SIZE = maxFileSizeMB * 1024 * 1024;
 
   const handlePreview = (e) => {
     const selected = Array.from(e.target.files);
     const valid = selected.filter((file) => file.size <= MAX_FILE_SIZE);
 
-    if (images.length + valid.length > MAX_IMAGES) {
+    if (images[type]?.length + valid.length > MAX_IMAGES) {
       alert(`Solo puedes subir hasta ${MAX_IMAGES} imágenes`);
+      e.target.value = "";
+
       return;
     }
 
     if (valid.length !== selected.length) {
-      alert("Algunas imágenes no se añadieron porque superan los 2MB");
+      alert(
+        `Algunas imágenes no se añadieron porque superan los ${maxFileSizeMB}MB`
+      );
+      e.target.value = "";
     }
 
     const newPreviews = valid.map((file) => {
@@ -32,39 +34,52 @@ export const FormImg = () => {
       });
     });
 
-    Promise.all(newPreviews).then((previews) => {
-      setImages([...images, ...valid]); 
-      setPreviews((prevPreviews) => [...prevPreviews, ...previews]); 
+    Promise.all(newPreviews).then((previewsArray) => {
+      setImages((prevImages) => ({
+        ...prevImages,
+        [type]: [...(prevImages[type] || []), ...valid],
+      }));
+      setPreviews((prevPreviews) => ({
+        ...prevPreviews,
+        [type]: [...(prevPreviews[type] || []), ...previewsArray],
+      }));
     });
+
+    e.target.value = "";
   };
 
   const handleRemove = (e, index) => {
     e.preventDefault();
 
-    
-    const updatedImages = [...images];
-    const updatedPreviews = [...previews];
+    const updatedImages = [...(images[type] || [])];
+    const updatedPreviews = [...(previews[type] || [])];
     updatedImages.splice(index, 1);
     updatedPreviews.splice(index, 1);
 
-    setImages(updatedImages);
-    setPreviews(updatedPreviews);
+    setImages((prevImages) => ({
+      ...prevImages,
+      [type]: updatedImages,
+    }));
+    setPreviews((prevPreviews) => ({
+      ...prevPreviews,
+      [type]: updatedPreviews,
+    }));
   };
 
   return (
     <div className={styles.formInputs}>
       <div className={styles.containerInput}>
-        <label htmlFor="">Imágenes del paquete</label>
+        <label htmlFor="">{nameLabel || "Imágen"}</label>
         <input
           type="file"
-          id="Imagenes"
+          id="loadImage"
           accept="image/*"
           multiple
           onChange={handlePreview}
         />
       </div>
       <div className={styles.imgsContainer}>
-        {previews.map((image, index) => (
+        {previews[type]?.map((image, index) => (
           <div className={styles.imageContainer} key={index}>
             <button onClick={(e) => handleRemove(e, index)}>x</button>
             <img
@@ -75,9 +90,12 @@ export const FormImg = () => {
           </div>
         ))}
       </div>
-      {previews.length === 0 && (
+      {(previews[type]?.length ?? 0) === 0 && (
         <p className={styles.noteHelp}>
-          Puedes subir hasta 5 imágenes y no deben superar 2MB cada una
+          Puedes subir hasta {maxImages}{" "}
+          {maxImages > 1
+            ? `imágenes y no deben superar ${maxFileSizeMB}MB cada una`
+            : `imágen y no debe superar ${maxFileSizeMB}MB`}
         </p>
       )}
     </div>

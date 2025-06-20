@@ -1,0 +1,97 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-color: whitesmoke;
+}
+
+.overlay {
+  width: 50%;
+  height: 100%;
+  background-image: url("/src/assets/hero.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.formContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  background-color: var(--color-tertiary);
+}
+
+.form {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.logo {
+  width: 10rem;
+}
+.container input {
+  background-color: whitesmoke;
+}
+
+@media (max-width: 1300px) {
+  .form {
+    width: 60%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .overlay {
+    width: 40%;
+  }
+  .formContainer {
+    width: 60%;
+  }
+}
+
+@media (max-width:800px) {
+  .form {
+    width: 70%;
+  }
+}
+
+@media (max-width:768px) {
+  .container {
+    position: relative;
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+  .formContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    border-radius: 2rem;
+    box-shadow: 0px 0px 11px 0px rgba(255, 255, 255, 0.548);
+  }
+}
+
+@media (max-width:550px) {
+  .formContainer {
+    width: 90%;
+  }
+  .form {
+    width: 80%;
+  }
+}

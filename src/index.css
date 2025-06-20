@@ -2,6 +2,7 @@
   /* 🎨 Colores principales */
   --color-light: #f7f7f5;
   --color-primary: #25432c;
+  --color-text-btn: #1d3422;
   --color-secondary: #f5872e;
   --color-secondary-darken: #723401;
   --color-secondary-transparent: #f4a261;
@@ -26,6 +27,8 @@
 }
 html {
   font-size: 62.5%;
+  font-weight: var(--font-text);
+   height: 100%;
 }
 
 body {
@@ -34,6 +37,7 @@ body {
   line-height: 1.5;
   background-color: var(--color-light);
   color: var(--color-primary);
+   height: 100%;
 }
 
 img,

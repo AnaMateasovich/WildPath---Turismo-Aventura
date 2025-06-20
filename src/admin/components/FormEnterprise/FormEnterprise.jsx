@@ -53,6 +53,7 @@ export const FormEnterprise = () => {
             text="Seleccionar empresa"
             className={`${styles.btn} ${styles.btnSelectEnterprise}`}
             onClick={toggleSelectEnterprise}
+            id="btnSelectEnterprise"
           />
           {isOpenSelectEnterprise && (
             <>
@@ -61,6 +62,7 @@ export const FormEnterprise = () => {
                   <li
                     key={enterprise.id}
                     onClick={() => handleSelectedEnterprise(enterprise)}
+                    id="enterprisesList"
                   >
                     {enterprise.name}
                   </li>
@@ -82,6 +84,7 @@ export const FormEnterprise = () => {
           value={enterpriseForm.name}
           inputName="name"
           htmlFor="nombre"
+          id="enterpriseName"
           disabled={!!selectedEnterpriseId}
         />
         <Input
@@ -92,6 +95,7 @@ export const FormEnterprise = () => {
           value={enterpriseForm.cuit}
           inputName="cuit"
           htmlFor="cuit"
+          id="enterpriseCuit"
           disabled={!!selectedEnterpriseId}
         />
         <Input
@@ -102,6 +106,7 @@ export const FormEnterprise = () => {
           value={enterpriseForm.email}
           inputName="email"
           htmlFor="Email"
+          id="enterpriseEmail"
           disabled={!!selectedEnterpriseId}
         />
         <Input
@@ -112,6 +117,7 @@ export const FormEnterprise = () => {
           value={enterpriseForm.phone}
           inputName="phone"
           htmlFor="Telefono"
+          id="enterprisePhone"
           disabled={!!selectedEnterpriseId}
         />
         <Input
@@ -121,6 +127,7 @@ export const FormEnterprise = () => {
           onChange={handleChange}
           value={enterpriseForm.address}
           inputName="address"
+          id="enterpriseAddress"
           htmlFor="Direccion"
           disabled={!!selectedEnterpriseId}
         />
@@ -132,6 +139,7 @@ export const FormEnterprise = () => {
           value={enterpriseForm.socialMedia}
           inputName="socialMedia"
           htmlFor="RedesSociales"
+          id="enterpriseSocialMedia"
           disabled={!!selectedEnterpriseId}
         />
 
@@ -141,6 +149,7 @@ export const FormEnterprise = () => {
           onChange={handleChange}
           value={enterpriseForm.description}
           inputName="description"
+          id="enterpriseDescription"
           htmlFor="Descripcion"
           disabled={!!selectedEnterpriseId}
         />

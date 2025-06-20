@@ -5,7 +5,7 @@ import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 
 export const SideInfoSection = ({
   val,
-  char,
+  includes = [],
   meetingPoints,
   nameComment,
   textComment,
@@ -22,9 +22,9 @@ export const SideInfoSection = ({
       <div className={styles.charact}>
         <h4 className={styles.title}>Características</h4>
         <ul className={styles.list}>
-          {char.map((item, index) => (
+          {includes.map((item, index) => (
             <li key={index} className={styles.item}>
-              {item.icon}
+              <img src={item.icon} alt={item.text} className={styles.includesIcon}/>
               <p>{item.text}</p>
             </li>
           ))}

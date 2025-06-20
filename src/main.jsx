@@ -10,20 +10,23 @@ import "./index.css";
 import { IncludesProvider } from "./admin/context/IncludesContext.jsx";
 import { ImagesProvider } from "./admin/context/ImagesContext.jsx";
 import { ToastContainer } from "react-toastify";
+import { FilterProvider } from "./components/SearchForm/FilterProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <IncludesProvider>
-          <ImagesProvider>
-            <Provider store={store}>
-              <App />
-              <ToastContainer />
-            </Provider>
-          </ImagesProvider>
-        </IncludesProvider>
-      </LocalizationProvider>
+      <FilterProvider>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <IncludesProvider>
+            <ImagesProvider>
+              <Provider store={store}>
+                <App />
+                <ToastContainer />
+              </Provider>
+            </ImagesProvider>
+          </IncludesProvider>
+        </LocalizationProvider>
+      </FilterProvider>
     </BrowserRouter>
   </StrictMode>
 );

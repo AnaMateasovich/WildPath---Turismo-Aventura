@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useNavigationType, useParams } from "react-router-dom";
 import { fetchPackageById } from "../../admin/redux/features/packages/packageThunk";
+import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
+
 import { Button } from "../../components/Button/Button";
 import { DatesTable } from "../../components/DatesTable/DatesTable";
 import { PrincipalInfoSection } from "../../components/PrincipalInfoSection/PrincipalInfoSection";
@@ -10,57 +12,82 @@ import { SideInfoSection } from "../../components/SideInfoSection/SideInfoSectio
 import { fakeSideInfo } from "../../data/db";
 import { HeroLight } from "../../layouts/HeroLight/HeroLight";
 import styles from "./OneProduct.module.css";
+import { Gallery } from "../../components/Gallery/Gallery";
+import { selectTransformedPackage } from "../../admin/redux/features/packages/packageSelectors";
 
 const OneProduct = () => {
- const { id } = useParams();
+  const { id } = useParams();
   const dispatch = useDispatch();
-  const selectedPackage = useSelector(state => state.packages.selectedPackage);
+  const navigate = useNavigate()
+  const selectedPackage = useSelector(selectTransformedPackage);
+  const navigationType = useNavigationType()
+
+
+  const handleBack = () => {
+    if(navigationType === "POP") {
+      navigate("/")
+    } else {
+      navigate(-1)
+    }
+  }
+
   useEffect(() => {
     setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 100);
     if (id) {
-      dispatch(fetchPackageById(Number(id)))
+      dispatch(fetchPackageById(Number(id)));
     }
   }, [dispatch, id]);
   if (!selectedPackage) return <p>Cargando paquete...</p>;
+
   return (
     <>
       <HeroLight />
       <div className={styles.backBtn}>
-        <Button text="Volver" />
+        <Button text="Volver" onClick={handleBack}/>
       </div>
       <div className={styles.productContainer}>
-        <div className={styles.infoProductContainer}>
-          <div className={styles.principalInfo}>
-            <PrincipalInfoSection
-              key={selectedPackage.id}
-              name={selectedPackage.name}
-              location={selectedPackage.locationAddress}
-              description={selectedPackage.description}
-              difficulty={selectedPackage.difficulty}
-              duration={selectedPackage.duration}
-              // minAge={selectedPackage.minAge}
-              // reqRes={selectedPackage.restrictions}
-              images={selectedPackage.images}
-            />
-          </div>
-          {/* <div className={styles.dateTable}>
-            <DatesTable />
-          </div> */}
+        <div className={styles.activity}>
+          <h1 className={styles.titleAdv}>{selectedPackage.name}</h1>
+          <p className={styles.location}>
+            <LocationOnRoundedIcon style={{ fontSize: "2.5rem" }} />
+            <span>{selectedPackage.locationAddress}</span>
+          </p>
+          <Gallery
+            images={selectedPackage.images}
+            name={selectedPackage.name}
+          />
+        </div>
+        <div className={styles.principalInfo}>
+          <PrincipalInfoSection
+            key={selectedPackage.id}
+            location={selectedPackage.locationAddress}
+            description={selectedPackage.description}
+            difficulty={selectedPackage.difficulty}
+            duration={selectedPackage.duration}
+            // minAge={selectedPackage.minAge}
+            // reqRes={selectedPackage.restrictions}
+          />
+        </div>
+        <div className={styles.dateTable}>
+          <DatesTable
+            availableDates={selectedPackage.dateAvailable}
+            pricePerPerson={selectedPackage.pricePerPerson}
+          />
         </div>
         <div className={styles.sideInfo}>
-          {fakeSideInfo.map((info) => (
+          
             <SideInfoSection
-              key={info.id}
-              val={info.val}
-              meetingPoints={info.meetingPoints}
-              nameComment={info.nameComment}
-              textComment={info.textComment}
-              char={info.char}
+              key={selectedPackage.id}
+              val="Excelente 9,5"
+              meetingPoints="Terminal de buses, calle 123"
+              nameComment="Cameron Williamson"
+              textComment="Una experiencia increíble, el guía fue súper amable y todo estuvo perfectamente organizado. ¡Lo recomiendo totalmente!"
+              includes={selectedPackage.includes}
             />
-          ))}
-          <div className={styles.reservationSum}>
-            <ReservationSummary />
-          </div>
+    
+        </div>
+        <div className={styles.reservationSum}>
+          <ReservationSummary />
         </div>
       </div>
     </>

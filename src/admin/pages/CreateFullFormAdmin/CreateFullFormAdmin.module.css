@@ -1,14 +1,15 @@
 .container {
   display: flex;
-  width: 90%;
+  max-width: 1400px;
+  width: 100%;
   margin: 5rem auto;
-  gap: 5rem;
+  gap: 3rem;
 }
 .sidebarSteps {
   flex: 1;
-  height: 69rem;
+  height: max-content;
   background-color: var(--color-border);
-  padding: 2rem 4rem;
+  padding: 2rem 4rem 4rem 4rem;
   border-radius: 1rem;
 }
 .sidebarSteps h1 {
@@ -17,13 +18,12 @@
   text-transform: uppercase;
 }
 .form {
-  flex: 3;
+  flex: 2;
 }
 .stepsList {
   display: flex;
   flex-direction: column;
   gap: 5rem;
-  margin-left: 1rem;
 }
 
 .step .textStep {
@@ -82,7 +82,7 @@
 }
 .btnClearEnterprise {
   padding: 0 1rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   background-color: rgb(182, 0, 0);
 }
 .formInputs {
@@ -124,7 +124,7 @@
 }
 
 .btnsEnterprise {
-    position: relative;
+  position: relative;
 }
 
 .enterpriseSelectList {
@@ -140,18 +140,18 @@
 }
 
 .enterpriseSelectList li {
-    cursor: pointer;
-    font-weight: var(--font-semibold);
-    padding: .5rem;
+  cursor: pointer;
+  font-weight: var(--font-semibold);
+  padding: 0.5rem;
 }
 .enterpriseSelectList li:hover {
-    background-color: var(--color-secondary-darken);
-    border-radius: .5rem;
+  background-color: var(--color-secondary-darken);
+  border-radius: 0.5rem;
 }
 
 .verifyingName {
   font-weight: var(--font-semibold);
-  margin: .5rem 0 0 .5rem;
+  margin: 0.5rem 0 0 0.5rem;
 }
 
 .verifyOk {
@@ -160,4 +160,54 @@
 
 .verifyError {
   color: red;
+}
+
+.listEditPackage {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+.noteHelpEditPackageName {
+  font-style: italic;
+  color: rgb(148, 16, 16);
+  font-size: 1.5rem;
+}
+@media (max-width: 1300px) {
+  .container {
+    gap: 1.5rem;
+  }
+  .sidebarSteps {
+    padding: 2rem 2rem 4rem 3rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .step .textStep {
+    font-size: 1.7rem;
+  }
+  .numberStep {
+    font-size: 1.7rem;
+
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  .stepsList {
+    gap: 4rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .sidebarSteps {
+    padding: 2rem 2rem 3rem 2rem;
+  }
+  .step .textStep {
+    font-size: 1.6rem;
+    margin-left: 0.8rem;
+  }
+  .stepsList {
+    gap: 3rem;
+  }
+  .numberStep {
+    font-size: 1.5rem;
+  }
 }

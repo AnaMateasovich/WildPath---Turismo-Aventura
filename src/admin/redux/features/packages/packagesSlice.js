@@ -5,14 +5,20 @@ import {
   fetchPackageById,
   fetchPackages,
   fetchTravelPackagesPaginated,
+  filterByCategory,
+  updateCategory,
 } from "./packageThunk";
+import { category } from "../../../../data/db";
+import { selectSelectedPackage } from "./packageSelectors";
 
 export const initialState = {
   packages: [],
+  filteredPackages: [],
   random: [],
   currentPage: 0,
   totalPages: 0,
   selectedPackage: null,
+  editCategory: { categoryId: null, packageId: null },
   loading: false,
   error: null,
 };
@@ -20,7 +26,21 @@ export const initialState = {
 export const packagesSlice = createSlice({
   name: "packages",
   initialState,
-  reducers: {},
+  reducers: {
+    updateEditCategory: (state, action) => {
+      state.editCategory = { ...state.editCategory, ...action.payload };
+    },
+    cleanFiltered: (state) => {
+      state.filteredPackages = []
+      state.isFiltered = false
+    },
+    setSelectedPackage: (state, action) => {
+      state.selectedPackage = action.payload
+    },
+    clearSelectedPackage: (state) => {
+      state.selectedPackage = null
+    }
+  },
   extraReducers: (builder) => {
     builder
       // All packages
@@ -51,7 +71,7 @@ export const packagesSlice = createSlice({
 
       //   Delete package by id
       .addCase(deletePackageById.pending, (state) => {
-        state.loading = true; 
+        state.loading = true;
         state.error = null;
       })
       .addCase(deletePackageById.fulfilled, (state, action) => {
@@ -74,8 +94,8 @@ export const packagesSlice = createSlice({
       .addCase(fetchTravelPackagesPaginated.fulfilled, (state, action) => {
         state.loading = false;
         state.packages = action.payload.content;
-        state.currentPage = action.payload.number;
-        state.totalPages = action.payload.totalPages;
+        state.currentPage = action.payload.page.number;
+        state.totalPages = action.payload.page.totalPages;
       })
       .addCase(fetchTravelPackagesPaginated.rejected, (state, action) => {
         state.loading = false;
@@ -89,13 +109,44 @@ export const packagesSlice = createSlice({
       })
       .addCase(fetch10Random.fulfilled, (state, action) => {
         state.loading = false;
-        state.random = action.payload
+        state.random = action.payload;
       })
       .addCase(fetch10Random.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
+
+      // edit package category
+      .addCase(updateCategory.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateCategory.fulfilled, (state, action) => {
+        state.loading = false;
+        state.successMessage = action.payload;
+      })
+      .addCase(updateCategory.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // get by category id
+      .addCase(filterByCategory.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(filterByCategory.fulfilled, (state, action) => {
+        state.loading = false;
+        state.filteredPackages = action.payload;
+        state.isFiltered = true;
+      })
+      .addCase(filterByCategory.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
+
+export const { updateEditCategory, cleanFiltered, setSelectedPackage, clearSelectedPackage } = packagesSlice.actions;
 
 export default packagesSlice.reducer;

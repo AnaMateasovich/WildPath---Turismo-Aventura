@@ -1,0 +1,23 @@
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.searchBarContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: auto;
+}
+
+.btnCreateCategory {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    padding: .8rem 3rem;
+    white-space: nowrap;
+    border-radius: .5rem;
+}
+
+.titleList {
+    margin: 2rem 0;
+}

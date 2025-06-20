@@ -3,6 +3,8 @@ import styles from "./ListCard.module.css";
 import { Button } from "../Button/Button";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
+import { useWindowSize } from "../../hooks/useWindowSize";
+import { useFilter } from "../SearchForm/FilterProvider";
 
 export const ListCard = ({
   image,
@@ -15,18 +17,21 @@ export const ListCard = ({
   price,
 }) => {
 
-  const ROUTE_IMAGE = `http://localhost:8081`
+  const width = useWindowSize()
+   const { getImageUrl } = useFilter();
+
+
   return (
     <article className={styles.container}>
       <div className={styles.imgContainer}>
-        <img src={image} alt={title} className={styles.img} />
+        <img src={getImageUrl(image)} alt={title} className={styles.img} />
       </div>
       <div className={styles.info}>
         <div className={styles.firstInfo}>
-          <div>
+          <div className={styles.packageLocation}>
             <h3 className={styles.title}>{title}</h3>
-            <p className={styles.location}><LocationOnRoundedIcon style={{ fontSize: "1.5rem" }} />{location}</p>
-            <p>{days}</p>
+            <p className={styles.location}><LocationOnRoundedIcon style={{ fontSize: "2rem" }} /><span>{location}</span></p>
+            <p className={styles.duration}>{days}</p>
           </div>
           <div className={styles.valorationContainer}>
             <p className={styles.valoration}>{valoration}</p>
@@ -34,17 +39,17 @@ export const ListCard = ({
               {points}
               <StarRateRoundedIcon style={{ fontSize: "2rem" }} />
             </p>
-            <p className={styles.comments}>{commQuantity}</p>
+            {/* <p className={styles.comments}>{commQuantity}</p> */}
           </div>
         </div>
         <div className={styles.priceBtnContainer}>
-          <div>
+          <div className={styles.priceContainer}>
             <p>Desde</p>
             <p>
               <span className={styles.price}>{price}</span> /persona
             </p>
           </div>
-          <div>
+          <div className={styles.btnContainer}>
             <Button text="Explorar" className={styles.btnExplore} />
           </div>
         </div>

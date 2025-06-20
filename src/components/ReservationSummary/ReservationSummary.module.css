@@ -1,38 +1,38 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    border: 2px solid var(--color-border);
-    border-radius: 1rem;
-    font-weight: var(--font-text);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border: 2px solid var(--color-border);
+  border-radius: 1rem;
+  font-weight: var(--font-text);
 }
-
+.bookingInfo {
+  font-weight: var(--font-semibold);
+}
 .bookingInfo span {
-    font-weight: var(--font-semibold);
-    color: grey;
+  color: rgb(95, 95, 95);
 }
 
 .totalPay {
-    display: flex;
-    margin-top: 1rem;
-    font-size: 2.5rem;
-    font-weight: var(--font-semibold);
-    align-items: baseline;
-    gap: 1rem;
+  display: flex;
+  margin-top: 1rem;
+  font-size: 2.5rem;
+  font-weight: var(--font-semibold);
+  align-items: baseline;
+  gap: 1rem;
 }
 
 .total {
-    font-size: 1.5rem;
-    font-weight: var(--font-text);
+  font-size: 1.5rem;
+  font-weight: var(--font-text);
 }
 
-
 .btnContainer {
-    align-self: center;
-    margin-top: 2rem;
+  align-self: center;
+  margin-top: 2rem;
 }
 
 .btn {
-    border-radius: 1rem;
-    padding: 1rem 3rem;
+  border-radius: 1rem;
+  padding: 1rem 3rem;
 }

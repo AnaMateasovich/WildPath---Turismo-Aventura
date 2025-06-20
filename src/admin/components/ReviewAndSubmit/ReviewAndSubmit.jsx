@@ -156,6 +156,7 @@ export const ReviewAndSubmit = () => {
               src={image}
               alt={`image${index}`}
               className={styles.img}
+              
             />
           ))}
         </ul>

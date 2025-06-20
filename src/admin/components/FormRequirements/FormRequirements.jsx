@@ -50,6 +50,7 @@ export const FormRequirements = () => {
             onChange={handleChange}
             inputName="title"
             value={requirement.title}
+            id="packageRequirementTitle"
           />
         </div>
         <div className={styles.description}>
@@ -61,11 +62,13 @@ export const FormRequirements = () => {
             onChange={handleChange}
             inputName="description"
             value={requirement.description}
+            id="packageRequirementDescription"
+
           />
         </div>
       </div>
       <div className={`${styles.btnContainer} ${styles.btnAddContainer}`}>
-        <Button text="Añadir" className={styles.btnAdd} onClick={handleAdd} />
+        <Button text="Añadir" className={styles.btnAdd} id="packageRequirementButton" onClick={handleAdd} />
       </div>
       {requirements.length > 0 ? (
         <div className={styles.tableContainer}>

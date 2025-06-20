@@ -31,3 +31,29 @@
     padding: 1rem 3rem;
     border-radius: 1rem;
 }
+
+@media (max-width: 1024px) {
+    .containerOpenFilter {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        background-color: var(--color-tertiary);
+    }
+    .containerOpenFilter button {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 0;
+        font-size: 1.8rem;
+        font-weight: var(--font-semibold);
+        cursor: pointer;
+    }
+    
+}
+
+@media (max-width: 580px) {
+    .containerOpenFilter button {
+        font-size: 1.5rem;
+        margin: 0 1rem;
+    }
+}

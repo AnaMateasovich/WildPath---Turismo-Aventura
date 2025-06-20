@@ -1,19 +1,21 @@
 import debounce from "lodash/debounce";
 import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "../../../components/Button/Button";
 import { useIncludes } from "../../context/IncludesContext";
 import styles from "../../pages/CreateFullFormAdmin/CreateFullFormAdmin.module.css";
 import { fetchCategories } from "../../redux/features/categories/categoriesThunks";
-import { updatePackage } from "../../redux/features/FullFormCreate/formSlice";
+import {
+  updatePackage,
+} from "../../redux/features/FullFormCreate/formSlice";
 import { checkPackageName } from "../../redux/features/FullFormCreate/formThunk";
+import { selectTransformedPackage } from "../../redux/features/packages/packageSelectors";
 import { fetchPlaces } from "../../redux/features/places/placesThunks";
 import { Input } from "../Input/Input";
 import { InputListWithIcons } from "../InputListWithIcons/InputListWithIcons";
 import { Select } from "../Select/Select";
 import { Textarea } from "../Textarea/Textarea";
 
-export const FormPackage = () => {
+export const FormPackage = ({ packageId = null, isEditing = false }) => {
   const dispatch = useDispatch();
 
   const { exists, status, value } = useSelector(
@@ -21,14 +23,16 @@ export const FormPackage = () => {
   );
 
   const packageForm = useSelector((state) => state.fullForm.package);
+  const selectedPackage = useSelector(selectTransformedPackage);
   const categories = useSelector((state) => state.categories.categories);
   const places = useSelector((state) => state.places.places);
 
   const { packageIncludes, setPackageIncludes } = useIncludes();
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    dispatch(updatePackage({ [name]: value }));
+      dispatch(updatePackage({ [name]: value }));
   };
 
   const debouncedCheckName = useMemo(() => {
@@ -52,13 +56,13 @@ export const FormPackage = () => {
   // const handleRemoveNoInclude = (index) => {
   //   setNoIncludes((prev) => prev.filter((_, i) => i !== index));
   // };
-
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchPlaces());
   }, [dispatch]);
-
   useEffect(() => {
+
+
     if (packageForm.name.trim() !== "") {
       debouncedCheckName(packageForm.name);
     }
@@ -68,11 +72,11 @@ export const FormPackage = () => {
     };
   }, [packageForm.name, debouncedCheckName]);
 
+  console.log(packageForm);
   return (
     <>
       <div className={styles.titleBtnContainer}>
         <h3>Datos del Paquete</h3>
-        <Button text="Crear categoría" className={styles.btn} />
       </div>
       <div className={styles.formInputs}>
         <div>
@@ -83,6 +87,8 @@ export const FormPackage = () => {
             onChange={handleChange}
             value={packageForm.name}
             inputName="name"
+            htmlFor="nombreDelPaquete"
+            id="packageName"
           />
           {status === "loading" && (
             <p className={styles.verifyingName}>Verificando nombre...</p>
@@ -104,6 +110,7 @@ export const FormPackage = () => {
           onChange={handleChange}
           value={packageForm.description}
           inputName="description"
+          id="packageDescription"
         />
         <Select
           labelName="Categoría"
@@ -115,6 +122,7 @@ export const FormPackage = () => {
           selectName="category"
           value={packageForm.category}
           onChange={handleChange}
+          id="packageCategory"
         />
         <Select
           labelName="Tipo de lugar"
@@ -126,6 +134,7 @@ export const FormPackage = () => {
           htmlFor="TipoDeLugar"
           value={packageForm.place}
           onChange={handleChange}
+          id="packagePlace"
         />
         <Input
           labelName="Duración"
@@ -134,6 +143,7 @@ export const FormPackage = () => {
           onChange={handleChange}
           value={packageForm.duration}
           inputName="duration"
+          id="packageDuration"
         />
         {/* <FormSchedule /> */}
         <InputListWithIcons
@@ -147,7 +157,15 @@ export const FormPackage = () => {
           onRemoveItem={handleRemoveInclude}
           inputName="include"
           itemsState={packageIncludes}
+          id="packageInclude"
         />
+        {isEditing &&
+          selectedPackage.includes.map((include) => (
+            <li className={styles.listEditPackage}>
+              <img src={include.icon} alt={include.text} />
+              <p>{include.text}</p>
+            </li>
+          ))}
         {/* <InputListWithIcons
           titleSection="NO Incluye"
           nameLabel="Item"
@@ -169,6 +187,7 @@ export const FormPackage = () => {
           onChange={handleChange}
           value={packageForm.locationAddress}
           inputName="locationAddress"
+          id="packageLocation"
         />
         <Input
           labelName="Precio por Persona"
@@ -177,6 +196,7 @@ export const FormPackage = () => {
           onChange={handleChange}
           value={packageForm.pricePerPerson}
           inputName="pricePerPerson"
+          id="packagePrice"
         />
         <Input
           labelName="Descuento"
@@ -185,6 +205,7 @@ export const FormPackage = () => {
           onChange={handleChange}
           value={packageForm.discount}
           inputName="discount"
+          id="packageDiscount"
         />
         <Select
           labelName="Dificultad"
@@ -197,6 +218,7 @@ export const FormPackage = () => {
           htmlFor="Dificultad"
           value={packageForm.difficulty}
           onChange={handleChange}
+          id="packageDifficulty"
         />
 
         <Textarea
@@ -205,6 +227,7 @@ export const FormPackage = () => {
           onChange={handleChange}
           value={packageForm.cancelPolicy}
           inputName="cancelPolicy"
+          id="packageCancelPolicy"
         />
       </div>
     </>
