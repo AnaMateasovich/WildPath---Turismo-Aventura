@@ -171,7 +171,7 @@ const ProductFeatures = () => {
       <ul>
         {selectedPackage?.packageIncludes?.map((include) => (
           <li className={styles.itemInclude} key={include.id}>
-            <img src={`${API_URL}${include.iconSrc}`} alt="" />
+            <img src={`${API_URL}${include.iconSrc}`} alt="" loading="lazy"/>
             {include.description}
             <button onClick={() => handleEditInclude(include)}>
               <EditRoundedIcon style={{ fontSize: "2rem" }} />
@@ -291,9 +291,10 @@ const ProductFeatures = () => {
         {selectedPackage?.images?.map((image, index) => (
           <img
             key={image.id}
-            src={image.src}
+            src={`${API_URL}${image.src}`}
             alt={`Image ${index + 1} ${selectedPackage.name}`}
             className={styles.image}
+            loading="lazy"
           />
         ))}
       </div>

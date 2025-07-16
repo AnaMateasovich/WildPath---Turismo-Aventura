@@ -1,29 +1,50 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { fetch10Random } from "../../admin/redux/features/packages/packageThunk.js";
+import {
+  fetch10Random,
+  searchFiltered,
+} from "../../admin/redux/features/packages/packageThunk.js";
 import { CardCategory } from "../../components/CardCategory/CardCategory";
 import { RecCard } from "../../components/RecCard/RecCard";
-import { SearchForm } from "../../components/SearchForm/SearchForm";
+import { SearchForm } from "../../components/SearchForm/SearchForm.jsx";
 import styles from "./Home.module.css";
 import { useWindowSize } from "../../hooks/useWindowSize.js";
+import { ProductsList } from "../../components/ProductsList/ProductsList.jsx";
+import { cleanFiltered, clearPendingSearch } from "../../admin/redux/features/packages/packagesSlice.js";
+import { Button } from "../../components/Button/Button.jsx";
 
 const Home = () => {
+  const location = useLocation();
   const dispatch = useDispatch();
-  const random = useSelector((state) => state.packages.random);
+
+  const { random, filteredPackages } = useSelector((state) => state.packages);
   const categories = useSelector((state) => state.categories.categories);
+  const reviews = useSelector((state) => state.reviews.reviews);
+  const pendingSearch = useSelector((state) => state.packages.pendingSearch);
+
   const navigate = useNavigate();
   const width = useWindowSize();
 
   useEffect(() => {
     dispatch(fetch10Random());
+    return () => {
+      dispatch(cleanFiltered());
+    };
   }, [dispatch]);
 
+  useEffect(() => {
+    if (pendingSearch) {
+      dispatch(searchFiltered(pendingSearch));
+      setTimeout(() => window.scrollTo({ top: 300, behavior: "smooth" }), 100);
+      dispatch(clearPendingSearch());
+    }
+  }, [pendingSearch, dispatch]);
   return (
     <>
       <div className={styles.hero}>
@@ -44,7 +65,7 @@ const Home = () => {
             modules={[Navigation, Pagination]}
             navigation
             pagination={{ clickable: true }}
-            loop={true}
+            loop={false}
             autoplay={{ delay: 4000 }}
             spaceBetween={10}
             slidesPerView={1}
@@ -58,7 +79,7 @@ const Home = () => {
             {categories.map((category) => (
               <SwiperSlide key={category.id} className={styles.swiperSlide}>
                 <CardCategory
-                  id = {category.id}
+                  id={category.id}
                   name={category.name}
                   description={category.description}
                   img={category.src}
@@ -68,9 +89,24 @@ const Home = () => {
             ))}
           </Swiper>
           <div className={styles.viewMoreContainer}>
-            <Link className={styles.viewMore}>Ver todas</Link>
+            <Link to="/categorias" className={styles.viewMore}>
+              Ver todas
+            </Link>
           </div>
         </div>
+        {filteredPackages.length > 0 && (
+          <div className={styles.filteredList}>
+            {/* <Button text="Limpiar busqueda"/> */}
+            <ProductsList
+              packages={filteredPackages}
+              valoration={reviews.averageStars}
+              // totalPages={totalPages}
+              // onPrev={handlePrevPage}
+              // onNext={handleNextPage}
+              // currentPage={currentPage}
+            />
+          </div>
+        )}
         <div className={styles.recommendations}>
           <h3 className={styles.titleRecom}>Recomendaciones</h3>
           {width < 768 ? (
@@ -94,12 +130,13 @@ const Home = () => {
                       img={
                         pkg.images && pkg.images.length > 0
                           ? pkg.images[0].src
-                          : "/src/assets/logo-bg.jpg"
+                          : "localhost:5173/src/assets/logo-bg.jpg"
                       }
                       price={pkg.pricePerPerson}
                       alt={pkg.name}
                       ubi={pkg.locationAddress}
-                      val="Excelente"
+                      valoration={pkg.averageStars}
+                      totalReviews={pkg.totalReviews}
                       title={pkg.name}
                       duration={pkg.duration}
                       onClickBtn={() => navigate(`/actividades/${pkg.id}`)}
@@ -116,21 +153,25 @@ const Home = () => {
                   img={
                     pkg.images && pkg.images.length > 0
                       ? pkg.images[0].src
-                      : "/src/assets/logo-bg.jpg"
+                      : "localhost:5173/src/assets/logo-bg.jpg"
                   }
                   price={pkg.pricePerPerson}
                   alt={pkg.name}
                   ubi={pkg.locationAddress}
-                  val="Excelente"
+                  valoration={pkg.averageStars}
                   title={pkg.name}
                   duration={pkg.duration}
                   onClickBtn={() => navigate(`/actividades/${pkg.id}`)}
+                  className={styles.recCard}
+                  totalReviews={pkg.totalReviews}
                 />
               ))}
             </div>
           )}
           <div className={styles.viewMoreContainerRec}>
-            <Link className={styles.viewMore}>Ver todas</Link>
+            <Link to="/actividades" className={styles.viewMore}>
+              Ver todas
+            </Link>
           </div>
         </div>
       </main>

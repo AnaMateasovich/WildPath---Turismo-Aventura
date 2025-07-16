@@ -89,7 +89,7 @@ export const updatePackageInclude = createAsyncThunk(
     try {
       
       const currentInclude = include[0]
-      console.log(currentInclude)
+      
       const formData = new FormData();
 
       const jsonBlob = new Blob(

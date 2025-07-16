@@ -81,7 +81,7 @@ export const FormEnterprise = () => {
           placeholder="Patagonia Adventures"
           type="text"
           onChange={handleChange}
-          value={enterpriseForm.name}
+          value={enterpriseForm.name || ""}
           inputName="name"
           htmlFor="nombre"
           id="enterpriseName"

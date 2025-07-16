@@ -6,7 +6,9 @@
 }
 
 .title {
-  margin: 2rem 1rem 1rem 1rem;
+  font-size: 2.3rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 .pagination {

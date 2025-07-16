@@ -6,19 +6,27 @@ import {
   fetchPackages,
   fetchTravelPackagesPaginated,
   filterByCategory,
+  getDatesAvailableByPackageID,
+  getLocationSuggestions,
+  searchFiltered,
+  searchPackageByName,
   updateCategory,
 } from "./packageThunk";
-import { category } from "../../../../data/db";
-import { selectSelectedPackage } from "./packageSelectors";
 
 export const initialState = {
   packages: [],
   filteredPackages: [],
   random: [],
+  locationSuggestions: [],
+  datesAvailable: [],
+  loadingDates: false,
   currentPage: 0,
   totalPages: 0,
   selectedPackage: null,
+  pendingSearch: null,
   editCategory: { categoryId: null, packageId: null },
+  isFiltered: false,
+  successMessage: null,
   loading: false,
   error: null,
 };
@@ -34,11 +42,24 @@ export const packagesSlice = createSlice({
       state.filteredPackages = []
       state.isFiltered = false
     },
+    clearLocationSuggestions: (state) => {
+      state.locationSuggestions = []
+    },
     setSelectedPackage: (state, action) => {
       state.selectedPackage = action.payload
     },
     clearSelectedPackage: (state) => {
       state.selectedPackage = null
+    },
+    setPendingSearch: (state, action) => {
+      state.pendingSearch = action.payload;
+    },
+    clearPendingSearch: (state) => {
+      state.pendingSearch = null;
+    },
+
+    clearDatesAvailable: (state) => {
+      state.datesAvailable = []
     }
   },
   extraReducers: (builder) => {
@@ -143,10 +164,67 @@ export const packagesSlice = createSlice({
       .addCase(filterByCategory.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
+      })
+
+      // search by name
+      .addCase(searchPackageByName.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(searchPackageByName.fulfilled, (state, action) => {
+        state.loading = false;
+        state.packages = action.payload;
+      })
+      .addCase(searchPackageByName.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // search filtered
+      .addCase(searchFiltered.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(searchFiltered.fulfilled, (state, action) => {
+        state.loading = false;
+        state.filteredPackages = action.payload;
+        state.isFiltered = true;
+      })
+      .addCase(searchFiltered.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // get location suggestions
+      .addCase(getLocationSuggestions.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getLocationSuggestions.fulfilled, (state, action) => {
+        state.loading = false;
+        state.locationSuggestions = action.payload;
+      })
+      .addCase(getLocationSuggestions.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // get dates available by packageid
+      .addCase(getDatesAvailableByPackageID.pending, (state) => {
+        state.loadingDates = true;
+        state.error = null;
+      })
+      .addCase(getDatesAvailableByPackageID.fulfilled, (state, action) => {
+        state.loadingDates = false;
+        state.datesAvailable = action.payload;
+      })
+      .addCase(getDatesAvailableByPackageID.rejected, (state, action) => {
+        state.loadingDates = false;
+        state.error = action.payload;
+      })
   },
 });
 
-export const { updateEditCategory, cleanFiltered, setSelectedPackage, clearSelectedPackage } = packagesSlice.actions;
+export const { updateEditCategory, cleanFiltered, setSelectedPackage, clearSelectedPackage, clearLocationSuggestions, setPendingSearch, clearPendingSearch, clearDatesAvailable } = packagesSlice.actions;
 
 export default packagesSlice.reducer;

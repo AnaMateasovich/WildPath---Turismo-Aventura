@@ -21,7 +21,20 @@
 }
 
 @media (max-width: 768px) {
+
   .formContainer {
-    height: 55% !important;
+    height: 38rem;
   }
+ 
+}
+@media (max-width: 500px) {
+  .formContainer {
+    height: 38rem;
+  }
+ .registerMessage {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+    text-align: center;
+ }
+ 
 }

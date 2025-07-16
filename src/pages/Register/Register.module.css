@@ -14,8 +14,20 @@
   font-weight: var(--semi-bold);
 }
 
+.textAlreadyAcoount {
+  margin-top: 2rem;
+}
+
 @media (max-width: 768px) {
+  
   .formContainer {
-    height: 65% !important;
+    height: 60rem;
+  }
+  .textAlreadyAcoount {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  .textAlreadyAcoount strong{
+    white-space: nowrap;
   }
 }

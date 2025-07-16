@@ -12,6 +12,8 @@ const CategoriesAdmin = () => {
   const navigate = useNavigate()
   const { categories, loading } = useSelector((state) => state.categories);
 
+
+
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
@@ -36,6 +38,7 @@ const CategoriesAdmin = () => {
         isLoading={loading}
         onDelete={deleteCategoryById}
         onRefresh={fetchCategories}
+        messageDelete="Estas seguro que quieres eliminar la categoría"
       />
     </main>
   );

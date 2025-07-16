@@ -9,11 +9,26 @@
   display: flex;
   align-self: end;
 }
+
+.nameAndDate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.date {
+  font-weight: var(--font-text);
+  font-size: 1.3rem;
+}
+
+.valContainer {
+  display: flex;
+  flex-direction: column;
+}
 .val {
   display: flex;
   color: var(--color-light);
   background-color: var(--color-primary);
-  align-items: center;
   padding: 1rem 2rem;
   border-radius: 1rem;
   gap: 0.5rem;
@@ -44,6 +59,19 @@
 .includesIcon {
   width: 3rem;
 }
+.nameAndStars {
+  display: flex;
+  gap: 1rem;
+}
+
+.stars {
+  color: #e7c502;
+}
+
+.totalReviews {
+  text-align: center;
+}
+
 .nameComment {
   font-weight: var(--font-bold);
 }

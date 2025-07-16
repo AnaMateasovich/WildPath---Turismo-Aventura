@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Sidebar } from "../components/Sidebar/Sidebar";
 import styles from "./Layouts.module.css";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
 import { LogoutSection } from "../../components/LogoutSection/LogoutSection";
+import { Button } from "../../components/Button/Button";
 
 export const AdminLayout = () => {
   const [isMobile, setIsMobile] = useState(false);
+
+  const navigate = useNavigate()
 
   const width = useWindowSize();
 
@@ -21,8 +24,11 @@ export const AdminLayout = () => {
 
   if (isMobile) {
     return (
-      <div className={styles.alertMobile}>
-        <p><WarningAmberRoundedIcon style={{ fontSize: "4rem" }} className={styles.iconAlert}/> No se puede usar la administración desde dispositivos móviles.</p>
+      <div className={styles.alertMobileContainer}>
+        <div className={styles.alertMobile}>
+          <p><WarningAmberRoundedIcon style={{ fontSize: "4rem" }} className={styles.iconAlert}/> No se puede usar la administración desde dispositivos móviles.</p>
+          <Button text="Volver al inicio" onClick={() => navigate('/')}/>
+        </div>
       </div>
     );
   }

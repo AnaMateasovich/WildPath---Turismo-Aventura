@@ -37,7 +37,7 @@
   gap: 1rem;
 }
 
-.logo {
+.logoRegister, .logoLogin {
   width: 10rem;
 }
 .container input {
@@ -61,13 +61,18 @@
 
 @media (max-width:800px) {
   .form {
-    width: 70%;
+    width: 80%;
   }
 }
 
 @media (max-width:768px) {
   .container {
     position: relative;
+    font-size: 1.5rem;
+  }
+  .logoLogin {
+    position: absolute;
+    top: -9.5rem;
   }
   .overlay {
     position: absolute;
@@ -85,9 +90,15 @@
     border-radius: 2rem;
     box-shadow: 0px 0px 11px 0px rgba(255, 255, 255, 0.548);
   }
+  .form {
+    width: 85%;
+  }
 }
 
 @media (max-width:550px) {
+  .title{
+    font-size: 2rem;
+  }
   .formContainer {
     width: 90%;
   }

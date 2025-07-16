@@ -20,7 +20,12 @@ export const savePackage = async (pack, enterpriseId) => {
     name: pack.name,
     categoryId: Number(pack.category),
     placeId: Number(pack.place),
-    duration: pack.duration,
+    durationData: {
+      days: Number(pack.duration.days),
+      hours: Number(pack.duration.hours),
+      minutes: Number(pack.duration.minutes),
+      nights: Number(pack.duration.nights),
+    },
     latitude: pack.latitude,
     longitude: pack.longitude,
     locationAddress: pack.locationAddress,
@@ -85,6 +90,7 @@ export const saveIncludes = async (packageIncludes, packageId) => {
 };
 
 export const saveImages = async (images, packageId) => {
+  (images);
   const formDataImages = new FormData();
 
   for (const image of images) {
@@ -114,10 +120,15 @@ export const saveImages = async (images, packageId) => {
 };
 
 export const saveDatesAvailable = async (datesAvailable, packageId) => {
-  const data = datesAvailable.map((date) => ({ ...date, packageId }));
+  const data = [
+    {
+      packageId,
+      dates: datesAvailable
+    }
+  ]
   const token = localStorage.getItem("token");
 
-  return api.post(`${API_URL}/admin/datesavailable`, data, {
+  return api.post(`${API_URL}/admin/datesavailable/bulk`, data, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

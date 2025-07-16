@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Gallery.module.css";
 import { fakeProductData } from "../../data/db";
 import { useParams } from "react-router-dom";
+import { API_URL } from "../../admin/redux/features/FullFormCreate/formSlice";
 
 export const Gallery = ({ images = [], title = "imagen" }) => {
   const maxVisibleImages = 5;
@@ -17,9 +18,10 @@ export const Gallery = ({ images = [], title = "imagen" }) => {
             return (
               <div key={index} className={styles.viewMore}>
                 <img
-                  src={image.src}
+                  src={`${API_URL}${image.src}`}
                   alt={`${title} ${index + 1}`}
                   className={imageClass}
+                  loading="lazy"
                 />
               </div>
             );
@@ -28,9 +30,10 @@ export const Gallery = ({ images = [], title = "imagen" }) => {
           return (
             <img
               key={index}
-              src={image.src}
+              src={`${API_URL}${image.src}`}
               alt={`${title} ${index + 1}`}
               className={imageClass}
+              loading="lazy"
             />
           );
         })}

@@ -20,14 +20,17 @@ const ListCategories = () => {
   };
   return (
     <main className={styles.container}>
-        <h2>¿Qué tipo de aventura te inspira hoy?</h2>
+        <h2 className={styles.title}>¿Qué tipo de aventura te inspira hoy?</h2>
+        <div className={styles.cards}>
+
       {categories.map((category) => (
         <div key={category.id} className={styles.cardCategoryList}>
           <img
             src={`${API_URL}${category.src}`}
             alt={category.name}
             className={styles.img}
-          />
+            loading="lazy"
+            />
           <div className={styles.text}>
             <h4>{category.name}</h4>
             <p>{category.description}</p>
@@ -37,6 +40,7 @@ const ListCategories = () => {
           </div>
         </div>
       ))}
+      </div>
     </main>
   );
 };

@@ -10,7 +10,8 @@ import "./index.css";
 import { IncludesProvider } from "./admin/context/IncludesContext.jsx";
 import { ImagesProvider } from "./admin/context/ImagesContext.jsx";
 import { ToastContainer } from "react-toastify";
-import { FilterProvider } from "./components/SearchForm/FilterProvider.jsx";
+import { FilterProvider } from "./context/FilterProvider.jsx";
+import { BookingProvider } from "./context/BookingProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -19,10 +20,13 @@ createRoot(document.getElementById("root")).render(
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <IncludesProvider>
             <ImagesProvider>
-              <Provider store={store}>
-                <App />
-                <ToastContainer />
-              </Provider>
+              <BookingProvider >
+                <Provider store={store}>
+                  <App />
+                  <ToastContainer />
+
+                </Provider>
+              </BookingProvider>
             </ImagesProvider>
           </IncludesProvider>
         </LocalizationProvider>

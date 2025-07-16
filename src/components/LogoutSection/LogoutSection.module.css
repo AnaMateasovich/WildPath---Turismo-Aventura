@@ -1,9 +1,10 @@
-
 .logout {
+  position: relative;
   display: flex;
   gap: 1.5rem;
   align-items: center;
   font-size: 1.4rem;
+
 }
 
 
@@ -14,9 +15,115 @@
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logoutBtn {
   cursor: pointer;
   font-weight: var(--font-semibold);
 }
+
+
+
+@media (max-width: 1024px) {
+  .userButtons {
+  display: flex;
+  gap: 1rem;
+}
+}
+
+@media (max-width: 768px) {
+
+.logout {
+  font-size: 1rem;
+}
+
+.closeLogout {
+  display: none;
+}
+
+
+.openLogout {
+  position: absolute;
+  top: 6.3rem;
+  right: 0;
+  background-color: var(--color-light);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 10;
+  animation: fadeIn 0.3s ease-in-out;
+  min-width: 150px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.openLogout p a {
+  text-decoration: none;
+  color: var(--color-dark);
+  font-weight: 500;
+}
+
+.openLogout p a:hover {
+  text-decoration: underline;
+}
+
+.logoutBtn {
+  background-color: transparent;
+  border: none;
+  color: var(--color-primary);
+  font-size: 1rem;
+  padding: 0.3rem 0;
+  text-align: left;
+}
+
+.logoutBtn:hover {
+  text-decoration: underline;
+}
+
+.mbLogout {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+}
+
+@media (max-width: 550px) {
+  .avatar {
+    font-size: 1.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+    
+}
+
+
+@media (max-width: 480px) {
+  .openLogout {
+    top: 5.2rem;
+  }
+    
+}
+
+@media (max-width: 350px) {
+  .openLogout {
+    top: 7rem;
+  }
+    
+}
+

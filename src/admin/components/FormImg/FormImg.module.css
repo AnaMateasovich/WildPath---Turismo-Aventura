@@ -31,7 +31,8 @@
 .noteHelp {
   font-style: italic;
   color: grey;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+
   font-weight: var(--font-text);
   margin: 0.5rem;
 }
@@ -49,6 +50,6 @@
   font-weight: var(--font-semibold);
   font-size: 1.5rem;
   padding: 0 0.5rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   cursor: pointer;
 }

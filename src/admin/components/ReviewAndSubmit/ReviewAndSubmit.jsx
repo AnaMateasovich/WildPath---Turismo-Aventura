@@ -3,15 +3,17 @@ import styles from "./ReviewAndSubmit.module.css";
 import { useSelector } from "react-redux";
 import { useIncludes } from "../../context/IncludesContext";
 import { useImages } from "../../context/ImagesContext";
+import { API_URL } from "../../redux/features/FullFormCreate/formSlice";
 
 export const ReviewAndSubmit = () => {
   const enterprise = useSelector((state) => state.fullForm.enterpriseForm);
   const packageForm = useSelector((state) => state.fullForm.package);
-  const schedule = useSelector((state) => state.fullForm.schedule);
   const datesAvailable = useSelector((state) => state.fullForm.datesAvailable);
   const requirements = useSelector((state) => state.fullForm.requirements);
   const { packageIncludes } = useIncludes();
   const { previews } = useImages();
+(datesAvailable)
+
   return (
     <div className={styles.container}>
       {/* DATOS DE LA EMPRESA */}
@@ -63,7 +65,11 @@ export const ReviewAndSubmit = () => {
         </p>
         <p>
           <strong>Duración: </strong>
-          {packageForm.duration}
+          {packageForm.duration.days !== 0 && packageForm.duration.nights !== 0 && packageForm.duration.days + " días / " } 
+          {packageForm.duration.days !== 0 && packageForm.duration.nights === 0 && packageForm.duration.days + " días" } 
+          {packageForm.duration.nigths !== 0 && packageForm.duration.nights + " noches"}
+          {packageForm.duration.hours !== 0 && packageForm.duration.hours}
+          {packageForm.duration.minutes !== 0 && packageForm.duration.minutes}
         </p>
         <p>
           <strong>Ubicaión: </strong>
@@ -96,6 +102,7 @@ export const ReviewAndSubmit = () => {
                   src={item.preview}
                   alt="icono"
                   className={styles.imagePreviewList}
+                  loading="lazy"
                 />
                 <p>{item.item}</p>
               </li>
@@ -142,24 +149,26 @@ export const ReviewAndSubmit = () => {
                 </tr>
               ))}
             </tbody> */}
-          {/* </table> */}
+        {/* </table> */}
         {/* )} */}
       </div>
 
       {/* MULTIMEDIA */}
       <div className={styles.section}>
         <h4 className={styles.titleSection}>Multimedia</h4>
-        <ul className={styles.imgList}>
-          {previews.map((image, index) => (
-            <img
-              key={index}
-              src={image}
-              alt={`image${index}`}
-              className={styles.img}
-              
-            />
-          ))}
-        </ul>
+        {previews?.package?.length > 0 && (
+          <ul className={styles.imgList}>
+            {previews.package.map((image, index) => (
+              <img
+                key={index}
+                src={`${image}`}
+                alt={`image${index}`}
+                className={styles.img}
+                loading="lazy"
+              />
+            ))}
+          </ul>
+        )}
       </div>
 
       {/* FECHAS DISPONIBLES */}

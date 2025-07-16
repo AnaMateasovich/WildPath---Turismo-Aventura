@@ -1,0 +1,21 @@
+.starContainer {
+  display: flex;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.star {
+  transition: transform 0.2s;
+}
+
+.star:hover {
+  transform: scale(1.2);
+}
+
+.filled {
+  color: #ffc107;
+}
+
+.empty {
+  color: #ccc;
+}

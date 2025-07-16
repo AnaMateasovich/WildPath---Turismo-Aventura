@@ -10,39 +10,43 @@ export const ProductsList = ({
   totalPages,
   onPrev,
   onNext,
+  title = "Encontramos las aventuras perfectas para vos"
 }) => {
-  const { isFiltered } = useSelector((state) => state.packages);
+  const { filteredPackages } = useSelector((state) => state.packages);
 
   return (
     <div className={styles.content}>
-      {!isFiltered ? (
-
+      {!filteredPackages ? (
         <h1 className={styles.title}>Todos nuestros paquetes</h1>
-      ) : ( 
-        <h1 className={styles.title}>Encontramos las aventuras perfectas para vos</h1>
+      ) : (
+        <h1 className={styles.title}>{title}</h1>
       )}
       <div className={styles.cardsContainer}>
         {packages.map((tpackage) => {
+
+          
+
           return (
             <ListCard
               key={tpackage.id}
               image={
                 tpackage.images && tpackage.images.length > 0
                   ? tpackage.images[0].src
-                  : "/src/assets/logo-bg.jpg"
+                  : "localhost:5173localhost:5173/src/assets/logo-bg.jpg"
               }
               title={tpackage.name}
               location={tpackage.locationAddress}
-              valoration="Excelente"
-              points="4,9"
-              // commQuantity={tpackage.comments}
+              valoration={tpackage.averageStars}
               days={tpackage.duration}
+              totalReviews={tpackage.totalReviews}
               price={`USD ${tpackage.pricePerPerson}`}
+              id={tpackage.id}
+              datesAvailable={tpackage.datesAvailable}
             />
           );
         })}
       </div>
-      {!isFiltered && (
+      {filteredPackages.length === 0 && totalPages && (
         <div className={styles.pagination}>
           <Pagination
             cPage={currentPage + 1}

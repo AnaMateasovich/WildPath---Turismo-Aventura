@@ -9,3 +9,9 @@
     max-width: 120rem;
     width: 80%;
   }
+
+  @media (max-width: 1024px) {
+  .formContainer {
+    margin-top: 0;
+  }
+}

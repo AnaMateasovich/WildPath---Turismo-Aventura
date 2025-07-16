@@ -130,6 +130,8 @@ const ListProductsAdmin = () => {
           onDelete={deletePackageById}
           isLoading={loading}
           actions={actions}
+          onRefresh={fetchPackages}
+          messageDelete="Estas seguro que quieres eliminar el paquete con id "
         />
 
         {onEdit && (

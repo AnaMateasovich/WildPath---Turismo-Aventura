@@ -4,9 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useIncludes } from "../../context/IncludesContext";
 import styles from "../../pages/CreateFullFormAdmin/CreateFullFormAdmin.module.css";
 import { fetchCategories } from "../../redux/features/categories/categoriesThunks";
-import {
-  updatePackage,
-} from "../../redux/features/FullFormCreate/formSlice";
+import { updatePackage } from "../../redux/features/FullFormCreate/formSlice";
 import { checkPackageName } from "../../redux/features/FullFormCreate/formThunk";
 import { selectTransformedPackage } from "../../redux/features/packages/packageSelectors";
 import { fetchPlaces } from "../../redux/features/places/placesThunks";
@@ -15,13 +13,12 @@ import { InputListWithIcons } from "../InputListWithIcons/InputListWithIcons";
 import { Select } from "../Select/Select";
 import { Textarea } from "../Textarea/Textarea";
 
-export const FormPackage = ({ packageId = null, isEditing = false }) => {
+export const FormPackage = ({ isEditing = false }) => {
   const dispatch = useDispatch();
 
   const { exists, status, value } = useSelector(
     (state) => state.fullForm.nameCheck
   );
-
   const packageForm = useSelector((state) => state.fullForm.package);
   const selectedPackage = useSelector(selectTransformedPackage);
   const categories = useSelector((state) => state.categories.categories);
@@ -29,17 +26,12 @@ export const FormPackage = ({ packageId = null, isEditing = false }) => {
 
   const { packageIncludes, setPackageIncludes } = useIncludes();
 
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-      dispatch(updatePackage({ [name]: value }));
+    dispatch(updatePackage({ [name]: value }));
   };
 
-  const debouncedCheckName = useMemo(() => {
-    return debounce((name) => {
-      dispatch(checkPackageName(name));
-    }, 500);
-  }, [dispatch]);
+
 
   const handleAddInclude = (newItem) => {
     setPackageIncludes((prev) => [...prev, newItem]);
@@ -56,23 +48,29 @@ export const FormPackage = ({ packageId = null, isEditing = false }) => {
   // const handleRemoveNoInclude = (index) => {
   //   setNoIncludes((prev) => prev.filter((_, i) => i !== index));
   // };
+
+     const debouncedCheckName = useMemo(
+    () =>
+      debounce((name) => {
+        dispatch(checkPackageName(name));
+      }, 500),
+    [dispatch]
+  );
+
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchPlaces());
   }, [dispatch]);
-  useEffect(() => {
 
-
+   useEffect(() => {
     if (packageForm.name.trim() !== "") {
       debouncedCheckName(packageForm.name);
     }
-
-    return () => {
-      debouncedCheckName.cancel();
-    };
   }, [packageForm.name, debouncedCheckName]);
 
-  console.log(packageForm);
+  useEffect(() => {
+    return () => debouncedCheckName.cancel();
+  }, [debouncedCheckName]);
   return (
     <>
       <div className={styles.titleBtnContainer}>
@@ -136,15 +134,49 @@ export const FormPackage = ({ packageId = null, isEditing = false }) => {
           onChange={handleChange}
           id="packagePlace"
         />
-        <Input
-          labelName="Duración"
-          placeholder="3 días / 2 noches"
-          type="text"
-          onChange={handleChange}
-          value={packageForm.duration}
-          inputName="duration"
-          id="packageDuration"
-        />
+        <h4>Duración</h4>
+        <div className={styles.formDuration}>
+          <Input
+            labelName="Días"
+            type="number"
+            onChange={handleChange}
+            value={packageForm.duration.days}
+            inputName="days"
+            id="packageDuration"
+            placeholder="3"
+          />
+          <Input
+            labelName="Noches"
+            type="number"
+            onChange={handleChange}
+            value={packageForm.duration.nights}
+            inputName="nights"
+            id="packageDuration"
+            placeholder="2"
+          />
+          <Input
+            labelName="Horas"
+            type="number"
+            onChange={handleChange}
+            value={packageForm.duration.hours}
+            inputName="hours"
+            id="packageDuration"
+            placeholder="0"
+          />
+          <Input
+            labelName="Minutos"
+            type="number"
+            onChange={handleChange}
+            value={packageForm.duration.minutes}
+            inputName="minutes"
+            id="packageDuration"
+            placeholder="0"
+          />
+        </div>
+        <p className={styles.durationNote}>
+          Solo debe poner el número para la duración. Si el paquete dura solo
+          unas horas o unos minutos, ignore los demás campos.
+        </p>
         {/* <FormSchedule /> */}
         <InputListWithIcons
           titleSection="Incluye"
@@ -162,7 +194,8 @@ export const FormPackage = ({ packageId = null, isEditing = false }) => {
         {isEditing &&
           selectedPackage.includes.map((include) => (
             <li className={styles.listEditPackage}>
-              <img src={include.icon} alt={include.text} />
+          
+              <img src={include.icon} alt={include.text} loading="lazy"/>
               <p>{include.text}</p>
             </li>
           ))}

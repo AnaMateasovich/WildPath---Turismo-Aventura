@@ -23,3 +23,20 @@ export const fetchEnterprises = createAsyncThunk(
     }
   }
 );
+
+export const getEnterpriseById = createAsyncThunk(
+  "fetch/enterpriseId",
+  async (id, thunkAPI) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await api.get(`${API_URL}/all/enterprises/${id}`
+      );
+      return response.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(
+        err.response?.data || "Error al obtener las empresas"
+      );
+    }
+  }
+);

@@ -1,11 +1,15 @@
 .container {
-    margin: 13rem auto 0 auto;
+    margin: 12rem auto 0 auto;
     display: flex;
     flex-direction: column;
     max-width: 1000px;
-    gap: 2rem;
+    width: 100%;
 }
-
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
 .cardCategoryList {
     display: flex;
     gap: 2rem;
@@ -34,3 +38,49 @@
     padding: .5rem 3rem;
     border-radius: .5rem;
 }
+
+  @media (max-width: 1024px) {
+  .container {
+    margin-top: 0;
+    gap: 1rem;
+  }
+  
+  .title {
+    margin: 1rem 0;
+  }
+  .cardCategoryList {
+    flex-direction: column;
+  }
+
+  .cardCategoryList img{
+    width: 100%;
+    height: 30rem;
+  }
+  .text {
+    padding: 0 3rem;
+  }
+  .btnContainer {
+    margin: .5rem 0 2rem 0;
+  }
+  .btnContainer button {
+    width: 100%;
+  }
+}
+
+  @media (max-width: 550px) {
+    .title {
+        font-size: 2rem;
+    }
+    .container {
+        padding: 0 1.5rem;
+    }
+  }
+
+  @media (max-width: 450px) {
+    .container {
+        padding: 0 1rem;
+    }
+    .text {
+        padding: 0 2rem;
+    }
+  }

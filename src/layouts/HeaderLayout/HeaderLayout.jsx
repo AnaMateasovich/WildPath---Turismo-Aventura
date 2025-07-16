@@ -6,48 +6,54 @@ import { Logo } from "../../components/Logo/Logo";
 import { LogoutSection } from "../../components/LogoutSection/LogoutSection";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import styles from "./HeaderLayout.module.css";
-import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
+import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import HikingRoundedIcon from '@mui/icons-material/HikingRounded';
+import CategoryRoundedIcon from '@mui/icons-material/CategoryRounded';
+import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
+import { AuthLayout } from "../AuthLayout/AuthLayout";
 
 export const HeaderLayout = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
 
-  const { user } = useSelector((state) => state.auth);
+
+  const user = useSelector((state) => state.auth.user);
+  const token = useSelector((state) => state.auth.token);
 
   const width = useWindowSize();
   const navigate = useNavigate();
-
- 
-  useEffect(() => {
-    if (!user) {
-      navigate("/");
-    }
-    
-  }, [user]);
-
 
 
   return (
     <>
       <div className={styles.container}>
-        <header className={styles.header}>
-          {width <= 1024 && width > 768 && (
-            <img
-              src="/src/assets/logo.png"
-              alt="Logo de wildpath"
-              className={styles.imgLogo}
-            />
-          )}
+        <header className={`${width > 1024 ? styles.headerFixed : styles.header}`}>
           <div className={styles.logoContainer}>
             <Logo />
+          {width <= 1024 && (
+             !user ? (
+              <div className={styles.mbButtons}>
+                <button
+                  className={styles.btnRegister}
+                  onClick={() => navigate(`/registro`)}
+                  >
+                  Crear cuenta
+                  </button>
+                  <button
+                  className={styles.btnLogin}
+                  onClick={() => navigate(`/login`)}
+                  >
+                  Iniciar sesión
+                  </button>
+                  </div>
+                ) : (
+                  <LogoutSection />
+                )
+              )}
+            
           </div>
-          {/** boton hamburguesa */}
-          <button className={styles.mobileMenu}>
-            <MenuRoundedIcon
-              style={width > 390 ? { fontSize: "5rem" } : { fontSize: "4rem" }}
-            />
-          </button>
 
-          {(width > 1024 || menuOpen) && (
+          {width > 1024 ? (
             <>
               {/* NAV ESCRITORIO */}
               <nav className={styles.navDesktop}>
@@ -61,9 +67,9 @@ export const HeaderLayout = () => {
                   <li className={styles.link}>
                     <Link to="/categorias">Categorías</Link>
                   </li>
-                  <li className={styles.link}>
+                  {/* <li className={styles.link}>
                     <Link>Blog</Link>
-                  </li>
+                  </li> */}
                 </ul>
               </nav>
               {!user ? (
@@ -76,18 +82,59 @@ export const HeaderLayout = () => {
                   </button>
                   <button
                     className={styles.btnLogin}
-                    onClick={() => navigate(`/iniciar-sesion`)}
+                    onClick={() => navigate(`/login`)}
                   >
                     Iniciar sesión
                   </button>
                 </div>
               ) : (
                 <section className={styles.userSection}>
-                <ShoppingCartRoundedIcon className={styles.cartIcon} style={{fontSize: "3rem"}}/>
-                <LogoutSection />
+                  {/* <Link to="/reservar">
+                    <ShoppingCartRoundedIcon
+                      className={styles.cartIcon}
+                      style={{ fontSize: "3rem" }}
+                    />
+                  </Link> */}
+                  <Link to="/perfil/favoritos" aria-label="Ver favoritos">
+                    <FavoriteRoundedIcon
+                      className={styles.cartIcon}
+                      style={{ fontSize: "3rem" }}
+                    />
+                  </Link>
+                  <LogoutSection />
                 </section>
               )}
             </>
+          ) : (
+            <nav className={styles.navMobile}>
+              <ul className={styles.navLinks}>
+                <li className={styles.link}>
+                  <Link to="/">
+                    <HomeRoundedIcon style={{ fontSize: "2.5rem" }} />
+                    Inicio
+                  </Link>
+                </li>
+                <li className={styles.link}>
+                  <Link to="/actividades">
+                    <HikingRoundedIcon style={{ fontSize: "2.5rem" }} />
+                    Actividades</Link>
+                </li>
+                <li className={styles.link}>
+                  <Link to="/categorias">
+                    <CategoryRoundedIcon style={{ fontSize: "2.5rem" }} />
+                    Categorías</Link>
+                </li>
+                <li>
+
+                  <Link className={styles.mobileMenu} to="/">
+                    <MenuRoundedIcon
+                      style={{ fontSize: "3.2rem" }}
+                    />
+                    Menú
+                  </Link>
+                </li>
+              </ul>
+            </nav>
           )}
         </header>
       </div>

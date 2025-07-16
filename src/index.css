@@ -9,6 +9,7 @@
   --color-tertiary: #faf3dc;
   --color-overlay: #25432c85;
   --color-border: #25432c49;
+  --color-danger: rgb(158, 0, 0);
 
   /* 🖋️ Tipografía */
   --font-family: "Montserrat", sans-serif;
@@ -39,7 +40,11 @@ body {
   color: var(--color-primary);
    height: 100%;
 }
-
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 img,
 picture,
 video,
@@ -87,3 +92,4 @@ fieldset {
   border-radius: 0.5rem;
   padding: 1rem;
 }
+

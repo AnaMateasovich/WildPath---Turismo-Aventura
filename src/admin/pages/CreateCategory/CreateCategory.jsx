@@ -112,6 +112,7 @@ const CreateCategory = () => {
                   src={image}
                   alt={`Image${index + 1}`}
                   className={styles.img}
+                  loading="lazy"
                 />
               ))}
             </p>

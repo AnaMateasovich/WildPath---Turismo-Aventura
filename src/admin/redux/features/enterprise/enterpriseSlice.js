@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchEnterprises } from "./enterpriseThunks";
+import { fetchEnterprises, getEnterpriseById } from "./enterpriseThunks";
 
 const initialState = {
   enterprises: [],
+  enterprisePackage: null,
   loading: false,
   error: null,
 };
@@ -21,7 +22,17 @@ export const enterpriseSlice = createSlice({
       })
       .addCase(fetchEnterprises.rejected, (state, action) => {
         (state.loading = false), (state.error = action.payload);
-      });
+      })
+
+      .addCase(getEnterpriseById.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getEnterpriseById.fulfilled, (state, action) => {
+        (state.loading = false), (state.enterprisePackage = action.payload);
+      })
+      .addCase(getEnterpriseById.rejected, (state, action) => {
+        (state.loading = false), (state.error = action.payload);
+      })
   },
 });
 

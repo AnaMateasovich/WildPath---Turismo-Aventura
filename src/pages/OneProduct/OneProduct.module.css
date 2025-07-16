@@ -1,4 +1,5 @@
 .productContainer {
+  width: 100%;
   max-width: 1400px;
   margin: 0 auto 2rem auto;
   display: grid;
@@ -7,22 +8,29 @@
   grid-template-areas:
     "activity sideInfo"
     "principalInfo sideInfo"
+    "principalInfo leaveReview"
     "dateTable reservationSum";
   grid-gap: 2rem;
 }
 
 .activity {
   grid-area: activity;
-  
+
 }
+
 .principalInfo {
   grid-area: principalInfo;
 
 }
 
+.leaveReview {
+  grid-area: leaveReview;
+}
+
 .dateTable {
   grid-area: dateTable;
 }
+
 .location {
   display: flex;
   align-items: center;
@@ -34,26 +42,84 @@
   grid-area: sideInfo;
   margin-top: 3rem;
 }
+
 .reservationSum {
   grid-area: reservationSum;
 }
-.backBtn {
+
+.actions {
   max-width: 1400px;
+  width: 100%;
   display: flex;
-  grid-area: backButton;
+  grid-area: actions;
   justify-content: flex-end;
   margin: 2rem auto 0 auto;
+  gap: 2rem;
+  align-items: center;
 }
 
-.backBtn button {
+.actions button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.backBtn {
   padding: 1rem 4rem;
   border-radius: 1rem;
 }
 
+.favoriteBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.shareBtn {
+  position: relative;
+}
+
+.wspIcon {
+  position: fixed;
+  bottom: 4rem;
+  right: 10rem;
+  z-index: 999;
+  background-color: green;
+  color: white;
+  padding: 1rem;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.wspIcon:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 1600px) {
+  .wspIcon {
+    width: 6rem;
+    height: 6rem;
+    right: 4rem;
+  }
+}
 
 @media (max-width: 1450px) {
+  .wspIcon {
+    padding: 1.5rem 1rem 1rem 1rem;
+    right: 2rem;
+    bottom: 2rem;
+  }
+
   .productContainer,
-  .backBtn {
+  .actions {
     padding: 0 2rem;
     gap: 2rem;
   }
@@ -61,6 +127,7 @@
   .infoProductContainer {
     flex: 5;
   }
+
   .sideInfo {
     flex: 2;
   }
@@ -70,6 +137,7 @@
   .infoProductContainer {
     flex: 2;
   }
+
   .sideInfo {
     flex: 1;
   }
@@ -80,28 +148,42 @@
   .productContainer {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
- .activity {
-  width: 100%;
-  order: 1;
- }
- .sideInfo {
-  order: 2;
- }
- .principalInfo {
-  order: 3;
- }
- .dateTable {
-  width: 100%;
-  order: 4;
- }
- .reservationSum {
-  width: 100%;
-  order: 5;
- }
+
+  .activity {
+    width: 100%;
+    order: 1;
+  }
+
+  .sideInfo {
+    order: 2;
+  }
+
+  .principalInfo {
+    order: 3;
+  }
+
+  .dateTable {
+    width: 100%;
+    order: 4;
+  }
+
+  .reservationSum {
+    width: 100%;
+    order: 5;
+  }
 }
 
 @media (max-width: 500px) {
+  .wspIcon {
+    width: 4rem;
+    height: 4rem;
+    padding: 1rem .5rem .5rem .5rem;
+    justify-content: center;
+    align-items: center;
+  }
+
   .productContainer {
     padding: .5rem;
   }

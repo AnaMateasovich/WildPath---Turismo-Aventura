@@ -15,13 +15,18 @@ export const TableListAdmin = ({
   isLoading,
   actions,
   onRefresh,
+  messageDelete,
 }) => {
   const dispatch = useDispatch();
 
-  const handleDelete = (id) => {
+  const handleDelete = (item) => {
+    const { id } = item;
     const confirmed = window.confirm(
-      `Estas segura/o que quieres eliminar el item con id ${id}`
+      messageDelete
+        ? `${messageDelete} "${item[field1]}"?\nEsto eliminará todos los elementos relacionados.`
+        : `¿Estás segura/o que querés eliminar el ítem con id ${id}?`
     );
+
     if (confirmed) {
       dispatch(onDelete(id))
         .then(() => {
@@ -80,7 +85,7 @@ export const TableListAdmin = ({
                       style={{ fontSize: "2rem" }}
                       className={styles.icon}
                       aria-label="eliminar"
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() => handleDelete(item)}
                     />
                   </span>
                 </div>

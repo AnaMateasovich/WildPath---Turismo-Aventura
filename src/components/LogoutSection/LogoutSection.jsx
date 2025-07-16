@@ -4,9 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../admin/redux/features/auth/authSlice";
 import { jwtDecode } from "jwt-decode";
-
+import { useWindowSize } from "../../hooks/useWindowSize";
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 export const LogoutSection = () => {
   const [isAdmin, setIsAdmin] = useState(false);
+  const [toggleLogout, setToggleLogout] = useState(false)
+
 
   const { user, token } = useSelector((state) => state.auth);
 
@@ -23,6 +27,8 @@ export const LogoutSection = () => {
     navigate("/");
   };
 
+  const width = useWindowSize();
+
   useEffect(() => {
     if (token) {
       try {
@@ -38,8 +44,16 @@ export const LogoutSection = () => {
 
   return (
     <section className={styles.logout}>
+      <div className={styles.mbLogout} onClick={() => setToggleLogout(!toggleLogout)}>
       <p className={styles.avatar}>{avatar}</p>
-      <div className={styles.userButtons}>
+      {width <= 768 && !toggleLogout &&(
+        <KeyboardArrowDownRoundedIcon style={{fontSize:"2rem"}}/>
+      )}
+      {width <= 768 && toggleLogout &&(
+        <KeyboardArrowUpRoundedIcon style={{fontSize:"2rem"}}/>
+      )}
+      </div>
+      <div className={`${width > 768 && styles.userButtons} ${width <= 768 && toggleLogout ? styles.openLogout : styles.closeLogout}`}>
         {isAdmin && (
           <p>
             <Link to="/admin">Admin</Link>

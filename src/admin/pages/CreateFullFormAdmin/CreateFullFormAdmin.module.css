@@ -28,6 +28,7 @@
 
 .step .textStep {
   font-weight: var(--font-semibold);
+  color: rgb(65, 65, 65);
   margin-left: 1.5rem;
   font-size: 1.8rem;
 }
@@ -39,11 +40,26 @@
   font-size: 2rem;
   width: 4.5rem;
   height: 4.5rem;
-  background-color: var(--color-primary);
+  background-color: rgb(65, 65, 65);
   color: var(--color-light);
   border-radius: 50%;
   font-weight: var(--font-bold);
 }
+
+.stepFillout .textStep {
+  color: var(--color-primary);
+}
+.stepFillout .numberStep {
+  background-color: var(--color-primary);
+}
+.stepError {
+  color: var(--color-danger);
+  font-style: italic;
+  margin-left: 1rem;
+  font-size: 1rem;
+  margin-top: 0.3rem;
+}
+
 .btnSubmitContainer {
   margin: 4rem 0 2rem 0;
   justify-self: center;
@@ -58,6 +74,7 @@
   text-transform: uppercase;
   cursor: pointer;
 }
+
 
 .titleBtnContainer {
   display: flex;
@@ -172,6 +189,24 @@
   color: rgb(148, 16, 16);
   font-size: 1.5rem;
 }
+
+.formDuration {
+  display: flex;
+  gap: 1rem;
+}
+
+.formDuration input[type="number"] {
+  width: 100%;
+}
+.durationNote {
+  font-size: 1.3rem;
+  font-style: italic;
+  color: grey;
+
+  margin-bottom: 1rem;
+  margin-top: -0.5rem;
+}
+
 @media (max-width: 1300px) {
   .container {
     gap: 1.5rem;
@@ -182,6 +217,16 @@
 }
 
 @media (max-width: 1200px) {
+  .container h1, .container h2, .container h3 {
+    font-size: 2rem;
+  }
+  .container .btnsEnterprise {
+    font-size: 1.3rem;
+    flex-direction: column;
+  }
+  .btnsEnterprise button {
+    padding: .5rem 1rem;
+  } 
   .step .textStep {
     font-size: 1.7rem;
   }

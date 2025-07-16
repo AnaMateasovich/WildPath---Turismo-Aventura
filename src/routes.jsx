@@ -8,13 +8,20 @@ import ProductFeatures from "./admin/pages/ProductFeatures/ProductFeatures";
 import UsersAdmin from "./admin/pages/UsersAdmin/UsersAdmin";
 import { FooterLayout } from "./layouts/FooterLayout/FooterLayout";
 import { HeaderLayout } from "./layouts/HeaderLayout/HeaderLayout";
+import { NavBarProfileLayout } from "./layouts/NavBarProfileLayout/NavBarProfileLayout";
+import Booking from "./pages/Booking/Booking";
+import BookingConfirmation from "./pages/BookingConfirmation/BookingConfirmation";
+import Favorites from "./pages/Favorites/Favorites";
+import History from "./pages/History/History";
 import Home from "./pages/Home/Home";
 import ListCategories from "./pages/ListCategories/ListCategories";
 import ListProducts from "./pages/ListProducts/ListProducts";
 import Login from "./pages/Login/Login";
+import MobileMenu from "./pages/MobileMenu/MobileMenu";
 import OneProduct from "./pages/OneProduct/OneProduct";
 import Register from "./pages/Register/Register";
 import UserProfile from "./pages/UserProfile/UserProfile";
+import VerifyEmail from "./pages/VerifyEmail/VerifyEmail";
 
 export const routes = [
   {
@@ -27,7 +34,18 @@ export const routes = [
           { path: "/actividades", element: <ListProducts /> },
           { path: "/actividades/:id", element: <OneProduct /> },
           { path: "/categorias", element: <ListCategories /> },
-          { path: "/perfil", element: <UserProfile /> },
+          { path: "/reservar/:id", element: <Booking /> },
+          { path: "/booking/confirm", element: <BookingConfirmation /> },
+          { path: "/menu", element: <MobileMenu /> },
+          {
+            path: "/perfil",
+            element: <NavBarProfileLayout />,
+            children: [
+              { index: true, element: <UserProfile /> },
+              { path: "favoritos", element: <Favorites /> },
+              { path: "historial", element: <History /> },
+            ],
+          },
         ],
       },
     ],
@@ -46,10 +64,14 @@ export const routes = [
   },
   {
     path: "/registro",
-    element: <Register/>
+    element: <Register />,
   },
   {
-    path: "/iniciar-sesion",
-    element: <Login/>
-  }
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/verify-account",
+    element: <VerifyEmail />,
+  },
 ];

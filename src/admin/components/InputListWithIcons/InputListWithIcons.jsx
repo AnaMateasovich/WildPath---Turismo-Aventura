@@ -206,6 +206,7 @@ export const InputListWithIcons = ({
                   src={item.preview?.startsWith("data:") ? item.preview : `${API_URL}${item.preview}`}
                   alt="icono"
                   className={styles.imagePreview}
+                  loading="lazy"
                 />
                 <p>{item.item}</p>
                 <button

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { Input } from "../../admin/components/Input/Input";
 import { registerThunk } from "../../admin/redux/features/auth/authThunk";
 import { Button } from "../../components/Button/Button";
@@ -10,7 +10,10 @@ import styles from "./Register.module.css";
 const Register = () => {
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const verifyMessage = useSelector((state) => state.auth.verifyMessage);
+
+  const loading = useSelector((state) => state.auth.loading);
+  const errorThunk = useSelector((state) => state.auth.error);
 
   const [registerUser, setRegisterUser] = useState({
     name: "",
@@ -43,58 +46,70 @@ const Register = () => {
     }
     setError("");
     dispatch(registerThunk(registerUser));
-    navigate('/')
   };
 
   return (
-    <AuthLayout title="Registrate" formContainerClass={styles.formContainer}>
+    <AuthLayout title={verifyMessage ? "" : "Registrate"} formContainerClass={styles.formContainer}>
       {/* <h2 className={styles.title}>¡La Aventura Te Espera!</h2> */}
-      <Input
-        htmlFor="nombre"
-        labelName="Nombre"
-        placeholder="Ingrese su nombre"
-        type="text"
-        value={registerUser.name}
-        inputName="name"
-        onChange={handleChange}
-        id="name"
-      />
-      <Input
-        htmlFor="apellido"
-        labelName="Apellido"
-        placeholder="Ingrese su apellido"
-        type="text"
-        value={registerUser.lastname}
-        inputName="lastname"
-        onChange={handleChange}
-        id="lastname"
-      />
-      <Input
-        htmlFor="email"
-        labelName="Email"
-        placeholder="Ingrese su email"
-        type="text"
-        value={registerUser.email}
-        inputName="email"
-        onChange={handleChange}
-        id="email"
-      />
-      <Input
-        htmlFor="contraseña"
-        labelName="Contraseña"
-        placeholder="Ingrese su contraseña"
-        type="password"
-        value={registerUser.password}
-        inputName="password"
-        onChange={handleChange}
-        id="password"
-      />
-      {error && <p className={styles.errorMessage}>{error}</p>}
-      <Button
-        text="Registrarme"
-        className={styles.button}
-        onClick={handleRegister}
-      />
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      {verifyMessage ? (
+        <div style={{ textAlign:"center"}}>
+
+        <p style={{ color: "green"}}>{verifyMessage}</p>
+        <p>Volver al <Link><strong>inicio</strong></Link></p>
+        </div>
+      ) : (
+        <>
+          <Input
+            htmlFor="nombre"
+            labelName="Nombre"
+            placeholder="Ingrese su nombre"
+            type="text"
+            value={registerUser.name}
+            inputName="name"
+            onChange={handleChange}
+            id="name"
+          />
+          <Input
+            htmlFor="apellido"
+            labelName="Apellido"
+            placeholder="Ingrese su apellido"
+            type="text"
+            value={registerUser.lastname}
+            inputName="lastname"
+            onChange={handleChange}
+            id="lastname"
+          />
+          <Input
+            htmlFor="email"
+            labelName="Email"
+            placeholder="Ingrese su email"
+            type="text"
+            value={registerUser.email}
+            inputName="email"
+            onChange={handleChange}
+            id="email"
+          />
+          <Input
+            htmlFor="contraseña"
+            labelName="Contraseña"
+            placeholder="Ingrese su contraseña"
+            type="password"
+            value={registerUser.password}
+            inputName="password"
+            onChange={handleChange}
+            id="password"
+          />
+          {error && <p className={styles.errorMessage}>{error}</p>}
+          <Button
+            text="Registrarme"
+            className={styles.button}
+            onClick={handleRegister}
+          />
+          <p className={styles.textAlreadyAcoount}>¿Ya tienes una cuenta? <strong><Link to="/login">Inicia Sesión</Link></strong></p>
+        </>
+      )}
     </AuthLayout>
   );
 };

@@ -7,6 +7,9 @@ import packagesReducer from "../features/packages/packagesSlice";
 import authReducer from "../features/auth/authSlice.js";
 import userReducer from "../features/users/UsersSlice.js";
 import includesReducer from "../features/packageIncludes/packageIncludesSlice.js"
+import favoritesReducer from "../features/favorites/favoritesSlice.js"
+import reviewsReducer from "../features/review/reviewSlice.js"
+import bookingsReducer from "../features/booking/bookingSlice.js"
 
 export default configureStore({
   reducer: {
@@ -18,5 +21,8 @@ export default configureStore({
     auth: authReducer,
     users: userReducer,
     includes: includesReducer,
+    favorites: favoritesReducer,
+    reviews: reviewsReducer,
+    bookings: bookingsReducer
   },
 });

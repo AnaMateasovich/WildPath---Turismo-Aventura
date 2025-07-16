@@ -12,6 +12,15 @@
     margin: 0;
 }
 
+.labelDiv {
+    display: flex;
+    gap: .5rem;
+}
+
+.labelDiv p {
+    color: rgb(172, 0, 0);
+}
+
 .container label {
     margin-bottom: .5rem;
 }

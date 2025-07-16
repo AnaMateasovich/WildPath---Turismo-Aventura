@@ -1,0 +1,39 @@
+.reviewForm {
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.reviewForm h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rating p {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.textarea {
+  width: 100%;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  font-weight: var(--font-semibold);
+}

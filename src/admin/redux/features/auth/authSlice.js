@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginThunk, registerThunk } from "./authThunk";
+import { loginThunk, registerThunk, verifyEmailThunk } from "./authThunk";
 
 const authSlice = createSlice({
   name: "auth",
@@ -10,6 +10,7 @@ const authSlice = createSlice({
     token: localStorage.getItem("token") || null,
     loading: false,
     error: null,
+    verifyMessage: "",
   },
   reducers: {
     logout: (state) => {
@@ -48,22 +49,28 @@ const authSlice = createSlice({
       .addCase(registerThunk.pending, (state) => {
         (state.loading = true), (state.error = null);
       })
-      .addCase(registerThunk.fulfilled, (state, action) => {
-        state.loading = false
-        state.token = action.payload.token
-        state.user = {
-          name: action.payload.name,
-          lastname: action.payload.lastname,
-          email: action.payload.email,
-        }
-
-        localStorage.setItem("token", action.payload.token)
-        localStorage.setItem("user", JSON.stringify(state.user))
+      .addCase(registerThunk.fulfilled, (state,action) => {
+        state.loading = false;
+        state.verifyMessage=action.payload
       })
       .addCase(registerThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
+
+      // verify email
+      .addCase(verifyEmailThunk.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(verifyEmailThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.verifyMessage = action.payload;
+      })
+      .addCase(verifyEmailThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 

@@ -86,6 +86,8 @@ export const FormImg = ({ nameLabel, maxImages, maxFileSizeMB, type }) => {
               src={image}
               alt={`Vista previa ${index + 1}`}
               className={styles.img}
+          loading="lazy"
+
             />
           </div>
         ))}

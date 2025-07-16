@@ -10,11 +10,14 @@ const ListProducts = () => {
   const dispatch = useDispatch();
   const { packages, filteredPackages, isFiltered, currentPage, totalPages } =
     useSelector((state) => state.packages);
+  const reviews = useSelector((state) => state.reviews.reviews);
+
 
   const displayedPackages = isFiltered ? filteredPackages : packages;
 
 
 useEffect(() => {
+  setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 100);
   if (!isFiltered) {
     dispatch(fetchTravelPackagesPaginated({ page: 0, size: 3 }));
   }
@@ -42,13 +45,16 @@ useEffect(() => {
         <div className={styles.filter}>
           <ProductFilter />
         </div>
+        <div className={styles.productsList}>
+
         <ProductsList
           packages={displayedPackages}
           totalPages={totalPages}
           onPrev={handlePrevPage}
           onNext={handleNextPage}
           currentPage={currentPage}
-        />
+          />
+          </div>
       </section>
     </>
   );

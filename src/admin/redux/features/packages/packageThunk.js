@@ -9,13 +9,11 @@ export const fetchPackages = createAsyncThunk(
     try {
       const token = localStorage.getItem("token");
 
-      const response = await api.get(`${API_URL}/all/packages`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await api.get(`${API_URL}/all/packages`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(
@@ -47,7 +45,11 @@ export const deletePackageById = createAsyncThunk(
     try {
       const token = localStorage.getItem("token");
 
-      const response = await api.delete(`${API_URL}/admin/packages/${id}`);
+      const response = await api.delete(`${API_URL}/admin/packages/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -79,7 +81,6 @@ export const fetch10Random = createAsyncThunk(
   "packages/fetch10Random",
   async (_, thunkAPI) => {
     try {
-      const token = localStorage.getItem("token");
 
       const response = await api.get(`${API_URL}/all/packages/random`);
       return response.data;
@@ -97,7 +98,10 @@ export const updateCategory = createAsyncThunk(
     try {
       const token = localStorage.getItem("token");
 
-      const response = await api.put(`${API_URL}/admin/packages/update/category`, editCategory);
+      const response = await api.put(
+        `${API_URL}/admin/packages/update/category`,
+        editCategory
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -111,12 +115,77 @@ export const filterByCategory = createAsyncThunk(
   "/packages/category/id",
   async (categoryId, thunkAPI) => {
     try {
-      const response = await api.get(`${API_URL}/all/packages/category/${categoryId}`)
+      const response = await api.get(
+        `${API_URL}/all/packages/category/${categoryId}`
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data || "Error getting packages by category"
-      )
+      );
+    }
+  }
+);
+
+export const searchPackageByName = createAsyncThunk(
+  "/packages/searchByName",
+  async (name, thunkAPI) => {
+    try {
+      const response = await api.get(
+        `${API_URL}/all/packages/search-by-name/${name}`
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Error searching packages"
+      );
+    }
+  }
+);
+
+export const searchFiltered = createAsyncThunk(
+  "/packages/searchFiltered",
+  async ({ location, categoryId, startDate, endDate }, thunkAPI) => {
+    try {
+      const response = await api.get(`${API_URL}/all/packages/search`, {
+        params: { location, categoryId, startDate, endDate },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Error filtering packages"
+      );
+    }
+  }
+);
+
+export const getLocationSuggestions = createAsyncThunk(
+  "/packages/locationSuggestions",
+  async (query, thunkAPI) => {
+    try {
+      const response = await api.get(`${API_URL}/all/packages/locations-suggestions`, {
+        params: query,
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Error filtering packages"
+      );
+    }
+  }
+);
+
+
+export const getDatesAvailableByPackageID = createAsyncThunk(
+  "/packageId/datesAvailable",
+  async(packageId, thunkAPI) => {
+    try {
+      const response = await api.get(`${API_URL}/all/datesavailable/package/${packageId}`)
+      return response.data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Error fetching packages dates available."
+      );
     }
   }
 )

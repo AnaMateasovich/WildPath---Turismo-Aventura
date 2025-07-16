@@ -1,10 +1,10 @@
 .container {
   position: relative;
   display: block;
-
+  z-index: 9999;
 }
 
-.header {
+.headerFixed {
   position: fixed;
   top: 0;
   left: 0;
@@ -14,6 +14,7 @@
   background-color: var(--color-light);
   justify-content: space-around;
   align-items: center;
+
 }
 
 .navLinks {
@@ -50,7 +51,8 @@
   cursor: pointer;
 }
 
-.mobileMenu, .btnGoToLogin {
+.mobileMenu,
+.btnGoToLogin {
   display: none;
 }
 
@@ -73,9 +75,11 @@
   .buttons {
     font-size: 1.5rem;
   }
+
   .buttons button {
     padding: 1rem 1.8rem;
   }
+
   .navLinks {
     gap: 3rem;
   }
@@ -93,29 +97,87 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
-      padding: 0 2rem;
+    align-items: center;
+    padding: 0 2rem;
   }
-  .logoHeaderTablet {
-    display: inline;
-    width: 11rem;
+.logoContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.mbButtons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mbButtons button{
+  padding: .5rem 3rem;
+  font-size: 1.3rem;
+}
+
+.navMobile {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    width: 100%;
+    height: 6rem;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.205);
   }
-  .mobileMenu {
-    display: inline;
+  .navMobile button {
+    color: var(--color-light);
   }
+  .navMobile .navLinks {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+  }
+  .navMobile li a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    font-size: 1rem;
+}
+.navMobile button {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-size: 1rem;
+
+}
+
   .imgLogo {
     width: 10rem;
   }
 }
-
-@media (max-width: 769px) { 
-
-  .header {
-    padding: 0 3rem;
-    justify-content: space-between;
-  }
+@media (max-width: 768px) {
+    .mbButtons button {
+      background: none;
+      color: var(--color-primary);
+      border: none;
+      padding: 0;
+    }
+    .btnLogin {
+      font-weight: var(--font-bold);
+    }
 }
-@media (max-width: 500px) {
-  .header {
-    padding: 2rem;
+
+@media (max-width: 550px) {
+  .btnRegister {
+    display: none;
   }
+} 
+
+@media (max-width: 350px ) {
+  
+  .logoContainer {
+      justify-content: space-between;
+    }
 }

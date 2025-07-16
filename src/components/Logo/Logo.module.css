@@ -57,69 +57,54 @@
   }
 }
 
-@media (max-width: 1024px )and (min-width: 769px) {
+@media (max-width: 1024px ){
   .logo {
-    width: 100%;
     display: flex;
-    flex-direction: column;
-    gap: .5rem;
+    gap: 1rem;
+    padding: .5rem 0;
   }
 
   .logo h3 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .logo p {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 }
 
-@media (max-width: 769px) {
-  
+@media (max-width: 768px ){
+
   .logo h3 {
-    font-size: 2.3rem;
-  }
-
-  .logo p {
-    font-size: 1.6rem;
-  }
-}
-
-@media (max-width: 500px) {
-  .logo {
-    gap: 0;
-  }
-   .logo h3 {
-    font-size: 2rem;
+    font-size: 1.7rem;
   }
 
   .logo p {
     font-size: 1.3rem;
   }
- }
-
- @media (max-width: 390px) {
   .logo img {
-    width: 6rem;
+    width: 7rem;
   }
-   .logo h3 {
-    font-size: 1.7rem;
-  }
+}
 
-  .logo p {
-    font-size: 1.2rem;
-  }
- }
-
-  @media (max-width: 350px) {
-      .logo img {
-    width: 5rem;
-  }
-   .logo h3 {
+@media (max-width: 480px  ) {
+    .logo h3 {
     font-size: 1.5rem;
   }
 
   .logo p {
     font-size: 1rem;
   }
+  .logo img {
+    width: 5rem;
   }
+}
+
+@media (max-width: 350px ) {
+  
+  .logo {
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: 1rem;
+  }
+}

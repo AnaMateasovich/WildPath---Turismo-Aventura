@@ -10,7 +10,7 @@ export const CardCategory = ({ id, name, description, img, alt, className }) => 
 
   const listPackagesByCategory = (id) => {
     dispatch(filterByCategory(id))
-    navigate("/actividades")
+    // navigate("/actividades")
   };
 
   return (
@@ -22,6 +22,7 @@ export const CardCategory = ({ id, name, description, img, alt, className }) => 
         src={`http://localhost:8081${img}`}
         alt={alt}
         className={styles.img}
+        loading="lazy"
       />
       <h3 className={styles.title}>{name}</h3>
       <p>{description}</p>

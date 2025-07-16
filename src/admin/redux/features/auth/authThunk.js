@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { API_URL } from "../FullFormCreate/formSlice.js";
-import axios from "axios";
 import api from "../../../../api/axios.js";
 
 export const loginThunk = createAsyncThunk(
@@ -23,10 +22,23 @@ export const registerThunk = createAsyncThunk(
         `${API_URL}/auth/register`,
         registerData
       );
-      console.log(response.data) ;
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+          const message = error.response?.data || error.message;
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
+
+export const verifyEmailThunk = createAsyncThunk(
+  "/auth/verifyToken",
+  async (token, thunkAPI) => {
+    try {
+      const response = await api.get(`${API_URL}/auth/verify-account?token=${token}`);
+      return response.data;
+    } catch (error) {
+          const message = error.response?.data || error.message;
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+)

@@ -1,28 +1,104 @@
 .container {
   display: flex;
   flex-direction: column;
-  
+}
+.formDatesContainer h4 {
+  margin-bottom: 0.5rem;
 }
 
-.formDatesContainer {
+.specificDayForm {
   display: flex;
   flex-direction: row;
   width: 100%;
   gap: 2rem;
   align-items: flex-end;
   flex-wrap: wrap;
-
 }
 
-.capacity {
-    width: 100%;
-    max-width: 10rem;
+.multipleDates h4 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
 }
 
-.capacity input[type="number"] {
+.rangeDatesForm {
+  display: flex;
+  gap: 1rem;
+}
+.checkAndButton {
+  display: flex;
+  gap: 2rem;
+}
+.checkboxList {
+  display: flex;
+  gap: 1rem;
+}
+
+.checkboxItem {
+  display: flex;
+  gap: .5rem;
+}
+
+.generateBtncontainer {
+  display: flex;
+  align-items: flex-end;
+}
+
+.generateDatesBtn {
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+.generatedContainer {
+  margin-top: 2rem;
+}
+
+.generatedTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.generatedTable {
+  border-collapse: collapse;
+  width: 70%;
+  margin-bottom: 1rem;
+}
+
+.generatedTable th,
+.generatedTable td {
+  border: none;
+  padding: 0.5rem 2rem;
+  text-align: left;
+}
+
+.generatedTable td {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.generatedTable button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.btnAddGenerated {
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+.spots {
+  width: 100%;
+  max-width: 10rem;
+}
+
+.spots input[type="number"] {
   width: 100%;
 }
-
 
 .btnAdd {
   padding: 0.5rem 2rem;
@@ -64,9 +140,26 @@
 .table button {
   cursor: pointer;
 }
+.scrollableTableContainer {
+  max-height: 300px; /* Ajustá según tu diseño */
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Opcional: mejora visual para scroll */
+.scrollableTableContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollableTableContainer::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
 
 .capacityTable {
-    text-align: center;
+  text-align: center;
 }
 
 .noteHelp {

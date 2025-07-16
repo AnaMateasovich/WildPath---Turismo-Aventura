@@ -38,6 +38,7 @@ export const Sidebar = () => {
           src="/src/assets/logo.png"
           alt="logo"
           onClick={() => navigate("/")}
+          loading="lazy"
         />
       </div>
       <nav className={`${isOpen && styles.listMenuOpen} ${styles.iconsList}`}>
@@ -132,7 +133,7 @@ export const Sidebar = () => {
               <span>Usuarios</span>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               to="/admin"
               className={`${styles.iconContainer} ${
@@ -145,9 +146,9 @@ export const Sidebar = () => {
               />
               <span>Administradores</span>
             </Link>
-          </li>
+          </li> */}
         </ul>
-        <ul className={styles.sectionIconsList}>
+        {/* <ul className={styles.sectionIconsList}>
           <li>
             <Link
               to="/admin"
@@ -162,7 +163,7 @@ export const Sidebar = () => {
               <span>Cerrar Sesión</span>
             </Link>
           </li>
-        </ul>
+        </ul> */}
       </nav>
     </div>
   );
