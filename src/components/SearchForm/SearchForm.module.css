@@ -57,24 +57,18 @@
 }
 
 .location {
-  padding: 1rem 1rem 1rem 3.5rem;
-  background: url("/src/assets/location.png") no-repeat 10px center;
-  background-size: 20px;
+  padding: 1rem;
 }
 
 .category {
-  padding: 1rem 1rem 1rem 3.5rem;
-  background: url("/src/assets/advType.png") no-repeat 10px center;
-  background-size: 20px;
+  padding: 1rem;
 }
 
 .startDate {
-  padding: 1rem 1rem 1rem 1rem;
-  background-size: 20px;
+  padding: 1rem;
 }
 .endDate {
-  padding: 1rem 1rem 1rem 1rem;
-  background-size: 20px;
+  padding: 1rem;
 }
 
 .suggestionList {

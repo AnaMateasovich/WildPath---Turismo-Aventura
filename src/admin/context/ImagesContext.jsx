@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import { category } from "../../data/db";
 
 const ImagesContext = createContext();
 

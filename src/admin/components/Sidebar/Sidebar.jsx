@@ -35,7 +35,7 @@ export const Sidebar = () => {
       </button>
       <div className={styles.logo}>
         <img
-          src="/src/assets/logo.png"
+          src="/src/assets/logo.webp"
           alt="logo"
           onClick={() => navigate("/")}
           loading="lazy"

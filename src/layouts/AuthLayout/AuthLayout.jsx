@@ -24,7 +24,7 @@ export const AuthLayout = ({children, title, formContainerClass}) => {
       </div>
       <section className={`${formContainerClass} ${styles.formContainer}`}>
         <form action="" className={styles.form}>
-          <img src="/src/assets/logo.png" alt="Logo Wildpath" className={logoClass} loading="lazy"/>
+          <img src="/src/assets/logo.webp" alt="Logo Wildpath" className={logoClass} loading="lazy"/>
           <h1 className={styles.title}>{title}</h1>
           {children}
         </form>

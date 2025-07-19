@@ -142,7 +142,7 @@ export const FormPackage = ({ isEditing = false }) => {
             onChange={handleChange}
             value={packageForm.duration.days}
             inputName="days"
-            id="packageDuration"
+            id="packageDurationDays"
             placeholder="3"
           />
           <Input
@@ -151,7 +151,7 @@ export const FormPackage = ({ isEditing = false }) => {
             onChange={handleChange}
             value={packageForm.duration.nights}
             inputName="nights"
-            id="packageDuration"
+            id="packageDurationNights"
             placeholder="2"
           />
           <Input
@@ -160,7 +160,7 @@ export const FormPackage = ({ isEditing = false }) => {
             onChange={handleChange}
             value={packageForm.duration.hours}
             inputName="hours"
-            id="packageDuration"
+            id="packageDurationHours"
             placeholder="0"
           />
           <Input
@@ -169,7 +169,7 @@ export const FormPackage = ({ isEditing = false }) => {
             onChange={handleChange}
             value={packageForm.duration.minutes}
             inputName="minutes"
-            id="packageDuration"
+            id="packageDurationMinutes"
             placeholder="0"
           />
         </div>

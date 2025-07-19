@@ -1,0 +1,68 @@
+.modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContent {
+    position: relative;
+    width: 70rem;
+    height: auto;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+
+
+.closeBtn {
+    position: absolute;
+    top: .5rem;
+    right: 1.5rem;
+    background: none;
+    color: #333;
+    font-size: 5rem;
+    border: none;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.swiperContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 1024px) {
+    .modalContent {
+        width: 100%;
+        height: auto;
+    }
+
+    .image {
+        height: 100%;
+    }
+}

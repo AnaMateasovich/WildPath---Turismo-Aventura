@@ -185,7 +185,7 @@ export const ReviewAndSubmit = () => {
             {datesAvailable.map((item, index) => (
               <tr key={index}>
                 <td className={styles.dateTable}>{item.date}</td>
-                <td className={styles.capacityTable}>{item.capacity}</td>
+                <td className={styles.capacityTable}>{item.spots}</td>
               </tr>
             ))}
           </tbody>

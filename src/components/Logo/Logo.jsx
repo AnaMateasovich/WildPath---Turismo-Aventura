@@ -10,7 +10,7 @@ export const Logo = () => {
   return (
     <div className={styles.logo} onClick={() => navigate("/")}>
       <div className={styles.imgLogo}>
-        <img src="/src/assets/logo.png" alt="Logo WildPath" loading="lazy"/>
+        <img src="/src/assets/logo.webp" alt="Logo WildPath" loading="lazy"/>
       </div>
       <div className={styles.txtLogo}>
         <h3>WILDPATH</h3>

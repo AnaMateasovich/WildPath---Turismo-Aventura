@@ -176,6 +176,7 @@ const formatDateISO = (date) => {
             inputName="start"
             value={range.start}
             onChange={handleRangeChange}
+            id="startRangeDate"
           />
           <Input
             labelName="Hasta"
@@ -183,6 +184,8 @@ const formatDateISO = (date) => {
             inputName="end"
             value={range.end}
             onChange={handleRangeChange}
+            id="endRangeDate"
+
           />
           <Input
             labelName="Cupos"
@@ -191,19 +194,21 @@ const formatDateISO = (date) => {
             inputName="spots"
             value={range.spots}
             onChange={handleRangeChange}
+            id="rangeSpots"
           />
         </div>
         <div className={styles.checkAndButton}>
           <div className={styles.dayCheckboxes}>
             <label>Días:</label>
             <div className={styles.checkboxList}>
-              {daysOfWeek.map((day) => (
+              {daysOfWeek.map((day, index) => (
                 <label key={day} className={styles.checkboxItem}>
                   <input
                     type="checkbox"
                     value={day}
                     checked={isDayChecked(day)}
                     onChange={handleDayCheckboxChange}
+                    id={`day-${index}`}
                   />
                   {day}
                 </label>
@@ -215,6 +220,7 @@ const formatDateISO = (date) => {
               text="Generar fechas"
               onClick={handleGenerateDates}
               className={styles.generateDatesBtn}
+              id="generateDatesButton"
             />
           </div>
         </div>
@@ -252,6 +258,7 @@ const formatDateISO = (date) => {
             text="Agregar al listado"
             onClick={handleAddGenerated}
             className={styles.btnAddGenerated}
+            id="addRangeDatesButton"
           />
         </div>
       )}

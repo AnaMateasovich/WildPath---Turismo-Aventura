@@ -82,6 +82,7 @@ const Login = () => {
         text="Ingresar"
         className={styles.buttonLogin}
         onClick={handleLogin}
+        id="loginButton"
       />
       <p className={styles.registerMessage}>
         ¿No tienes una cuenta?{" "}

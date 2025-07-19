@@ -47,7 +47,7 @@ const Home = () => {
   }, [pendingSearch, dispatch]);
   return (
     <>
-      <div className={styles.hero}>
+      <div className={styles.hero} id="hero-home">
         <div className={styles.form}>
           <h1 className={styles.titleHero}>
             Encuentra la aventura perfecta para tí

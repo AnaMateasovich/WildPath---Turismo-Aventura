@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./ListCategories.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { category } from "../../data/db";
 import { API_URL } from "../../admin/redux/features/FullFormCreate/formSlice";
 import {Button } from '../../components/Button/Button'
 import { useNavigate } from "react-router-dom";

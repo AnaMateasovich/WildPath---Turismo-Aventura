@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  background: url("/src/assets/hero.webp");
+background: url("/src/assets/hero.webp");
   width: 100%;
   min-height: 20rem;
   background-repeat: no-repeat;
