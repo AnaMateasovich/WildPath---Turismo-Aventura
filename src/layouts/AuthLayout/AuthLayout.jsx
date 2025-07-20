@@ -11,7 +11,7 @@ export const AuthLayout = ({children, title, formContainerClass}) => {
 
   if (path === '/login') {
     logoClass = styles.logoLogin;
-  } else if (path === '/registro') {
+  } else if (path === '/registro' || '/verify-account') {
     logoClass = styles.logoRegister;
   } else {
     logoClass = styles.logoDefault;

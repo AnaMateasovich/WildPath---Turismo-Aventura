@@ -24,8 +24,6 @@ export const ProductsList = ({
       <div className={styles.cardsContainer}>
         {packages.map((tpackage) => {
 
-          
-
           return (
             <ListCard
               key={tpackage.id}
@@ -45,8 +43,11 @@ export const ProductsList = ({
             />
           );
         })}
+        {packages.length === 0 && (
+          <p>No encontramos ninguna actividad con estas características</p>
+        )}
       </div>
-      {filteredPackages.length === 0 && totalPages && (
+      {filteredPackages.length === 0 && totalPages && packages.length !== 0 && (
         <div className={styles.pagination}>
           <Pagination
             cPage={currentPage + 1}

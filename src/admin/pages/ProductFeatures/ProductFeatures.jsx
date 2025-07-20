@@ -173,9 +173,9 @@ const ProductFeatures = () => {
           <li className={styles.itemInclude} key={include.id}>
             <img src={`${API_URL}${include.iconSrc}`} alt="" loading="lazy"/>
             {include.description}
-            <button onClick={() => handleEditInclude(include)}>
+            {/* <button onClick={() => handleEditInclude(include)}>
               <EditRoundedIcon style={{ fontSize: "2rem" }} />
-            </button>
+            </button> */}
             <button onClick={() => handelDeleteInclude(include, id)}>
               <DeleteRoundedIcon style={{ fontSize: "2rem" }} />
             </button>

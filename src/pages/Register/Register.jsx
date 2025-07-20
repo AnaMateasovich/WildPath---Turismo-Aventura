@@ -56,8 +56,8 @@ const Register = () => {
       {verifyMessage ? (
         <div style={{ textAlign:"center"}}>
 
-        <p style={{ color: "green"}}>{verifyMessage}</p>
-        <p>Volver al <Link><strong>inicio</strong></Link></p>
+        <p style={{ color: "green"}}>Le enviamos un correo electrónico de confirmación. Por favor, revise su bandeja de entrada para activar su cuenta.</p>
+        <p>Volver al <Link to="/"><strong>inicio</strong></Link></p>
         </div>
       ) : (
         <>

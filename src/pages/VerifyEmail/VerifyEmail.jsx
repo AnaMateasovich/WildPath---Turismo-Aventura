@@ -22,11 +22,11 @@ const VerifyEmail = () => {
   }, [token, dispatch]);
 
   return (
-    <AuthLayout title="Registrate" formContainerClass={styles.formContainer}>
+    <AuthLayout title="Confirmación de email" formContainerClass={styles.formContainer}>
       {loading && <p>Verifying...</p>}
       {verifyMessage && (
         <div>
-          <p>{verifyMessage}</p>
+          <p>Tu cuenta ha sido activada ya puedes iniciar sesión</p>
           <p>Ir al <strong><Link to="/login">Login</Link></strong></p>
         </div>
       )}
