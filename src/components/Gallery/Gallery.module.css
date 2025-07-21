@@ -22,7 +22,7 @@
   height: 100%;
   object-fit: cover; /* o "contain" si preferís que se vea toda sin recortes */
   display: block;
-
+cursor: pointer;
 }
 .viewMore {
   position: relative;

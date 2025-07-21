@@ -44,6 +44,7 @@ export const Gallery = ({ images = [], title = "imagen" }) => {
               alt={`${title} ${index + 1}`}
               className={imageClass}
               loading="lazy"
+              onClick={() => setShowModal(true)}
               />
             );
           })}

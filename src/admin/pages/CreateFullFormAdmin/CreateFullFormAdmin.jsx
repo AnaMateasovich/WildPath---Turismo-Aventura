@@ -243,7 +243,7 @@ const CreateFullFormAdmin = () => {
               <FormImg
                 type="package"
                 nameLabel="Imágenes del paquete"
-                maxImages={5}
+                maxImages={7}
                 maxFileSizeMB={2}
               />
             </div>
